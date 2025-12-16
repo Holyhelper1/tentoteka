@@ -1,0 +1,422 @@
+/* .sliderContainer {
+  max-width: 1900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  position: relative;
+  height: 700px;
+  overflow: hidden;
+}
+
+.sliderTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #0d3483;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.sliderSubtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper {
+  padding: 10px 5px 40px;
+  overflow: visible;
+  height: 420px;
+}
+
+.swiperSlide {
+  background-color: #0f3584;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0.9;
+}
+
+.swiperSlide:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+}
+
+.swiperSlideActive {
+  opacity: 1;
+}
+
+.slideContent {
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 130%;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.slideImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.slideContent:hover .slideImage {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.slideInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  z-index: 2;
+  color: white;
+  border-radius: 0 0 12px 12px;
+}
+
+.slideText {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.sliderProgress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+
+.sliderControls {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 20px);
+  gap: 10px;
+}
+
+.controlButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #0d3483;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(13, 52, 131, 0.3);
+}
+
+.controlButton:hover {
+  background-color: #1a5fb4;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 52, 131, 0.4);
+}
+
+.controlButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  .sliderTitle {
+    font-size: 2rem;
+  }
+  
+  .sliderSubtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sliderContainer {
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+  
+  .sliderTitle {
+    font-size: 1.8rem;
+  }
+  
+  .slideText {
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  .sliderProgress {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .progressBar {
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  .sliderControls {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliderTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sliderSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  
+  .swiperSlide {
+    border-radius: 8px;
+  }
+  
+  .imageWrapper {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .slideInfo {
+    padding: 15px;
+  }
+  
+  .controlButton {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+} */
+
+
+
+/* === Общие стили (взяты и адаптированы из твоих) === */
+.sliderContainer {
+  max-width: 1900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  position: relative;
+  min-height: 800px;
+  overflow: visible !important;
+}
+
+.sliderTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #0d3483;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.sliderSubtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* swiper контейнер (наш локальный класс) */
+.swiper {
+  padding: 10px 5px 40px;
+  overflow: visible !important;
+  height: 510px;
+}
+
+/* Стили карточек (локальные имена) */
+.slideItem {
+  /* SwiperSlide локальный класс: ширина фиксирована для auto-режима */
+  width: 260px;
+  flex-shrink: 0;
+  margin-right: 30px;
+  display: flex;
+  align-items: stretch;
+}
+
+.slideCard {
+  width: 100%;
+  background-color: #0f3584;
+  border-radius: 12px;
+  overflow: visible !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.15, 1), z-index 0.2s, box-shadow 0.2s;
+  transform-origin: center center;
+  position: relative;
+  z-index: 1;
+}
+
+.slideCard:hover {
+  transform: scale(1.15) translateY(-8px);
+  z-index: 60;
+  box-shadow: 0 25px 60px rgba(13, 52, 131, 0.35);
+}
+
+/* изображение */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 130%;
+  overflow: visible;
+  
+  border-radius: 12px 12px 0 0;
+  z-index: 5;
+}
+
+.imageWrapper:hover {
+  border-radius: 12px;
+}
+
+.slideImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.2,0.9,0.15,1);
+  border-radius: 12px 12px 0 0;
+  will-change: transform;
+}
+
+.slideCard:hover .slideImage {
+  transform: scale(1.18);
+  z-index: 70;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.25) 100%);
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+
+/* Текст внизу карточки */
+.slideInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 4;
+  color: white;
+  border-radius: 0 0 12px 12px;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.slideCard:hover .slideInfo {
+  padding: 8px 12px;
+}
+
+.slideText {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.marquee {
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  position: relative;
+  height: 580px;
+  --scroll-duration: 130s;
+}
+
+.marquee :global(.swiper-wrapper) {
+  animation-name: scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: var(--scroll-duration);
+  will-change: transform;
+}
+
+.marquee:hover :global(.swiper-wrapper) {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee :global(.swiper) {
+  overflow: visible;
+}
+
+/* === Адаптив === */
+/* @media (max-width: 1024px) {
+  .slideItem { width: 260px; height: 450px; margin-right: 24px; }
+  .marquee { --scroll-duration: 100s; align-items: center;  height: 550px; background-color: red;}
+  .swiper {
+    height: 350px;
+    padding-bottom: 30px;
+  }
+  .sliderContainer { min-height: 650px; }
+  .imageWrapper {
+    padding-top: 100%;
+  }
+} */
+
+@media (max-width: 768px) {
+  /* .slideItem { width: 180px; margin-right: 16px; }
+  .marquee { --scroll-duration: 85s; height: 350px;}
+  .swiper { height: 460px; width: 100%;}
+  .sliderTitle { font-size: 1.8rem; } */
+}
+
+/* @media (max-width: 480px) {
+  .slideItem { width: 150px; margin-right: 12px; }
+  .marquee { --scroll-duration: 40s; }
+  .swiper { height: 360px; }
+  .sliderTitle { font-size: 1.5rem; }
+  .slideCard {width: 350px !important;}
+} */
+
+/* важно — чтобы ничего не обрезалось при scale */
+.sliderContainer, .slideItem, .slideCard {
+  overflow: visible !important;
+}

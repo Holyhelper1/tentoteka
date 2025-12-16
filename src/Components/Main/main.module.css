@@ -1,0 +1,188 @@
+.main_container {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 25px 25px 25px 0;
+  min-height: 450px;
+  overflow: hidden;
+  background: linear-gradient(to right, #0d3483, #a3b6e0);
+}
+
+.main_text_container {
+  padding-top: 60px;
+  padding-left: 100px;
+  position: relative;
+  z-index: 3;
+}
+
+.main_title {
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 5px;
+  font-size: clamp(35px, 3.3vw, 64px);
+}
+
+.main_list {
+  list-style: outside;
+  color: white;
+  padding-left: 17px;
+  line-height: 1.9;
+  font-size: clamp(15px, 0.98vw, 19px);
+}
+
+.main_car_img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  object-fit: contain;
+}
+
+.main_square_top {
+  position: absolute;
+  top: -20%;
+  right: 30%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  rotate: 45deg;
+  width: 20vw;
+  height: 20vw;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  z-index: 1;
+}
+
+.main_circle_big {
+  position: absolute;
+  bottom: -15%;
+  right: 75%;
+  rotate: 135deg;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  width: 7vw;
+  height: 7vw;
+  z-index: 2;
+}
+.main_circle_small {
+  position: absolute;
+  top: -5%;
+  left: -3%;
+  rotate: 135deg;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  width: 3vw;
+  height: 3vw;  
+  z-index: 2;
+}
+
+.main_square_left {
+  position: absolute;
+  bottom: -55%;
+  left: -5%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  rotate: 45deg;
+  width: 20vw;
+  height: 20vw;
+  max-width: 520px !important;
+  max-height: 520px !important;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  z-index: 1;
+}
+
+.main_square_right {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  background-color: #cbd6ec;
+  border-radius: 50px;
+  rotate: 45deg;
+  width: 35vw;
+  height: 35vw;
+  max-width: 520px;
+  max-height: 520px;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  z-index: 1;
+}
+
+@media (max-width: 1330px) {
+  .main_container {
+    border-radius: 25px;
+  }
+
+  .main_circle_small {
+    bottom: 20%;
+    left: 2%;
+  }
+}
+
+@media (min-width: 1840px) {
+
+  .main_square_top,
+  .main_square_left,
+  .main_square_right {
+    width: 320px;
+    height: 320px;
+  }
+
+  
+  .main_circle_big {
+    width: 120px;
+    height: 120px;
+  }
+  .main_circle_small {
+    width: 70px;
+    height: 70px;
+  }
+  
+}
+@media (max-width: 1130px) {
+  .main_container {
+    flex-direction: column;
+    min-height: 570px;
+  }
+
+  .main_square_top,
+  .main_square_left,
+  .main_square_right {
+    transition: none;
+  }
+
+  /* .main_circle_small {
+    display: none;
+  }
+  .main_circle_big {
+    display: none;
+  } */
+}
+
+@media (max-width: 680px) {
+  .main_text_container {
+    padding-top: 30px;
+    padding-left: 60px;
+  }
+}
+
+@media (max-width: 595px) {
+  .main_car_img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    object-fit: contain;
+    width: 100%;
+  }
+  .main_square_top,
+  .main_square_left,
+  .main_square_right {
+    display: none;
+  }
+
+  .main_container {
+    cursor: default;
+  }
+}
