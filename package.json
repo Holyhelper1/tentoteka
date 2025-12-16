@@ -1,4 +1,5 @@
 {
+  "homepage": "https://holyhelper1.github.io/tentoteka",
   "name": "tentoteka",
   "private": true,
   "version": "0.0.0",
@@ -6,6 +7,8 @@
   "scripts": {
     "start": "vite",
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
