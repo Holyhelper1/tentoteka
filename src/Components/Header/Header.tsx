@@ -45,7 +45,7 @@ export const Header = () => {
       <div className={styles.container}>
         {/* Логотип */}
         <div className={styles.logo}>
-          <Link to="/" onClick={closeMenu} className={styles.logo}>
+          <Link to="/tentoteka" onClick={closeMenu} className={styles.logo} title="На главную">
           <img src={Logo} alt="Тентотека" />
             Тентотека
           </Link>
