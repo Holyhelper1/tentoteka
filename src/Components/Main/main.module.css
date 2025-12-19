@@ -3,8 +3,9 @@
   margin-top: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  margin-inline: 20px;
   border-radius: 25px 25px 25px 0;
+  justify-content: space-between;
   min-height: 450px;
   overflow: hidden;
   background: linear-gradient(to right, #0d3483, #a3b6e0);
@@ -162,6 +163,7 @@
 }
 
 @media (max-width: 680px) {
+  
   .main_text_container {
     padding-top: 30px;
     padding-left: 30px;

@@ -1,14 +1,22 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 main {
   padding-top: 70px;
-  padding-inline: 40px;
+  /* padding-inline: 40px; */
   min-height: calc(100vh - 70px);
   background-color: var(--bg-white);
+  flex: 1;
 }
+
 
 @media (max-width: 768px) {
   main {
       padding-top: 60px;
-      padding-inline: 20px;
+      /* padding-inline: 20px; */
       
   }
 }

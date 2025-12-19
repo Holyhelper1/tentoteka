@@ -9,6 +9,7 @@
 // import { AdminControlPanel } from "./../Components/Pages/AdminControlPanel/AdminControlPanel";
 
 import { Main } from "../Components/Main/Main";
+import NotFoundPage from "../Components/NotFoundPage/NotFoundPage";
 
 export interface RouteConfig {
   path: string;
@@ -27,5 +28,5 @@ export const routes: RoutesArray = [
   // { path: "/meringue", component: Meringue },
   // { path: "/bento_plus_cupcakes", component: BentoPlusCupcakes },
   // { path: "/location", component: Location },
-  // {path: "*", component: NotFound},
+  {path: "*", component: NotFoundPage},
 ];
