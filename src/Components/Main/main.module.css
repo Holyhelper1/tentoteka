@@ -310,6 +310,9 @@
 }
 
 .modalContent {
+  display: flex;
+    align-content: center;
+    align-items: center;
   width: 100%;
   max-width: 820px;
   background: transparent; /* Order сам задаёт фон; либо можно задать здесь */
