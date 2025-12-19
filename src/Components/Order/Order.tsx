@@ -156,14 +156,8 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
           {/* close button */}
           <button
             onClick={() => onClose?.()}
-            aria-label="Закрыть"
-            style={{
-              background: "transparent",
-              border: "none",
-              fontSize: 20,
-              cursor: "pointer",
-              color: "var(--text-muted)"
-            }}
+            aria-label="Закрыть"            
+            className={styles.closeButton}
           >
             ✕
           </button>

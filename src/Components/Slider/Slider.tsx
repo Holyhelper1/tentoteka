@@ -57,7 +57,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
   const sliderImages = images ?? defaultImages;
 
   // Состояния для слайдера и модального окна
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  // const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -215,7 +215,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
               spaceBetween: 30,
             },
           }}
-          thumbs={{ swiper: thumbsSwiper }}
+          // thumbs={{ swiper: thumbsSwiper }}
           className={styles.mainSwiper}
         >
           {sliderImages.map((image, index) => (
@@ -269,7 +269,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
       </div>
 
       {/* Миниатюры для навигации (только не на мобильных) */}
-      {!isMobile && (
+      {/* {!isMobile && (
         <div className={styles.thumbsContainer}>
           <Swiper
             onSwiper={setThumbsSwiper}
@@ -310,7 +310,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
             ))}
           </Swiper>
         </div>
-      )}
+      )} */}
 
       {/* Модальное окно для просмотра изображений (только не на мобильных) */}
       {!isMobile && (
@@ -341,7 +341,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
                 nextEl: `.${styles.modalNext}`,
                 prevEl: `.${styles.modalPrev}`,
               }}
-              thumbs={{ swiper: thumbsSwiper }}
+              // thumbs={{ swiper: thumbsSwiper }}
               className={styles.modalSwiper}
             >
               {sliderImages.map((image) => (

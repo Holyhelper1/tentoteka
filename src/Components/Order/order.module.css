@@ -11,6 +11,10 @@
   font-family: Montserrat, system-ui, sans-serif;
 }
 
+[data-theme="dark"] .orderCard {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
 .header {
   margin-bottom: 12px;
 }
@@ -20,6 +24,19 @@
   color: var(--primary-color);
   margin-bottom: 6px;
   font-weight: 700;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all ease-in-out 0.3s;
+}
+.closeButton:hover {
+  color: var(--primary-accent);
+  rotate: 90deg;  
 }
 
 .subtitle {
@@ -38,9 +55,13 @@
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 12px;
-  background: #f5f7fb;
+  background: var(--bg-light);
   color: var(--text-muted);
   border: 1px solid transparent;
+}
+
+[data-theme="dark"] .step {
+  background: rgba(var(--primary-color-rgb), 0.1);
 }
 
 .step.active {
@@ -50,8 +71,8 @@
     var(--primary-hover)
   );
   color: var(--text-white);
-  box-shadow: 0 4px 16px rgba(13, 52, 131, 0.16);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(var(--primary-color-rgb), 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .content {
@@ -72,7 +93,7 @@
 
 .typeCard {
   flex: 1 1 160px;
-  background: #fff;
+  background: var(--bg-white);
   border-radius: 10px;
   padding: 14px;
   text-align: left;
@@ -86,11 +107,12 @@
 
 .typeCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(13, 52, 131, 0.06);
+  box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.15);
 }
 
 .typeIcon {
   font-size: 28px;
+  color: var(--primary-color);
 }
 .typeLabel {
   font-weight: 700;
@@ -104,7 +126,7 @@
 
 .typeCard.selected {
   border: 2px solid var(--primary-accent);
-  box-shadow: 0 10px 30px rgba(230, 82, 6, 0.08);
+  box-shadow: 0 10px 30px rgba(var(--primary-accent-rgb), 0.2);
 }
 
 .controlsRow {
@@ -126,16 +148,13 @@
 }
 
 .backBtn:hover {
-  /* Используем ваш светлый фон для заливки */
   background: var(--bg-light);
-  /* Делаем рамку чуть заметнее */
-  border-color: #d1d1d1;
-  /* Можно добавить акцент цветом текста */
+  border-color: var(--primary-color);
   color: var(--primary-color);
 }
 
 .backBtn:active {
-  background: #ebebeb;
+  background: rgba(var(--primary-color-rgb), 0.1);
 }
 
 .nextBtn {
@@ -146,23 +165,19 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  /* Плавный переход для всех свойств */
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 4px rgba(0, 46, 116, 0.1);
+  box-shadow: 0 2px 4px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .nextBtn:hover {
   background: var(--primary-hover);
-  /* Слегка приподнимаем кнопку */
   transform: translateY(-1px);
-  /* Делаем тень глубже, чтобы усилить эффект объема */
-  box-shadow: 0 4px 12px rgba(0, 46, 116, 0.2);
+  box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .nextBtn:active {
-  /* Эффект нажатия */
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 46, 116, 0.1);
+  box-shadow: 0 2px 4px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .orderBtn {
@@ -174,13 +189,19 @@
   border-radius: 10px;
   cursor: pointer;
   font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.orderBtn:hover {
+  background: var(--primary-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb), 0.3);
 }
 
 .modelsScroll {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  /* min-height: 150px; */ /*добавим потом когда будут изображения */  
   padding-top: 8px;
   padding-bottom: 8px;
   margin-top: 8px;
@@ -189,7 +210,7 @@
 .modelCard {
   min-width: 180px;
   flex: 0 0 auto;
-  background: #fff;
+  background: var(--bg-white);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 12px;
@@ -203,7 +224,7 @@
 
 .modelCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .modelTitle {
@@ -223,7 +244,7 @@
 
 .selectedModel {
   border: 2px solid var(--primary-color);
-  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.04);
+  box-shadow: 0 10px 30px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .hiddenRadio {
@@ -248,11 +269,13 @@
   border: 1px solid var(--border-color);
   font-size: 14px;
   outline: none;
+  background: var(--bg-white);
+  color: var(--text-main);
 }
 
 .textInput:focus {
   border-color: var(--primary-accent);
-  box-shadow: 0 6px 18px rgba(13, 52, 131, 0.06);
+  box-shadow: 0 6px 18px rgba(var(--primary-accent-rgb), 0.2);
 }
 
 .textArea {
@@ -265,11 +288,13 @@
   outline: none;
   resize: vertical;
   margin-top: 6px;
+  background: var(--bg-white);
+  color: var(--text-main);
 }
 
 .textArea:focus {
   border-color: var(--primary-accent);
-  box-shadow: 0 6px 18px rgba(13, 52, 131, 0.06);
+  box-shadow: 0 6px 18px rgba(var(--primary-accent-rgb), 0.2);
 }
 
 .colorsRow {
@@ -284,17 +309,22 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.06);
+  border: 2px solid var(--bg-light);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.colorSwatch:hover {
+  transform: scale(1.05);
 }
 
 .colorSelected {
-  outline: 3px solid rgba(13, 52, 131, 0.12);
+  outline: 3px solid rgba(var(--primary-color-rgb), 0.3);
   transform: scale(1.06);
 }
 
@@ -306,12 +336,15 @@
 
 .error {
   margin-top: 12px;
-  color: #b00020;
+  color: #ff5252;
   font-weight: 600;
   font-size: 13px;
 }
 
-/* micro text */
+[data-theme="dark"] .error {
+  color: #ff7b7b;
+}
+
 .micro {
   font-size: 12px;
   color: var(--text-muted);

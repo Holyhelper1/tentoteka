@@ -1,0 +1,470 @@
+.videoSection {
+  position: relative;
+  margin: 60px 0;
+  padding: 0 20px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.sectionDescription {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Контейнер видео */
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 соотношение */
+  background-color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+  border: 2px solid rgba(13, 52, 131, 0.1);
+}
+
+/* Локальное видео */
+.videoElement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #000;
+}
+
+/* Rutube контейнер */
+.rutubeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rutubeIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.rutubeInfo {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.rutubeText {
+  margin: 0;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.rutubeLink {
+  color: #ff3a30;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.rutubeLink:hover {
+  color: #ff6b20;
+  text-decoration: underline;
+}
+
+/* Индикатор загрузки */
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.loadingSpinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--primary-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Контролы видео */
+.videoControls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 20;
+}
+
+.controlsVisible {
+  transform: translateY(0);
+}
+
+/* Прогресс-бар */
+.progressBarContainer {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.progressBarContainer:hover {
+  height: 6px;
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--primary-accent);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+.progressTime {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Основные контролы */
+.controlsMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.controlButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  backdrop-filter: blur(5px);
+}
+
+.controlButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.controlButton:active {
+  transform: scale(0.95);
+}
+
+.timeDisplay {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+/* Кнопка звука в углу */
+.muteCornerButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+  font-size: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.muteCornerButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: var(--primary-accent);
+  transform: scale(1.1);
+}
+
+.muteCornerButton.unmuted {
+  background: rgba(230, 82, 6, 0.8);
+  border-color: #ff6b20;
+}
+
+/* Виньетка для фокуса */
+.videoVignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 5;
+}
+
+/* Дополнительная информация */
+.videoInfo {
+  padding: 40px 0;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.infoItem {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, rgba(13, 52, 131, 0.05) 0%, rgba(230, 82, 6, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(13, 52, 131, 0.1);
+  transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 46, 116, 0.1);
+  border-color: rgba(230, 82, 6, 0.2);
+}
+
+.infoTitle {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.infoText {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .videoSection {
+    margin: 40px 0;
+    padding: 0 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1.1rem;
+  }
+  
+  .videoContainer {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoSection {
+    margin: 30px 0;
+    padding: 0 10px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .sectionDescription {
+    font-size: 1rem;
+  }
+  
+  .videoControls {
+    padding: 15px;
+  }
+  
+  .controlButton {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .timeDisplay {
+    font-size: 0.9rem;
+    margin-left: 5px;
+  }
+  
+  .muteCornerButton {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .infoItem {
+    padding: 25px 15px;
+  }
+  
+  .infoTitle {
+    font-size: 1.2rem;
+  }
+  
+  .infoText {
+    font-size: 0.9rem;
+  }
+  
+  .rutubeInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionDescription {
+    font-size: 0.9rem;
+  }
+  
+  .videoContainer {
+    border-radius: 8px;
+  }
+  
+  .controlButton {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .muteCornerButton {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .infoItem {
+    padding: 20px 15px;
+  }
+  
+  .infoTitle {
+    font-size: 1.1rem;
+  }
+  
+  .infoText {
+    font-size: 0.85rem;
+  }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.videoSection {
+  animation: fadeIn 0.8s ease-out;
+}

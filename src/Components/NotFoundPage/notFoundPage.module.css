@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  background-color: var(--bg-white);
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -19,7 +19,7 @@
   box-shadow: 0 20px 60px rgba(0, 46, 116, 0.1);
   position: relative;
   z-index: 2;
-  border: 1px solid rgba(0, 46, 116, 0.1);
+  border: 1px solid var(--border-color);
 }
 
 /* Анимированный номер 404 */
@@ -34,25 +34,24 @@
 .number {
   font-size: 120px;
   font-weight: 900;
-  color: var(--primary-color);
   display: inline-block;
-  text-shadow: 5px 5px 0 rgba(0, 46, 116, 0.1);
+  text-shadow: 5px 5px 0 var(--shadow-color);
   animation: float 3s ease-in-out infinite;
+  color: var(--primary-color);
 }
 
 .number:nth-child(1) {
   animation-delay: 0s;
-  color: #002e74;
 }
 
 .number:nth-child(2) {
   animation-delay: 0.2s;
-  color: #143e7f;
+  color: var(--primary-hover);
 }
 
 .number:nth-child(3) {
   animation-delay: 0.4s;
-  color: #e65206;
+  color: var(--primary-accent);
 }
 
 @keyframes float {
@@ -109,30 +108,28 @@
   transform: translateX(-50%);
   width: 40px;
   height: 30px;
-  background-color: #e65206;
+  background-color: var(--primary-accent);
   clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
 }
 
-.tentPole {
-  position: absolute;
-  top: 80px;
-  left: 30px;
-  width: 5px;
-  height: 40px;
-  background-color: #8b7355;
-  transform: rotate(-10deg);
-  border-radius: 2px;
-}
-
+.tentPole,
 .tentPoleRight {
   position: absolute;
   top: 80px;
-  right: 30px;
   width: 5px;
   height: 40px;
   background-color: #8b7355;
-  transform: rotate(10deg);
   border-radius: 2px;
+}
+
+.tentPole {
+  left: 30px;
+  transform: rotate(-10deg);
+}
+
+.tentPoleRight {
+  right: 30px;
+  transform: rotate(10deg);
 }
 
 .tentShadow {
@@ -142,7 +139,7 @@
   transform: translateX(-50%);
   width: 120px;
   height: 20px;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--shadow-color);
   border-radius: 50%;
   filter: blur(5px);
   animation: shadowPulse 2s ease-in-out infinite;
@@ -193,7 +190,7 @@
   justify-content: center;
   gap: 10px;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
-  color: white;
+  color: var(--text-white);
   padding: 16px 32px;
   border-radius: 12px;
   text-decoration: none;
@@ -206,7 +203,7 @@
 
 .primaryButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 46, 116, 0.3);
+  box-shadow: 0 10px 25px rgba(var(--primary-color-rgb), 0.3);
   border-color: var(--primary-color);
 }
 
@@ -229,9 +226,9 @@
 }
 
 .secondaryButton:hover {
-  background-color: rgba(0, 46, 116, 0.05);
+  background-color: rgba(var(--primary-color-rgb), 0.05);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 46, 116, 0.1);
+  box-shadow: 0 10px 25px rgba(var(--primary-color-rgb), 0.1);
 }
 
 .buttonIcon {
@@ -241,7 +238,7 @@
 /* Дополнительные ссылки */
 .helpfulLinks {
   padding: 30px;
-  background-color: rgba(0, 46, 116, 0.03);
+  background-color: rgba(var(--primary-color-rgb), 0.03);
   border-radius: 16px;
   margin-bottom: 30px;
 }
@@ -434,4 +431,37 @@
   .errorNumber {
     gap: 10px;
   }
+}
+
+/* Оптимизации для темной темы */
+[data-theme="dark"] .content {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .helpfulLinks {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+[data-theme="dark"] .secondaryButton:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.15);
+}
+
+[data-theme="dark"] .tentShadow {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .decorativeElements .circle,
+[data-theme="dark"] .decorativeElements .square,
+[data-theme="dark"] .decorativeElements .triangle {
+  opacity: 0.15;
+}
+
+[data-theme="dark"] .number {
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .tentPole,
+[data-theme="dark"] .tentPoleRight {
+  background-color: #a89172; /* Более светлый цвет для темной темы */
 }

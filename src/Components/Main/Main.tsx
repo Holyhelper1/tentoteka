@@ -4,6 +4,7 @@ import MainCar from "./assets/main_car.png";
 import Circle from "./assets/circle-orange.png";
 import Slider from "../Slider/Slider";
 import Order from "../Order/Order";
+import VideoBlock from "../VideoBlock/VideoBlock";
 
 export const Main = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -229,6 +230,7 @@ export const Main = () => {
       </div>
 
       <Slider />
+      <VideoBlock/>
 
       {/* Плавающая FAB — появляется только после скролла к #works */}
       <button

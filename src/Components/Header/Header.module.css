@@ -1,11 +1,12 @@
 .header {
-  background-color: var(--bg-white);
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  background-color: var(--bg-header);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .container {
@@ -28,16 +29,22 @@
   font-weight: 700;
   text-transform: uppercase;
   color: var(--primary-color);
+  transition: color 0.3s ease;
 }
 
 .logo img {
   width: 60px;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .logo img {
+  filter: brightness(0.9);
 }
 
 .logo a {
   text-decoration: none;
   color: inherit;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .logo a:hover {
@@ -53,9 +60,9 @@
 
 .navLink {
   text-decoration: none;
-  color: #333;
+  color: var(--text-main);
   font-weight: 500;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
   padding: 5px 0;
   border-bottom: 2px solid transparent;
 }
@@ -74,10 +81,10 @@
 
 .phone {
   text-decoration: none;
-  color: #333;
+  color: var(--text-main);
   font-weight: 600;
   font-size: 18px;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
   white-space: nowrap;
 }
 
@@ -87,9 +94,9 @@
 
 .address {
   text-decoration: none;
-  color: #666;
+  color: var(--text-muted);
   font-size: 14px;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
   text-align: right;
 }
 
@@ -99,12 +106,12 @@
 
 .orderButton {
   background-color: var(--primary-color);
-  color: white;
+  color: var(--text-white);
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
   white-space: nowrap;
 }
 
@@ -124,26 +131,29 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background-color: #f5f5f5;
+  background-color: var(--bg-light);
   border-radius: 50%;
   text-decoration: none;
-  color: #333;
+  color: var(--text-main);
   font-weight: bold;
   font-size: 12px;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   object-fit: cover;
 }
+
 .socialLink svg {
   width: 30px;
   height: 30px;
+  transition: fill 0.3s ease;
 }
+
 .socialLink img {
   width: 30px;
 }
 
 .socialLink:hover {
   background-color: var(--primary-hover);
-  color: white;
+  color: var(--text-white);
   transform: translateY(-2px);
 }
 
@@ -153,7 +163,66 @@
   gap: 15px;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Контейнер для кнопок управления */
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Кнопка переключения темы */
+.themeToggle {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 44px;
+  height: 44px;
+  background-color: var(--bg-light);
+}
+
+.themeToggle svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.themeToggle:hover {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  transform: rotate(15deg);
+}
+
+.themeToggle:hover svg {
+  transform: scale(1.1);
+}
+
+.themeToggle:active {
+  transform: scale(0.95);
+}
+
+.mobileThemeToggle {
+  display: none;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: var(--bg-light);
+}
+
+.themeText {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 /* Бургер меню */
@@ -167,15 +236,18 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  position: relative;
+  z-index: 1001;
 }
 
 .burger span {
   display: block;
   width: 100%;
   height: 3px;
-  background-color: #333;
+  background-color: var(--text-main);
   transition: 0.3s;
   border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 .burgerOpen span:nth-child(1) {
@@ -204,6 +276,7 @@
 @media (max-width: 1070px) {
   .container {
     height: 60px;
+    padding: 0 30px;
   }
 
   .nav {
@@ -211,12 +284,12 @@
     top: 60px;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: var(--bg-header);
     flex-direction: column;
     align-items: flex-start;
     padding: 30px 20px;
     gap: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
@@ -232,8 +305,9 @@
 
   .navLink {
     font-size: 18px;
-    width: 85px;
+    width: 100%;
     padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .contacts {
@@ -258,7 +332,7 @@
     width: 100%;
     justify-content: center;
     padding-top: 20px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
   }
 
   .orderButton {
@@ -271,6 +345,22 @@
   .burger {
     display: flex;
   }
+
+  .themeToggle {
+    display: none;
+  }
+
+  .mobileThemeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .themeToggle:hover {
+  background-color: var(--primary-hover);
+  color: var(--text-white);
+  transform: rotate(0);
+}
 }
 
 @media (max-width: 480px) {
@@ -280,5 +370,30 @@
 
   .logo {
     font-size: 20px;
+    gap: 10px;
   }
+
+  .logo img {
+    width: 50px;
+  }
+
+  .headerControls {
+    gap: 15px;
+  }
+
+  .themeToggle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Плавная анимация для переключения иконки */
+.themeToggle svg {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Эффект для кнопки в темной теме */
+[data-theme="dark"] .themeToggle {
+  background-color: var(--primary-color);
+  color: var(--text-white);
 }
