@@ -7,8 +7,14 @@ import { FiPhone } from 'react-icons/fi';
 import { HiOutlineMail } from 'react-icons/hi';
 import Logo from '../../assets/Logo/Logo.png';
 import styles from './Footer.module.css';
+import Order from '../Order/Order';
+import { useState } from 'react';
 
 export const Footer = () => {
+    const [orderOpen, setOrderOpen] = useState(false);
+
+
+
   // Данные для соцсетей
   const socialLinks = [
     { 
@@ -60,6 +66,9 @@ export const Footer = () => {
   ];
 
   const currentYear = new Date().getFullYear();
+
+  const openOrder = () => setOrderOpen(true);
+  const closeOrder = () => setOrderOpen(false);
 
   return (
     <footer className={styles.footer}>
@@ -150,14 +159,12 @@ export const Footer = () => {
             <p className={styles.orderDescription}>
               Нужен тент для вашего транспорта? Оставьте заявку, и наш менеджер свяжется с вами в течение 15 минут.
             </p>
-            <a 
-              href="https://t.me/tentoteka_order"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.orderButton}
+            <button 
+            className={styles.orderButton}
+              onClick={openOrder}
             >
               Заказать тент
-            </a>
+            </button>
             <div className={styles.paymentMethods}>
               <span className={styles.paymentTitle}>Способы оплаты:</span>
               <div className={styles.paymentIcons}>
@@ -199,6 +206,13 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+      {orderOpen && (
+        <div className={styles.modalOverlay} role="dialog" aria-modal="true" onClick={closeOrder}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <Order onClose={closeOrder} />
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

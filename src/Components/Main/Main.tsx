@@ -192,7 +192,7 @@ export const Main = () => {
             onClick={openOrder}
             aria-label="Заказать (баннер)"
           >
-            Заказать
+            Заказать тент
           </button>
         </div>
 
@@ -239,7 +239,7 @@ export const Main = () => {
         aria-hidden={!showFab}
         style={{ pointerEvents: showFab ? "auto" : "none" }}
       >
-        Заказать
+        Заказать тент
       </button>
 
       {/* Модалка */}

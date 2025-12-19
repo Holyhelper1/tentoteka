@@ -230,6 +230,26 @@
   width: 100%;
 }
 
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 10, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  padding: 20px;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 820px;
+  background: transparent; /* Order сам задаёт фон; либо можно задать здесь */
+  border-radius: 14px;
+  transform-origin: center;
+  animation: modalIn .14s ease-out;
+}
+
 .orderButton:hover {
   background-color: transparent;
   border-color: var(--primary-accent);
