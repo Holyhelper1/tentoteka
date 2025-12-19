@@ -147,7 +147,7 @@ import { useTheme } from "../../Hooks/useTheme";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme, isDark } = useTheme();
+  const { toggleTheme, isDark } = useTheme();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
