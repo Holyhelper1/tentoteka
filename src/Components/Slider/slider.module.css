@@ -1,238 +1,6 @@
-/* .sliderContainer {
-  max-width: 1900px;
-  margin: 60px auto;
-  padding: 0 20px;
-  position: relative;
-  height: 700px;
-  overflow: hidden;
-}
-
-.sliderTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #0d3483;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.sliderSubtitle {
-  text-align: center;
-  color: #666;
-  font-size: 1.1rem;
-  margin-bottom: 40px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.swiper {
-  padding: 10px 5px 40px;
-  overflow: visible;
-  height: 420px;
-}
-
-.swiperSlide {
-  background-color: #0f3584;
-  height: auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  opacity: 0.9;
-}
-
-.swiperSlide:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  opacity: 1;
-}
-
-.swiperSlideActive {
-  opacity: 1;
-}
-
-.slideContent {
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-}
-
-.imageWrapper {
-  position: relative;
-  width: 100%;
-  padding-top: 130%;
-  overflow: hidden;
-  border-radius: 12px 12px 0 0;
-}
-
-.slideImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.slideContent:hover .slideImage {
-  transform: scale(1.05);
-}
-
-.imageOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 60%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.slideInfo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  z-index: 2;
-  color: white;
-  border-radius: 0 0 12px 12px;
-}
-
-.slideText {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-
-.sliderProgress {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 10px;
-}
-
-
-.sliderControls {
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 20px);
-  gap: 10px;
-}
-
-.controlButton {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: #0d3483;
-  color: white;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(13, 52, 131, 0.3);
-}
-
-.controlButton:hover {
-  background-color: #1a5fb4;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(13, 52, 131, 0.4);
-}
-
-.controlButton:active {
-  transform: translateY(0);
-}
-
-@media (max-width: 1024px) {
-  .sliderTitle {
-    font-size: 2rem;
-  }
-  
-  .sliderSubtitle {
-    font-size: 1rem;
-    margin-bottom: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .sliderContainer {
-    margin: 40px auto;
-    padding: 0 15px;
-  }
-  
-  .sliderTitle {
-    font-size: 1.8rem;
-  }
-  
-  .slideText {
-    font-size: 1rem;
-    padding: 15px;
-  }
-  
-  .sliderProgress {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .progressBar {
-    margin-right: 0;
-    width: 100%;
-  }
-  
-  .sliderControls {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .sliderTitle {
-    font-size: 1.5rem;
-  }
-  
-  .sliderSubtitle {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-  }
-  
-  .swiperSlide {
-    border-radius: 8px;
-  }
-  
-  .imageWrapper {
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .slideInfo {
-    padding: 15px;
-  }
-  
-  .controlButton {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-} */
-
-
-
-/* === Общие стили (взяты и адаптированы из твоих) === */
 .sliderContainer {
   max-width: 1900px;
-  margin: 60px auto;
+  margin: 30px auto;
   padding: 0 20px;
   position: relative;
   min-height: 800px;
@@ -241,7 +9,7 @@
 
 .sliderTitle {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   color: #0d3483;
   margin-bottom: 10px;
   font-weight: 700;
@@ -249,9 +17,9 @@
 
 .sliderSubtitle {
   text-align: center;
-  color: #666;
+  color: #667;
   font-size: 1.1rem;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -289,7 +57,7 @@
 .slideCard:hover {
   transform: scale(1.15) translateY(-8px);
   z-index: 60;
-  box-shadow: 0 25px 60px rgba(13, 52, 131, 0.35);
+  /* box-shadow: 0 25px 60px rgba(13, 52, 131, 0.35); */
 }
 
 /* изображение */

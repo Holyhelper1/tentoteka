@@ -91,7 +91,7 @@ export const Header = () => {
           </div>
 
           {/* Кнопка заказа */}
-          <a
+          {/* <a
             href="https://t.me/tentoteka_order"
             target="_blank"
             rel="noopener noreferrer"
@@ -99,7 +99,7 @@ export const Header = () => {
             onClick={closeMenu}
           >
             Оформить заказ
-          </a>
+          </a> */}
         </nav>
 
         {/* Контакты в десктопной версии */}

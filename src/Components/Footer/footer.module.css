@@ -1,0 +1,390 @@
+.footer {
+  background-color: #0f1a2e;
+  color: var(--text-white);
+  padding: 60px 0 30px;
+  margin-top: auto;
+  border-top: 3px solid var(--primary-color);
+}
+
+.footerContainer {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Верхняя часть футера */
+.footerTop {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr;
+  gap: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Логотип и описание компании */
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.9;
+}
+
+.logoImage {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-white);
+}
+
+.companyDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.socialLink svg {
+  width: 24px;
+  height: 24px;
+}
+
+.socialLink:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Заголовки секций */
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-accent);
+}
+
+/* Контакты */
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--primary-accent);
+  margin-top: 3px;
+}
+
+.contactLink {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  line-height: 1.4;
+}
+
+.contactLink:hover {
+  color: var(--primary-accent);
+}
+
+.contactSubtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* Быстрые ссылки */
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linkItem {
+  margin-bottom: 5px;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  padding: 5px 0;
+  display: inline-block;
+  position: relative;
+}
+
+.navLink:hover {
+  color: var(--primary-accent);
+  transform: translateX(5px);
+}
+
+.navLink::before {
+  content: '›';
+  position: absolute;
+  left: -15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: var(--primary-accent);
+}
+
+.navLink:hover::before {
+  opacity: 1;
+}
+
+/* Кнопка заказа */
+.orderDescription {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 25px;
+}
+
+.orderButton {
+  display: inline-block;
+  background-color: var(--primary-accent);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.orderButton:hover {
+  background-color: transparent;
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(230, 82, 6, 0.3);
+}
+
+.paymentMethods {
+  margin-top: 20px;
+}
+
+.paymentTitle {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+}
+
+.paymentIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.paymentIcon {
+  font-size: 24px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.paymentIcon:hover {
+  opacity: 1;
+}
+
+/* Нижняя часть футера */
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.copyright {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.legalLinks {
+  display: flex;
+  gap: 25px;
+}
+
+.legalLink {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: var(--primary-accent);
+}
+
+.developer {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.developerLink {
+  color: var(--primary-accent);
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.developerLink:hover {
+  color: #fff;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .footerTop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+  
+  .footerContainer {
+    padding: 0 20px;
+  }
+  
+  .footerTop {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding-top: 20px;
+  }
+  
+  .legalLinks {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .orderButton {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 0 20px;
+  }
+  
+  .footerContainer {
+    padding: 0 15px;
+  }
+  
+  .logo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .logoText {
+    font-size: 20px;
+  }
+  
+  .socialLink {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .socialLink svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}

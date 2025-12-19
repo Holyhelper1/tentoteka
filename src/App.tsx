@@ -2,6 +2,7 @@ import './App.module.css'
 import { Route, Routes } from 'react-router-dom'
 import {Header} from './Components/Header/Header'
 import { routes, type RouteConfig } from './Routes/routes'
+import { Footer } from './Components/Footer/Footer'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       </Routes>
 
     </main>
+    <Footer/>
     </>
   )
 }

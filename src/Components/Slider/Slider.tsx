@@ -399,7 +399,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
   };
 
   return (
-    <div className={styles.sliderContainer}>
+    <div id="works" className={styles.sliderContainer}>
       <h2 className={styles.sliderTitle}>Наши работы</h2>
       <p className={styles.sliderSubtitle}>
         Качественные тенты для любого транспорта

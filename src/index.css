@@ -108,6 +108,28 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 
  :root {
+
+   /* Основные цвета */
+  --primary-color: #002e74;
+  --primary-hover: #143e7f;
+  --primary-accent: #e65206;
+  
+  /* Текст */
+  --text-main: #333333;
+  --text-muted: #666666;
+  --text-white: #ffffff;
+  
+  /* Фон */
+  --bg-white: #ffffff;
+  --bg-light: #f5f5f5;
+  
+  /* Границы и разделители */
+  --border-color: #eeeeee;
+
+
+
+
+
   font-family: system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;

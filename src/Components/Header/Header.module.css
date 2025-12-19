@@ -1,5 +1,5 @@
 .header {
-  background-color: #ffffff;
+  background-color: var(--bg-white);
   /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
   position: fixed;
   top: 0;
@@ -27,7 +27,7 @@
   font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #1a5fb4;
+  color: var(--primary-color);
 }
 
 .logo img {
@@ -41,7 +41,7 @@
 }
 
 .logo a:hover {
-  color: #0d4a9e;
+  color: var(--primary-hover);
 }
 
 .nav {
@@ -61,8 +61,8 @@
 }
 
 .navLink:hover {
-  color: #1a5fb4;
-  border-bottom-color: #1a5fb4;
+  color: var(--primary-hover);
+  border-bottom-color: var(--primary-hover);
 }
 
 .contacts {
@@ -82,7 +82,7 @@
 }
 
 .phone:hover {
-  color: #1a5fb4;
+  color: var(--primary-hover);
 }
 
 .address {
@@ -94,11 +94,11 @@
 }
 
 .address:hover {
-  color: #1a5fb4;
+  color: var(--primary-hover);
 }
 
 .orderButton {
-  background-color: #1a5fb4;
+  background-color: var(--primary-color);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -109,7 +109,7 @@
 }
 
 .orderButton:hover {
-  background-color: #0d4a9e;
+  background-color: var(--primary-hover);
 }
 
 .socialLinks {
@@ -119,11 +119,9 @@
 }
 
 .socialLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 40px;
   height: 40px;
   background-color: #f5f5f5;
@@ -144,7 +142,7 @@
 }
 
 .socialLink:hover {
-  background-color: #1a5fb4;
+  background-color: var(--primary-hover);
   color: white;
   transform: translateY(-2px);
 }
@@ -203,7 +201,7 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1070px) {
   .container {
     height: 60px;
   }

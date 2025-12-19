@@ -2,6 +2,7 @@ main {
   padding-top: 70px; /* Высота хедера */
   padding-inline: 40px;
   min-height: calc(100vh - 70px); /* Минимальная высота минус хедер */
+  background-color: var(--bg-white);
 }
 
 @media (max-width: 768px) {
