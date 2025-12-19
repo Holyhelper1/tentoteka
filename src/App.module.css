@@ -1,14 +1,13 @@
 main {
-  padding-top: 70px; /* Высота хедера */
+  padding-top: 70px;
   padding-inline: 40px;
-  min-height: calc(100vh - 70px); /* Минимальная высота минус хедер */
+  min-height: calc(100vh - 70px);
   background-color: var(--bg-white);
 }
 
 @media (max-width: 768px) {
   main {
-      /* padding-top: 70px;  */
-      margin-top: 70px;
+      padding-top: 60px;
       padding-inline: 20px;
       
   }
