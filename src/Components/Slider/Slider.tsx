@@ -150,7 +150,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
       background: "transparent",
       padding: 0,
       width: "90%",
-      maxWidth: "1200px",
+      // maxWidth: "1200px",
       maxHeight: "90vh",
       borderRadius: "12px",
       overflow: "hidden",

@@ -210,14 +210,14 @@
   transform: scale(0.95);
 }
 
-.mobileThemeToggle {
+/* .mobileThemeToggle {
   display: none;
   width: 100%;
   border-radius: 8px;
   margin-top: 20px;
   padding: 12px;
   background-color: var(--bg-light);
-}
+} */
 
 .themeText {
   margin-left: 10px;
@@ -346,10 +346,7 @@
     display: flex;
   }
 
-  .themeToggle {
-    display: none;
-  }
-
+  
   .mobileThemeToggle {
     display: flex;
     align-items: center;

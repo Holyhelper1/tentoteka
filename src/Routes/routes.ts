@@ -9,7 +9,8 @@
 // import { AdminControlPanel } from "./../Components/Pages/AdminControlPanel/AdminControlPanel";
 
 import { Main } from "../Components/Main/Main";
-import NotFoundPage from "../Components/NotFoundPage/NotFoundPage";
+import Contacts from "../Pages/Contacts/Contacts";
+import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
 export interface RouteConfig {
   path: string;
@@ -20,9 +21,9 @@ type RoutesArray = RouteConfig[];
 
 export const routes: RoutesArray = [
   { path: "/tentoteka", component: Main },
+  { path: "/tentoteka/contacts", component: Contacts },
   // { path: "/adminlogin", component: AdminLogin },
   // { path: "/admin/control-panel", component: AdminControlPanel },
-  // { path: "/cakes", component: Cakes },
   // { path: "/cupcakes", component: Cupcakes },
   // { path: "/bento", component: Bento },
   // { path: "/meringue", component: Meringue },

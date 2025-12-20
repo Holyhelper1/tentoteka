@@ -1,0 +1,559 @@
+/* Основной контейнер */
+.contactsContainer {
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+}
+
+/* Заголовок страницы */
+.contactsHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+
+.pageTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pageSubtitle {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Основной контент */
+.contactsContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+@media (min-width: 1024px) {
+  .contactsContent {
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+}
+
+/* Левая колонка */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Правая колонка */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Общие стили для секций */
+.sectionHeader {
+  margin-bottom: 25px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleIcon {
+  font-size: 1.3rem;
+  color: var(--primary-accent);
+}
+
+.sectionDescription {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Секция карты */
+.mapWrapper {
+  background: var(--bg-white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(var(--primary-color-rgb), 0.1);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mapWrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(var(--primary-color-rgb), 0.15);
+}
+
+.mapContainer {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(20%);
+}
+
+.addressCard {
+  padding: 25px;
+  background: var(--bg-light);
+  border-top: 1px solid var(--border-color);
+}
+
+.addressInfo {
+  margin-bottom: 20px;
+}
+
+.addressTitle {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.addressText {
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-accent);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  background: rgba(var(--primary-accent-rgb), 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mapLink:hover {
+  background: rgba(var(--primary-accent-rgb), 0.2);
+  transform: translateY(-2px);
+}
+
+/* Контактная информация */
+.contactsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .contactsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contactCard {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.contactCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(var(--primary-color-rgb), 0.1);
+  border-color: rgba(var(--primary-color-rgb), 0.3);
+}
+
+.contactIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.contactInfo {
+  flex: 1;
+}
+
+.contactTitle {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.contactLink {
+  display: block;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: var(--primary-accent);
+}
+
+.contactText {
+  color: var(--text-main);
+  margin: 0 0 5px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.contactNote {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 8px 0 0 0;
+  font-style: italic;
+}
+
+/* Социальные сети */
+.socialSection {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.socialTitle {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (min-width: 640px) {
+  .socialLinks {
+    flex-direction: row;
+  }
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 12px 20px;
+  background: var(--bg-light);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.socialLink:hover {
+  background: var(--primary-color);
+  color: var(--text-white);
+  transform: translateY(-2px);
+}
+
+.socialLink svg {
+  font-size: 1.3rem;
+}
+
+/* Форма обратной связи */
+.formSection {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.formInput,
+.formTextarea {
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--bg-light);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submitButton {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: var(--text-white);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(-1px);
+}
+
+.formNote {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 15px;
+  line-height: 1.4;
+}
+
+/* Видео-блок */
+.videoWrapper {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(var(--primary-color-rgb), 0.1);
+}
+
+/* Дополнительная информация */
+.additionalInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .additionalInfo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.infoCard {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(var(--primary-color-rgb), 0.1);
+  border-color: rgba(var(--primary-color-rgb), 0.3);
+}
+
+.infoCardTitle {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.infoCardText {
+  color: var(--text-main);
+  line-height: 1.5;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Стили для тёмной темы */
+[data-theme="dark"] .mapWrapper,
+[data-theme="dark"] .contactCard,
+[data-theme="dark"] .socialSection,
+[data-theme="dark"] .formSection,
+[data-theme="dark"] .videoWrapper,
+[data-theme="dark"] .infoCard {
+  background: var(--bg-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .addressCard {
+  background: var(--bg-light);
+}
+
+[data-theme="dark"] .mapFrame {
+  filter: grayscale(30%) brightness(0.9);
+}
+
+[data-theme="dark"] .formInput,
+[data-theme="dark"] .formTextarea {
+  background: var(--bg-light);
+}
+
+[data-theme="dark"] .socialLink {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .socialLink:hover {
+  background: var(--primary-color);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .contactsContainer {
+    padding: 30px 15px;
+  }
+  
+  .contactsContent {
+    gap: 30px;
+  }
+  
+  .leftColumn,
+  .rightColumn {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactsContainer {
+    padding: 20px 10px;
+  }
+  
+  .contactsHeader {
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.3rem;
+  }
+  
+  .contactCard {
+    padding: 20px;
+  }
+  
+  .contactIcon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .formSection {
+    padding: 20px;
+  }
+  
+  .mapContainer {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.8rem;
+  }
+  
+  .pageSubtitle {
+    font-size: 0.95rem;
+  }
+  
+  .mapContainer {
+    height: 200px;
+  }
+  
+  .addressCard {
+    padding: 20px;
+  }
+  
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .socialLinks {
+    flex-direction: column;
+  }
+  
+  .submitButton {
+    padding: 12px 20px;
+  }
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contactsContainer {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.contactsContent > * {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.additionalInfo > * {
+  animation: fadeInUp 1s ease-out;
+}
