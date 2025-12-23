@@ -1,4 +1,4 @@
-import VideoBlock from "../../Components/VideoBlock/VideoBlock";
+// import VideoBlock from "../../Components/VideoBlock/VideoBlock";
 import styles from "./contacts.module.css";
 import {
   FaMapMarkerAlt,

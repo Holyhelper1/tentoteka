@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./main.module.css";
-import MainCar from "./assets/main_car.png";
+// import MainCar from "./assets/main_car.png";
+import MainCar from "./assets/main_banner.webp";
 import Circle from "./assets/circle-orange.png";
 import Slider from "../Slider/Slider";
 import Order from "../Order/Order";
