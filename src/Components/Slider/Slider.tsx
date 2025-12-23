@@ -6,21 +6,44 @@ import styles from "./Slider.module.css";
 // Модальное окно для просмотра изображений
 import Modal from "react-modal";
 
-import img1 from "./assets/NEXT 2,06 синий 1 (600гр)-Photoroom.png";
-import img2 from "./assets/NEXT синий 1 (600гр)-Photoroom (1).png";
-import img3 from "./assets/АВТОС А25Р 880 Синий - 1 (600гр)-Photoroom.png";
-import img4 from "./assets/АВТОС а20м 800 синий 1 (550гр)-Photoroom.png";
-import img5 from "./assets/АВТОС а25м (480)  синий 2-Photoroom.png";
-import img6 from "./assets/Белаз синий - 1 (600гр)-Photoroom.png";
-import img7 from "./assets/Бизнес синий 3 -Photoroom.png";
-import img8 from "./assets/Бизнес синий 4-Photoroom.png";
-import img9 from "./assets/Газель Бизнес 4,25 синий 4-Photoroom.png";
-import img10 from "./assets/Газель НО 4,25 синий 4-Photoroom.png";
-import img11 from "./assets/Соболь 2,17 синий 2-Photoroom.png";
-import img12 from "./assets/ТРЕЙЛЕР 82942Т синий - 2-Photoroom.png";
-import img13 from "./assets/Трейлер Аэро 8294 - 2-Photoroom.png";
-import img14 from "./assets/УАЗ Фермер НО 3 черный-Photoroom.png";
-import img15 from "./assets/УАЗ Фермер СО хаки 600гр 1-Photoroom.png";
+// Импорты всех 37 изображений согласно скриншоту
+import img1 from "./assets/АВТОС A25M h880.webp";
+import img2 from "./assets/АВТОС h480.webp";
+import img3 from "./assets/АВТОС A25M h880.webp";
+import img4 from "./assets/БелАЗ.webp";
+import img5 from "./assets/Газель NEXT 2,06м.webp";
+import img6 from "./assets/Газель NEXT 2,16м.webp";
+import img7 from "./assets/Газель NEXT 4,25м.webp";
+import img8 from "./assets/Газель Бизнес 4,25.webp";
+import img9 from "./assets/Газель Бизнес 4,25м.webp";
+import img10 from "./assets/ГАЗель Бизнес.webp";
+import img11 from "./assets/Газель Нового образца.webp";
+import img12 from "./assets/Газель Старого образца.webp";
+import img13 from "./assets/Гранит 2513-04.webp";
+import img14 from "./assets/КМЗ 8136-8284.webp";
+import img15 from "./assets/КМЗ В1 7194 h825.webp";
+import img16 from "./assets/КМЗ В1 7194.webp";
+import img17 from "./assets/Композит Аэро.webp";
+import img18 from "./assets/Кремень.webp";
+import img19 from "./assets/Крепыш.webp";
+import img20 from "./assets/ЛАВ 81011.webp";
+import img21 from "./assets/ЛАКЕР.webp";
+import img22 from "./assets/МЗСА 817700 h850.webp";
+import img23 from "./assets/МЗСА 817700.webp";
+import img24 from "./assets/МЗСА 817702.webp";
+import img25 from "./assets/МЗСА 817704.webp";
+import img26 from "./assets/САЗ.webp";
+import img27 from "./assets/Соболь 2,17м.webp";
+import img28 from "./assets/Соболь 2,42м.webp";
+import img29 from "./assets/титан 2013 h600.webp";
+import img30 from "./assets/ТИТАН 2013.webp";
+import img31 from "./assets/ТРЕЙЛЕР 82942Т.webp";
+import img32 from "./assets/Трейлер Аэро 8294.webp";
+import img33 from "./assets/УАЗ 33036.webp";
+import img34 from "./assets/УАЗ 39094 Фермер.webp";
+import img35 from "./assets/Фермер Бизнес 2,42м.webp";
+import img36 from "./assets/Фермер Бизнес 3,17м.webp";
+import img37 from "./assets/Фермер Нового образца 2,42м.webp";
 
 interface ImageData {
   id: number;
@@ -37,21 +60,43 @@ Modal.setAppElement("#root");
 
 const Slider: React.FC<SliderProps> = ({ images }) => {
   const defaultImages: ImageData[] = [
-    { id: 1, url: img1, alt: "Тент NEXT 2,06 синий" },
-    { id: 2, url: img2, alt: "Тент NEXT синий" },
-    { id: 3, url: img3, alt: "Тент АВТОС А25Р 880 Синий" },
-    { id: 4, url: img4, alt: "Тент АВТОС а20м 800 синий" },
-    { id: 5, url: img5, alt: "Тент АВТОС а25м синий" },
-    { id: 6, url: img6, alt: "Тент Белаз синий" },
-    { id: 7, url: img7, alt: "Тент Бизнес синий" },
-    { id: 8, url: img8, alt: "Тент Бизнес синий" },
-    { id: 9, url: img9, alt: "Тент Газель Бизнес 4,25 синий" },
-    { id: 10, url: img10, alt: "Тент Газель НО 4,25 синий" },
-    { id: 11, url: img11, alt: "Тент Соболь 2,17 синий" },
-    { id: 12, url: img12, alt: "Тент ТРЕЙЛЕР 82942Т синий" },
-    { id: 13, url: img13, alt: "Тент Трейлер Аэро 8294" },
-    { id: 14, url: img14, alt: "Тент УАЗ Фермер НО 3 черный" },
-    { id: 15, url: img15, alt: "Тент УАЗ Фермер СО хаки" },
+    { id: 1, url: img1, alt: "АВТОС A25M h880" },
+    { id: 2, url: img2, alt: "АВТОС h480" },
+    { id: 3, url: img3, alt: "АВТОС A25P h880" },
+    { id: 4, url: img4, alt: "БелАЗ" },
+    { id: 5, url: img5, alt: "Газель NEXT 2,06м" },
+    { id: 6, url: img6, alt: "Газель NEXT 2,16м" },
+    { id: 7, url: img7, alt: "Газель NEXT 4,25м" },
+    { id: 8, url: img8, alt: "Газель Бизнес 4,25" },
+    { id: 9, url: img9, alt: "Газель Бизнес 4,25м" },
+    { id: 10, url: img10, alt: "ГАЗель Бизнес" },
+    { id: 11, url: img11, alt: "Газель Нового образца" },
+    { id: 12, url: img12, alt: "Газель Старого образца" },
+    { id: 13, url: img13, alt: "Гранит 2513-04" },
+    { id: 14, url: img14, alt: "КМЗ 8136-8284" },
+    { id: 15, url: img15, alt: "КМЗ В1 7194 h825" },
+    { id: 16, url: img16, alt: "КМЗ В1 7194" },
+    { id: 17, url: img17, alt: "Композит Аэро" },
+    { id: 18, url: img18, alt: "Кремень" },
+    { id: 19, url: img19, alt: "Крепыш" },
+    { id: 20, url: img20, alt: "ЛАВ 81011" },
+    { id: 21, url: img21, alt: "ЛАКЕР" },
+    { id: 22, url: img22, alt: "МЭСА 817700 h850" },
+    { id: 23, url: img23, alt: "МЭСА 817700" },
+    { id: 24, url: img24, alt: "МЭСА 817702" },
+    { id: 25, url: img25, alt: "МЭСА 817704" },
+    { id: 26, url: img26, alt: "САЗ" },
+    { id: 27, url: img27, alt: "Соболь 2,17м" },
+    { id: 28, url: img28, alt: "Соболь 2,42м" },
+    { id: 29, url: img29, alt: "титан 2013 h600" },
+    { id: 30, url: img30, alt: "ТИТАН 2013" },
+    { id: 31, url: img31, alt: "ТРЕЙЛЕР 829421" },
+    { id: 32, url: img32, alt: "Трейлер Аэро 8294" },
+    { id: 33, url: img33, alt: "УАЗ 33036" },
+    { id: 34, url: img34, alt: "УАЗ 39094 Фермер" },
+    { id: 35, url: img35, alt: "Фермер Бизнес 2,42м" },
+    { id: 36, url: img36, alt: "Фермер Бизнес 3,17м" },
+    { id: 37, url: img37, alt: "Фермер Нового образца 2,42м" },
   ];
 
   const sliderImages = images ?? defaultImages;
@@ -151,7 +196,7 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
       padding: 0,
       width: "90%",
       // maxWidth: "1200px",
-      maxHeight: "90vh",
+      maxHeight: "95vh",
       borderRadius: "12px",
       overflow: "hidden",
     },

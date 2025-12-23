@@ -343,7 +343,8 @@
   width: 100% !important;
 }
 .ReactModal__Content--after-open{
-width: 100% !important;
+  width: 100% !important;
+  max-height: 95vh !important;
 }
 
 .closeButton:hover {
@@ -366,11 +367,10 @@ width: 100% !important;
 
 .modalImageWrapper {
   width: 100%;
-  height: 80%;
+  height: 85%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
 .modalImage {
@@ -382,11 +382,15 @@ width: 100% !important;
 }
 
 .modalCaption {
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
   color: var(--text-white);
   background: rgba(255, 255, 255, 0.1);
-  width: 100%;
+  width: 98%;
+  min-height: 90px;
   margin-top: 20px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
@@ -553,11 +557,6 @@ width: 100% !important;
     height: 35px;
     font-size: 20px;
   }
-}
-
-/* Дополнительные стили для тёмной темы */
-[data-theme="dark"] .modalContent {
-  background-color: rgba(0, 0, 0, 0.95);
 }
 
 [data-theme="dark"] .modalCaption {
