@@ -288,45 +288,6 @@
   z-index: 5;
 }
 
-/* Дополнительная информация */
-.videoInfo {
-  padding: 40px 0;
-}
-
-.infoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.infoItem {
-  text-align: center;
-  padding: 30px 20px;
-  background: linear-gradient(135deg, rgba(13, 52, 131, 0.05) 0%, rgba(230, 82, 6, 0.05) 100%);
-  border-radius: 12px;
-  border: 1px solid rgba(13, 52, 131, 0.1);
-  transition: all 0.3s ease;
-}
-
-.infoItem:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 46, 116, 0.1);
-  border-color: rgba(230, 82, 6, 0.2);
-}
-
-.infoTitle {
-  font-size: 1.3rem;
-  color: var(--primary-color);
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.infoText {
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 0;
-}
 
 /* Адаптивность */
 @media (max-width: 1024px) {
@@ -382,24 +343,7 @@
     height: 45px;
     font-size: 18px;
   }
-  
-  .infoGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .infoItem {
-    padding: 25px 15px;
-  }
-  
-  .infoTitle {
-    font-size: 1.2rem;
-  }
-  
-  .infoText {
-    font-size: 0.9rem;
-  }
-  
+    
   .rutubeInfo {
     flex-direction: column;
     align-items: flex-start;
@@ -433,24 +377,8 @@
     font-size: 16px;
     top: 15px;
     right: 15px;
-  }
+  }  
   
-  .infoGrid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .infoItem {
-    padding: 20px 15px;
-  }
-  
-  .infoTitle {
-    font-size: 1.1rem;
-  }
-  
-  .infoText {
-    font-size: 0.85rem;
-  }
 }
 
 /* Анимации */

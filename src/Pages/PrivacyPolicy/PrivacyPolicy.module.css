@@ -1,0 +1,122 @@
+/* components/PrivacyPolicy/PrivacyPolicy.module.css */
+.policyContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: calc(100vh - 80px);
+}
+
+.policyHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pageTitle {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.pageSubtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.policyContent {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 5px 20px rgba(var(--primary-color-rgb), 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.policySection {
+  margin-bottom: 35px;
+}
+
+.policySection h2 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(var(--primary-color-rgb), 0.1);
+}
+
+.policySection p {
+  color: var(--text-main);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  text-align: justify;
+}
+
+.policySection ul {
+  margin: 15px 0 15px 20px;
+  padding-left: 10px;
+}
+
+.policySection li {
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+.definitionList {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.definitionList li {
+  margin-bottom: 15px;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.definitionList li:before {
+  content: "• ";
+  color: var(--primary-accent);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.effectiveDate {
+  font-style: italic;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .policyContainer {
+    padding: 20px 15px;
+  }
+  .policyContent {
+    padding: 25px 20px;
+  }
+  .policySection h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .policyContent {
+    padding: 20px 15px;
+  }
+  .policySection h2 {
+    font-size: 1.2rem;
+  }
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+}

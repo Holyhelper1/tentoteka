@@ -6,6 +6,7 @@ import Circle from "./assets/circle-orange.png";
 import Slider from "../Slider/Slider";
 import Order from "../Order/Order";
 import VideoBlock from "../VideoBlock/VideoBlock";
+import { InfoBlock } from "../InfoBlock/InfoBlock";
 
 export const Main = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -232,6 +233,7 @@ export const Main = () => {
 
       <Slider />
       <VideoBlock/>
+      <InfoBlock/>
 
       {/* Плавающая FAB — появляется только после скролла к #works */}
       <button

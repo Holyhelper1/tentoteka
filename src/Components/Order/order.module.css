@@ -36,7 +36,7 @@
 }
 .closeButton:hover {
   color: var(--primary-accent);
-  rotate: 90deg;  
+  rotate: 90deg;
 }
 
 .subtitle {
@@ -335,11 +335,24 @@
 }
 
 .error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff5252;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 14px;
+  background: rgba(255, 82, 82, 0.08);
+  border-radius: 8px;
+  border-left: 3px solid #ff5252;
+  animation: errorFadeIn 0.3s ease-out;
+}
+/* .error {
   margin-top: 12px;
   color: #ff5252;
   font-weight: 600;
   font-size: 13px;
-}
+} */
 
 [data-theme="dark"] .error {
   color: #ff7b7b;

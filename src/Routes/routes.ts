@@ -9,6 +9,7 @@
 // import { AdminControlPanel } from "./../Components/Pages/AdminControlPanel/AdminControlPanel";
 
 import { Main } from "../Components/Main/Main";
+import { PrivacyPolicy } from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import Contacts from "../Pages/Contacts/Contacts";
 import NotFoundPage from "../Pages/NotFoundPage/NotFoundPage";
 
@@ -22,6 +23,7 @@ type RoutesArray = RouteConfig[];
 export const routes: RoutesArray = [
   { path: "/", component: Main },
   { path: "/contacts", component: Contacts },
+  { path: "/privacy", component: PrivacyPolicy },
   // { path: "/adminlogin", component: AdminLogin },
   // { path: "/admin/control-panel", component: AdminControlPanel },
   // { path: "/cupcakes", component: Cupcakes },

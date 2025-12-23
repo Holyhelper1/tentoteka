@@ -318,7 +318,7 @@ const VideoBlock = ({
       </div>
 
       {/* Дополнительная информация */}
-      <div className={styles.videoInfo}>
+      {/* <div className={styles.videoInfo}>
         <div className={styles.infoGrid}>
           <div className={styles.infoItem}>
             <h3 className={styles.infoTitle}>Собственное производство</h3>
@@ -337,7 +337,7 @@ const VideoBlock = ({
             <p className={styles.infoText}>Используем только качественные и долговечные материалы</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };
