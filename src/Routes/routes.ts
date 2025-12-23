@@ -20,8 +20,8 @@ export interface RouteConfig {
 type RoutesArray = RouteConfig[];
 
 export const routes: RoutesArray = [
-  { path: "/tentoteka", component: Main },
-  { path: "/tentoteka/contacts", component: Contacts },
+  { path: "/", component: Main },
+  { path: "/contacts", component: Contacts },
   // { path: "/adminlogin", component: AdminLogin },
   // { path: "/admin/control-panel", component: AdminControlPanel },
   // { path: "/cupcakes", component: Cupcakes },

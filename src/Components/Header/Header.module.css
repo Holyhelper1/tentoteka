@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   background-color: var(--bg-header);
   position: fixed;
   top: 0;
@@ -7,6 +8,38 @@
   z-index: 1000;
   box-shadow: 0 2px 10px var(--shadow-color);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headerHoliday::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 12px;
+  background-image: url(../../assets/NewYearMood/garland.svg);
+  background-repeat: repeat-x;
+  z-index: 1;
+  animation: rainbowAnimation 3s infinite linear;  
+  filter: 
+    drop-shadow(0 2px 4px rgba(255, 255, 255, 0.4)) 
+    drop-shadow(0 4px 12px currentColor); 
+}
+
+@keyframes rainbowAnimation {
+  0% {
+    filter: hue-rotate(0deg) drop-shadow(0 2px 8px rgba(255, 0, 0, 0.8));
+  }
+  33% {
+    filter: hue-rotate(120deg) drop-shadow(0 2px 8px rgba(0, 255, 0, 0.8));
+  }
+  66% {
+    filter: hue-rotate(240deg) drop-shadow(0 2px 8px rgba(0, 0, 255, 0.8));
+  }
+  100% {
+    filter: hue-rotate(360deg) drop-shadow(0 2px 8px rgba(255, 0, 0, 0.8));
+  }
 }
 
 .container {

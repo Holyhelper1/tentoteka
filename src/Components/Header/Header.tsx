@@ -6,10 +6,16 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Logo from "../../assets/Logo/Logo.png";
 import { useTheme } from "../../Hooks/useTheme";
+import Snowfall from "./Snowfall/Snowfall";
+import { isNewYearPeriod } from "../../Utils/isNewYearPeriod";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { toggleTheme, isDark } = useTheme();
+
+  const showHolidayDecor = isNewYearPeriod();
+
+  const headerClasses = `${styles.header} ${showHolidayDecor ? styles.headerHoliday : ""}`;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -41,11 +47,25 @@ export const Header = () => {
   ];
 
   return (
-    <header className={styles.header}>
+    <header className={headerClasses}>
+
+    <div className={styles.headerSnowingContainer} style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        bottom: 0, 
+        overflow: 'hidden',
+        pointerEvents: 'none' 
+      }}>
+        <Snowfall />
+      </div>
+
+
       <div className={styles.container}>
         {/* Логотип */}
         <div className={styles.logo}>
-          <Link to="/tentoteka" onClick={closeMenu} className={styles.logo} title="На главную">
+          <Link to="/" onClick={closeMenu} className={styles.logo} title="На главную">
             <img src={Logo} alt="Тентотека" />
             Тентотека
           </Link>
@@ -69,7 +89,7 @@ export const Header = () => {
           </div>
           
           {/* Ссылка на страницу контактов */}
-          <Link to="/tentoteka/contacts" className={styles.navLink} onClick={closeMenu}>
+          <Link to="/contacts" className={styles.navLink} onClick={closeMenu}>
             Контакты
           </Link>
 

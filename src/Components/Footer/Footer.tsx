@@ -60,7 +60,7 @@ export const Footer = () => {
     { name: 'Главная', path: '/' },
     { name: 'Каталог тентов', path: '/catalog' },
     { name: 'Наши работы', path: '/portfolio' },
-    { name: 'Контакты', path: '/tentoteka/contacts' },
+    { name: 'Контакты', path: '/contacts' },
     { name: 'Доставка и оплата', path: '/delivery' },
     { name: 'Гарантия', path: '/guarantee' },
   ];

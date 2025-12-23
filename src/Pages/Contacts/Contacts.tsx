@@ -16,11 +16,11 @@ const Contacts = () => {
   // Контактная информация
   const contactInfo = {
     address: "г. Нижний Новгород, ул. Памирская, 11В",
-    phone: "+7 (495) 123-45-67",
-    email: "info@tentoteka.ru",
+    phone: "+7 (987) 540 00 27",
+    email: "tentoteka@yandex.ru",
     workHours: {
       weekdays: "Пн-Пт: 9:00 - 18:00",
-      weekend: "Сб-Вс: 10:00 - 16:00",
+      weekend: "Сб-Вс: Выходной",
     },
     social: {
       whatsapp: "https://wa.me/74951234567",
@@ -114,9 +114,6 @@ const Contacts = () => {
                   >
                     {contactInfo.phone}
                   </a>
-                  <p className={styles.contactNote}>
-                    Звонок бесплатный по России
-                  </p>
                 </div>
               </div>
 
@@ -196,7 +193,7 @@ const Contacts = () => {
         {/* Правая колонка - Видео и форма */}
         <div className={styles.rightColumn}>
           {/* Видео-блок */}
-          <div className={styles.videoSection}>
+          {/* <div className={styles.videoSection}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>Как добраться до офиса</h2>
               <p className={styles.sectionDescription}>
@@ -214,7 +211,7 @@ const Contacts = () => {
                 loop={true}
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Форма обратной связи */}
           <div className={styles.formSection}>
