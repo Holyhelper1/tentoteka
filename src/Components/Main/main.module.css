@@ -218,6 +218,15 @@
 
   .main_container {
     cursor: default;
+    min-height: 530px;
+  }
+}
+@media (max-width: 480px) {
+
+
+  .main_container {
+    cursor: default;
+    min-height: 470px;
   }
 }
 

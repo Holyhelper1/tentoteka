@@ -6,9 +6,13 @@ import { RiMapPinLine } from 'react-icons/ri';
 import { FiPhone } from 'react-icons/fi';
 import { HiOutlineMail } from 'react-icons/hi';
 import Logo from '../../assets/Logo/Logo.png';
+import Avito from "../../assets/icons/avito.webp";
+import Rutube from "../../assets/icons/rutube.webp";
+import Dzen from "../../assets/icons/Dzen.webp";
 import styles from './Footer.module.css';
 import Order from '../Order/Order';
 import { useState } from 'react';
+import type { SocialLink } from '../Header/Header';
 
 export const Footer = () => {
     const [orderOpen, setOrderOpen] = useState(false);
@@ -16,42 +20,40 @@ export const Footer = () => {
 
 
   // Данные для соцсетей
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { 
       name: 'VK', 
       url: 'https://vk.com/tentoteka', 
-      icon: <IoLogoVk />,
+      icon: IoLogoVk ,
       color: '#4C75A3'
     },
     { 
       name: 'Telegram', 
       url: 'https://t.me/tentoteka', 
-      icon: <FaTelegramPlane />,
+      icon: FaTelegramPlane ,
       color: '#0088CC'
     },
     { 
       name: 'WhatsApp', 
       url: 'https://wa.me/79875400027', 
-      icon: <FaWhatsapp />,
+      icon: FaWhatsapp ,
       color: '#25D366'
     },
     { 
       name: 'Avito', 
       url: 'https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b', 
-      icon: 'AV',
-      color: '#ff654f'
+      icon: Avito,
     },    
     { 
       name: 'RUTUBE', 
       url: 'https://rutube.ru/channel/72546798/', 
-      icon: 'RU',
-      color: '#0c0540'
+      icon: Rutube,
     },
      {
       name: "Dzen",
       url: "https://dzen.ru/tentoteka",
-      icon: 'DZ',
-      color: '#202022'
+      icon: Dzen,
+      color: '#fff'
     },
   ];
 
@@ -85,7 +87,10 @@ export const Footer = () => {
                 Тенты для тех, кто ценит свои вещи
               </p>
               <div className={styles.socialLinks}>
-                {socialLinks.map((social) => (
+                {socialLinks.map((social) => {
+                  const isImagePath = typeof social.icon === "string";
+                  
+                  return(
                   <a
                     key={social.name}
                     href={social.url}
@@ -96,9 +101,17 @@ export const Footer = () => {
                     aria-label={social.name}
                     style={{ backgroundColor: social.color }}
                   >
-                    {social.icon}
+                    {isImagePath ? (
+                    <img
+                      src={social.icon as string}
+                      alt={social.name}
+                      className={styles.iconImg}
+                    />
+                  ) : (
+                    <social.icon />
+                  )}
                   </a>
-                ))}
+                )})}
               </div>
             </div>
           </div>

@@ -5,9 +5,21 @@ import { IoLogoVk } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Logo from "../../assets/Logo/Logo.png";
+import Avito from "../../assets/icons/avito.webp";
+import Rutube from "../../assets/icons/rutube.webp";
+import Dzen from "../../assets/icons/Dzen.webp";
 import { useTheme } from "../../Hooks/useTheme";
 import Snowfall from "./Snowfall/Snowfall";
 import { isNewYearPeriod } from "../../Utils/isNewYearPeriod";
+import type { IconType } from "react-icons";
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  // Icon может быть либо компонентом из react-icons, либо строкой (путь к картинке)
+  icon: IconType | string;
+  color?: string;
+}
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +27,9 @@ export const Header = () => {
 
   const showHolidayDecor = isNewYearPeriod();
 
-  const headerClasses = `${styles.header} ${showHolidayDecor ? styles.headerHoliday : ""}`;
+  const headerClasses = `${styles.header} ${
+    showHolidayDecor ? styles.headerHoliday : ""
+  }`;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,50 +40,56 @@ export const Header = () => {
   };
 
   // Данные для соцсетей для удобства управления
-  const socialLinks = [
-    { name: "VK", url: "https://vk.com/tentoteka", icon: <IoLogoVk /> },
+  const socialLinks: SocialLink[] = [
+    { name: "VK", url: "https://vk.com/tentoteka", icon: IoLogoVk },
     {
       name: "Telegram",
       url: "https://t.me/tentoteka",
-      icon: <FaTelegramPlane />,
+      icon: FaTelegramPlane,
     },
-    { 
-      name: 'Avito', 
-      url: 'https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b', 
-      icon: 'AV',
-    },    
-    { 
-      name: 'RUTUBE', 
-      url: 'https://rutube.ru/channel/72546798/', 
-      icon: 'RU',
+    {
+      name: "Avito",
+      url: "https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b",
+      icon: Avito,
+    },
+    {
+      name: "RUTUBE",
+      url: "https://rutube.ru/channel/72546798/",
+      icon: Rutube,
     },
     {
       name: "Dzen",
       url: "https://dzen.ru/tentoteka",
-      icon: 'DZ',
+      icon: Dzen,
     },
   ];
 
   return (
     <header className={headerClasses}>
-
-    <div className={styles.headerSnowingContainer} style={{ 
-        position: 'absolute', 
-        top: 0, 
-        left: 0, 
-        right: 0, 
-        bottom: 0, 
-        overflow: 'hidden',
-        pointerEvents: 'none' 
-      }}>
+      <div
+        className={styles.headerSnowingContainer}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
         <Snowfall />
       </div>
-
 
       <div className={styles.container}>
         {/* Логотип */}
         <div className={styles.logo}>
-          <Link to="/" onClick={closeMenu} className={styles.logo} title="На главную">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className={styles.logo}
+            title="На главную"
+          >
             <img src={Logo} alt="Тентотека" />
             Тентотека
           </Link>
@@ -91,7 +111,7 @@ export const Header = () => {
               г. Нижний Новгород, ул. Памирская, 11В
             </a>
           </div>
-          
+
           {/* Ссылка на страницу контактов */}
           <Link to="/contacts" className={styles.navLink} onClick={closeMenu}>
             Контакты
@@ -99,20 +119,30 @@ export const Header = () => {
 
           {/* Соцсети в навигации */}
           <div className={styles.socialLinks}>
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                title={social.name}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialLink}
-                aria-label={social.name}
-                onClick={closeMenu}
-              >
-                {social.icon}
-              </a>
-            ))}
+            {socialLinks.map((social) => {
+              const isImagePath = typeof social.icon === "string";
+
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialLink}
+                  onClick={closeMenu}
+                >
+                  {isImagePath ? (
+                    <img
+                      src={social.icon as string}
+                      alt={social.name}
+                      className={styles.iconImg}
+                    />
+                  ) : (
+                    <social.icon size={30}/>
+                  )}
+                </a>
+              );
+            })}
           </div>
         </nav>
 
@@ -137,7 +167,11 @@ export const Header = () => {
           <button
             className={styles.themeToggle}
             onClick={toggleTheme}
-            aria-label={isDark ? "Переключить на светлую тему" : "Переключить на темную тему"}
+            aria-label={
+              isDark
+                ? "Переключить на светлую тему"
+                : "Переключить на темную тему"
+            }
             title={isDark ? "Светлая тема" : "Темная тема"}
           >
             {isDark ? <FiSun /> : <FiMoon />}
@@ -145,7 +179,9 @@ export const Header = () => {
 
           {/* Бургер-меню */}
           <button
-            className={`${styles.burger} ${isMenuOpen ? styles.burgerOpen : ""}`}
+            className={`${styles.burger} ${
+              isMenuOpen ? styles.burgerOpen : ""
+            }`}
             onClick={toggleMenu}
             aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
           >
