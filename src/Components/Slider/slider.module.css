@@ -166,16 +166,18 @@
 
 .slider_button_left {
   position: relative;
-  width: clamp(40px, 5vw, 60px);
-  height: clamp(40px, 5vw, 60px);
+  width: clamp(45px, 5vw, 65px);
+  height: clamp(45px, 5vw, 65px);
   border: 1px solid var(--primary-color);
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
+  font-size: clamp(15px, 2.5vw, 30px);
+  color: var(--primary-color);
   transition: all 0.2s ease;
 }
 
-.slider_button_left:before {
+/* .slider_button_left:before {
   position: absolute;
   content: "";
   top: 50%;
@@ -187,7 +189,7 @@
   filter: brightness(0) saturate(100%) invert(35%) sepia(87%) saturate(4591%)
     hue-rotate(10deg) brightness(101%) contrast(105%);
   transition: filter 0.3s ease;
-}
+} */
 
 [data-theme="dark"] .slider_button_left:before {
   filter: brightness(0) saturate(100%) invert(63%) sepia(36%) saturate(1543%)
@@ -197,6 +199,7 @@
 .slider_button_left:hover {
   border-color: var(--primary-accent);
   background-color: rgba(var(--primary-accent-rgb), 0.1);
+  color: rgba(var(--primary-accent-rgb));
   transform: scale(1.1);
 }
 
@@ -211,16 +214,18 @@
 
 .slider_button_right {
   position: relative;
-  width: clamp(40px, 5vw, 60px);
-  height: clamp(40px, 5vw, 60px);
+  width: clamp(45px, 5vw, 65px);
+  height: clamp(45px, 5vw, 65px);
   border: 1px solid var(--primary-color);
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
+  font-size: clamp(15px, 2.5vw, 30px);
+  color: var(--primary-color);
   transition: all 0.2s ease;
 }
 
-.slider_button_right:before {
+/* .slider_button_right:before {
   position: absolute;
   content: "";
   top: 50%;
@@ -232,7 +237,7 @@
   filter: brightness(0) saturate(100%) invert(35%) sepia(87%) saturate(4591%)
     hue-rotate(10deg) brightness(101%) contrast(105%);
   transition: filter 0.3s ease;
-}
+} */
 
 [data-theme="dark"] .slider_button_right:before {
   filter: brightness(0) saturate(100%) invert(63%) sepia(36%) saturate(1543%)
@@ -242,6 +247,7 @@
 .slider_button_right:hover {
   border-color: var(--primary-accent);
   background-color: rgba(var(--primary-accent-rgb), 0.1);
+  color: rgba(var(--primary-accent-rgb));
   transform: scale(1.1);
 }
 
@@ -255,8 +261,8 @@
 }
 
 .autoplayButton {
-  width: clamp(40px, 5vw, 60px);
-  height: clamp(40px, 5vw, 60px);
+  width: clamp(45px, 5vw, 65px);
+  height: clamp(45px, 5vw, 65px);
   border: 1px solid var(--primary-color);
   border-radius: 50%;
   background-color: transparent;

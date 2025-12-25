@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: row;
   margin-inline: 20px;
-  border-radius: 25px 25px 25px 0;
+  border-radius: 25px;
   justify-content: space-between;
-  min-height: 450px;
+  min-height: 550px;
   overflow: hidden;
   background: linear-gradient(to right, #0d3483, #a3b6e0);
   box-sizing: border-box;
@@ -22,18 +22,48 @@
 
 .main_title {
   text-transform: uppercase;
-  color: white;
+  color: var(--text-white);
   letter-spacing: 5px;
   font-size: clamp(35px, 3.3vw, 64px);
 }
 
-.main_list {
+.main_subtitle {
+  display: inline-block;
+  color: var(--text-white);
+  text-transform: uppercase;
+  font-weight: bold;
+  /* font-size: 24px; */
+  font-size: clamp(15px, 1.5vw, 34px);
+  background-color: var(--primary-accent);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.main_utp_text {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-top: 10px;
+  color: var(--text-white);
+  /* font-size: clamp(12px, 2.5vw, 28px); */
+  font-size: clamp(12px, 1.4vw, 30px);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.icon_adaptive {
+  /* Минимальный размер 32px, оптимальный 3.75vw, максимальный 60px */
+  width: clamp(32px, 3.75vw, 60px);
+  height: clamp(32px, 3.75vw, 60px);
+  object-fit: contain;
+}
+/* .main_list {
   list-style: outside;
   color: white;
   padding-left: 17px;
   line-height: 1.9;
   font-size: clamp(15px, 0.98vw, 19px);
-}
+} */
 
 .main_car_img {
   position: absolute;
@@ -41,7 +71,7 @@
   right: 0;
   width: 60%;
   padding-inline: 20px;
-  max-height: 100%; /* Добавляем ограничение по высоте */
+  max-height: 100%;
   max-width: 1170px;
   z-index: 2;
   object-fit: contain;
@@ -51,7 +81,7 @@
   position: absolute;
   top: -20%;
   right: 30%;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--text-white);
   border-radius: 50px;
   rotate: 45deg;
   width: 20vw;
@@ -88,7 +118,7 @@
   position: absolute;
   bottom: -55%;
   left: -5%;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--text-white);
   border-radius: 50px;
   rotate: 45deg;
   width: 20vw;
@@ -117,10 +147,6 @@
 }
 
 @media (max-width: 1330px) {
-  .main_container {
-    border-radius: 25px;
-  }
-
   .main_circle_small {
     bottom: 20%;
     left: 2%;
@@ -149,7 +175,7 @@
     flex-direction: column;
     min-height: 570px;
   }
-   .main_car_img {
+  .main_car_img {
     width: 80%;
   }
 
@@ -168,7 +194,7 @@
 }
 
 @media (max-width: 900px) {
-   .main_car_img {
+  .main_car_img {
     width: 100%;
   }
 }

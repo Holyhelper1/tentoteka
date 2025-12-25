@@ -371,41 +371,41 @@ const Contacts = () => {
 
   // Обработка отправки формы
   const handleSubmit = async (e: React.FormEvent) => {
-     e.preventDefault(); // <- обязательно
+    e.preventDefault(); // <- обязательно
 
-  const newFormErrors: string[] = [];
-  let newCheckboxError = "";
+    const newFormErrors: string[] = [];
+    let newCheckboxError = "";
 
-  // Валидация полей
-  if (!formData.name.trim()) {
-    newFormErrors.push("Пожалуйста, введите ваше имя");
-  }
+    // Валидация полей
+    if (!formData.name.trim()) {
+      newFormErrors.push("Пожалуйста, введите ваше имя");
+    }
 
-  if (!formData.phone.trim() || !validatePhone(formData.phone)) {
-    newFormErrors.push("Пожалуйста, введите корректный номер телефона");
-  }
+    if (!formData.phone.trim() || !validatePhone(formData.phone)) {
+      newFormErrors.push("Пожалуйста, введите корректный номер телефона");
+    }
 
-  if (!formData.email.trim() || !validateEmail(formData.email)) {
-    newFormErrors.push("Пожалуйста, введите корректный email адрес");
-  }
+    if (!formData.email.trim() || !validateEmail(formData.email)) {
+      newFormErrors.push("Пожалуйста, введите корректный email адрес");
+    }
 
-  if (!formData.message.trim()) {
-    newFormErrors.push("Пожалуйста, напишите ваш вопрос");
-  }
+    if (!formData.message.trim()) {
+      newFormErrors.push("Пожалуйста, напишите ваш вопрос");
+    }
 
-  // Проверяем чекбокс
-  if (!isAgreed) {
-    newCheckboxError = "Необходимо согласие на обработку персональных данных";
-  }
+    // Проверяем чекбокс
+    if (!isAgreed) {
+      newCheckboxError = "Необходимо согласие на обработку персональных данных";
+    }
 
-  // Устанавливаем ошибки
-  setFormError(newFormErrors.length > 0 ? newFormErrors.join(", ") : "");
-  setCheckboxError(newCheckboxError);
+    // Устанавливаем ошибки
+    setFormError(newFormErrors.length > 0 ? newFormErrors.join(", ") : "");
+    setCheckboxError(newCheckboxError);
 
-  // Если есть ошибки - не отправляем
-  if (newFormErrors.length > 0 || newCheckboxError) {
-    return;
-  }
+    // Если есть ошибки - не отправляем
+    if (newFormErrors.length > 0 || newCheckboxError) {
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -679,25 +679,25 @@ const Contacts = () => {
               </div>
 
               {/* Используем компонент чекбокса */}
-             <PrivacyAgreementCheckbox
-  id="contacts-privacy"
-  checked={isAgreed}
-  onChange={(checked) => {
-    setIsAgreed(checked);
-    if (checked && checkboxError) {
-      setCheckboxError("");
-    }
-  }}
-  error={checkboxError}
-  animateError={true}
-  className={styles.privacyCheckbox}
-/>
+              <PrivacyAgreementCheckbox
+                id="contacts-privacy"
+                checked={isAgreed}
+                onChange={(checked) => {
+                  setIsAgreed(checked);
+                  if (checked && checkboxError) {
+                    setCheckboxError("");
+                  }
+                }}
+                error={checkboxError}
+                animateError={true}
+                className={styles.privacyCheckbox}
+              />
 
               {formError && (
-  <div className={styles.formError} role="alert">
-    {formError}
-  </div>
-)}
+                <div className={styles.formError} role="alert">
+                  {formError}
+                </div>
+              )}
 
               <button
                 type="submit"

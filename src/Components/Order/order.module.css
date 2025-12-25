@@ -79,6 +79,36 @@
   margin-top: 8px;
 }
 
+/* модель — картинка */
+.modelImageWrap {
+  width: 100%;
+  height: 120px; /* подберите по нужной высоте */
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modelImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modelImagePlaceholder {
+  width: 100%;
+  height: 120px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.02), rgba(0,0,0,0.03));
+}
+
+
+
 .stepPane {
   padding: 6px 2px 2px 2px;
 }

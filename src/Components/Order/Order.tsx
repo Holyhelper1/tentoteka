@@ -1,7 +1,8 @@
 // import React, { useEffect } from "react";
 // import styles from "./order.module.css";
-// import Auto from "./icon/auto.png";
-// import Cart from "./icon/cart.png";
+// import Auto from "./assets/icon/auto.webp";
+// import Cart from "./assets/icon/cart.webp";
+// import PrivacyAgreementCheckbox from "../PrivacyAgreementCheckbox/PrivacyAgreementCheckbox";
 
 // type VehicleType = "auto" | "trailer";
 
@@ -11,19 +12,36 @@
 
 // const MODELS: Record<VehicleType, string[]> = {
 //   auto: [
-//     "Газель 4.25",
-//     "Газель Бизнес 4.25",
-//     "Соболь 2.17",
-//     "УАЗ 39094",
-//     "Другой (ввести вручную)"
+//     "Тент на Газель 3,17м",
+//     "Тент на Газель 4,25м",
+//     "Тент на Газель NEXT 3,17м",
+//     "Тент на Газель NEXT 4.25м",
+//     "Тент на Газель Фермер 2,42м",
+//     "Тент на Газель Фермер 3,17м",
+//     "Тент на Соболь 2,17м",
+//     "Тент на Соболь 2,42м",
+//     "Тент на УАЗ 33036",
+//     "Тент на УАЗ Фермер",
+//     "Другой (ввести вручную)",
 //   ],
 //   trailer: [
-//     "Трейлер 82942T",
-//     "Трейлер Аэро 8294",
-//     "Прицеп малый 120x200",
-//     "Прицеп средний 170x270",
-//     "Другой (ввести вручную)"
-//   ]
+//     "Тент на прицеп AvtoS",
+//     "Тент на прицеп БелАЗ",
+//     "Тент на прицеп ГРАНИТ",
+//     "Тент на прицеп ИЗЛП-КАМА",
+//     "Тент на прицеп КМЗ",
+//     "Тент на прицеп Кремень",
+//     "Тент на прицеп Крепыш",
+//     "Тент на прицеп ЛАВ",
+//     "Тент на прицеп ЛАКЕР",
+//     "Тент на прицеп МАЗ",
+//     "Тент на прицеп МЗСА",
+//     "Тент на прицеп ММЗ",
+//     "Тент на прицеп САЗ",
+//     "Тент на прицеп ТИТАН",
+//     "Тент на прицеп Трейлер",
+//     "Другой (ввести вручную)",
+//   ],
 // };
 
 // const COLORS: { name: string; css: string }[] = [
@@ -36,9 +54,6 @@
 // const TELEGRAM_USERNAME = "tentoteka_zakaz";
 
 // const Order: React.FC<OrderProps> = ({ onClose }) => {
-//   // ... (оставляем логику шагов из предыдущего варианта)
-//   // Для краткости — вставляю код из предыдущей версии, только добавлю кнопку закрытия и esc:
-
 //   const [step, setStep] = React.useState<number>(0);
 //   const [type, setType] = React.useState<VehicleType | null>(null);
 //   const [model, setModel] = React.useState<string>("");
@@ -47,6 +62,9 @@
 //   const [phone, setPhone] = React.useState<string>("");
 //   const [comment, setComment] = React.useState<string>("");
 //   const [error, setError] = React.useState<string>("");
+//   // Новое состояние для чекбокса
+//   const [isAgreed, setIsAgreed] = React.useState<boolean>(false);
+//   const [checkboxError, setCheckboxError] = React.useState<string>("");
 
 //   useEffect(() => {
 //     const onKey = (e: KeyboardEvent) => {
@@ -105,14 +123,38 @@
 //   };
 
 //   const onSubmit = () => {
-//     setError("");
+//     // Сбрасываем все ошибки
+//     const newErrors: string[] = [];
+//     let newCheckboxError = "";
+
+//     // Проверяем телефон
 //     if (!validatePhone(phone)) {
-//       setError("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
-//       setStep(3);
+//       newErrors.push("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
+//     }
+
+//     // Проверяем чекбокс
+//     if (!isAgreed) {
+//       newCheckboxError = "Необходимо согласие на обработку персональных данных";
+//     }
+
+//     // Устанавливаем ошибки
+//     setError(newErrors.length > 0 ? newErrors.join(", ") : "");
+//     setCheckboxError(newCheckboxError);
+
+//     // Если есть хотя бы одна ошибка - не отправляем
+//     if (newErrors.length > 0 || newCheckboxError) {
 //       return;
 //     }
 
-//     const chosenModel = model === "Другой (ввести вручную)" ? manualModel || "Указан вручную" : model;
+//     if (!validatePhone(phone)) {
+//       setError("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
+//       return;
+//     }
+
+//     const chosenModel =
+//       model === "Другой (ввести вручную)"
+//         ? manualModel || "Указан вручную"
+//         : model;
 //     const normalizedPhone = normalizePhone(phone);
 
 //     const message = [
@@ -121,10 +163,13 @@
 //       `Модель: ${chosenModel}`,
 //       `Цвет: ${color}`,
 //       `Телефон: ${normalizedPhone}`,
-//       comment ? `Комментарий: ${comment}` : "Комментарий: -"
+//       comment ? `Комментарий: ${comment}` : "Комментарий: -",
+//       "Согласие на обработку персональных данных: Да",
 //     ].join("\n");
 
-//     const url = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
+//     const url = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(
+//       message
+//     )}`;
 
 //     const newWindow = window.open(url, "_blank");
 //     if (!newWindow) {
@@ -147,10 +192,19 @@
 //   return (
 //     <div className={styles.orderCard} aria-live="polite">
 //       <div className={styles.header}>
-//         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+//         <div
+//           style={{
+//             display: "flex",
+//             justifyContent: "space-between",
+//             alignItems: "flex-start",
+//             gap: 12,
+//           }}
+//         >
 //           <div>
 //             <h3 className={styles.title}>Подбор и заказ тента</h3>
-//             <p className={styles.subtitle}>Выберите тип транспорта и оформите заказ</p>
+//             <p className={styles.subtitle}>
+//               Выберите тип транспорта и оформите заказ
+//             </p>
 //           </div>
 
 //           {/* close button */}
@@ -165,10 +219,18 @@
 //       </div>
 
 //       <div className={styles.stepper}>
-//         <div className={`${styles.step} ${step === 0 ? styles.active : ""}`}>1. Тип</div>
-//         <div className={`${styles.step} ${step === 1 ? styles.active : ""}`}>2. Модель</div>
-//         <div className={`${styles.step} ${step === 2 ? styles.active : ""}`}>3. Цвет</div>
-//         <div className={`${styles.step} ${step === 3 ? styles.active : ""}`}>4. Контакт</div>
+//         <div className={`${styles.step} ${step === 0 ? styles.active : ""}`}>
+//           1. Тип
+//         </div>
+//         <div className={`${styles.step} ${step === 1 ? styles.active : ""}`}>
+//           2. Модель
+//         </div>
+//         <div className={`${styles.step} ${step === 2 ? styles.active : ""}`}>
+//           3. Цвет
+//         </div>
+//         <div className={`${styles.step} ${step === 3 ? styles.active : ""}`}>
+//           4. Контакт
+//         </div>
 //       </div>
 
 //       <div className={styles.content}>
@@ -176,30 +238,42 @@
 //           <div className={styles.stepPane}>
 //             <div className={styles.optionsRow}>
 //               <button
-//                 className={`${styles.typeCard} ${type === "auto" ? styles.selected : ""}`}
+//                 className={`${styles.typeCard} ${
+//                   type === "auto" ? styles.selected : ""
+//                 }`}
 //                 onClick={() => onSelectType("auto")}
 //                 aria-pressed={type === "auto"}
 //                 aria-label="Выбрать авто"
 //               >
-//                 <div className={styles.typeIcon}><img src={Auto} alt="Auto" width={80}/></div>
+//                 <div className={styles.typeIcon}>
+//                   <img src={Auto} alt="Auto" width={150} />
+//                 </div>
 //                 <div className={styles.typeLabel}>Тент на автомобиль</div>
 //                 <div className={styles.typeHint}>ГАЗель, Соболь, УАЗ и др.</div>
 //               </button>
 
 //               <button
-//                 className={`${styles.typeCard} ${type === "trailer" ? styles.selected : ""}`}
+//                 className={`${styles.typeCard} ${
+//                   type === "trailer" ? styles.selected : ""
+//                 }`}
 //                 onClick={() => onSelectType("trailer")}
 //                 aria-pressed={type === "trailer"}
 //                 aria-label="Выбрать прицеп"
 //               >
-//                 <div className={styles.typeIcon}><img src={Cart} alt="Auto" width={80}/></div>
+//                 <div className={styles.typeIcon}>
+//                   <img src={Cart} alt="Auto" width={150} />
+//                 </div>
 //                 <div className={styles.typeLabel}>Тент на прицеп</div>
-//                 <div className={styles.typeHint}>МЗСА, КМЗ, ТИТАН, ИЗЛП и др.</div>
+//                 <div className={styles.typeHint}>
+//                   МЗСА, КМЗ, ТИТАН, ИЗЛП и др.
+//                 </div>
 //               </button>
 //             </div>
 
 //             <div className={styles.controlsRow}>
-//               <button className={styles.nextBtn} onClick={goNext}>Далее</button>
+//               <button className={styles.nextBtn} onClick={goNext}>
+//                 Далее
+//               </button>
 //             </div>
 //           </div>
 //         )}
@@ -210,7 +284,9 @@
 //               {modelsForType.map((m) => (
 //                 <label
 //                   key={m}
-//                   className={`${styles.modelCard} ${model === m ? styles.selectedModel : ""}`}
+//                   className={`${styles.modelCard} ${
+//                     model === m ? styles.selectedModel : ""
+//                   }`}
 //                 >
 //                   <input
 //                     type="radio"
@@ -224,7 +300,9 @@
 //                     className={styles.hiddenRadio}
 //                   />
 //                   <div className={styles.modelTitle}>{m}</div>
-//                   <div className={styles.modelMeta}>Подходит под выбранный тип</div>
+//                   <div className={styles.modelMeta}>
+//                     Подходит под выбранный тип
+//                   </div>
 //                 </label>
 //               ))}
 //             </div>
@@ -243,8 +321,12 @@
 //             )}
 
 //             <div className={styles.controlsRow}>
-//               <button className={styles.backBtn} onClick={goBack}>Назад</button>
-//               <button className={styles.nextBtn} onClick={goNext}>Далее</button>
+//               <button className={styles.backBtn} onClick={goBack}>
+//                 Назад
+//               </button>
+//               <button className={styles.nextBtn} onClick={goNext}>
+//                 Далее
+//               </button>
 //             </div>
 //           </div>
 //         )}
@@ -256,19 +338,27 @@
 //               {COLORS.map((c) => (
 //                 <button
 //                   key={c.name}
-//                   className={`${styles.colorSwatch} ${color === c.name ? styles.colorSelected : ""}`}
+//                   className={`${styles.colorSwatch} ${
+//                     color === c.name ? styles.colorSelected : ""
+//                   }`}
 //                   onClick={() => setColor(c.name)}
 //                   title={c.name}
 //                   style={{ background: c.css }}
 //                 >
-//                   {color === c.name && <span className={styles.checkMark}>✓</span>}
+//                   {color === c.name && (
+//                     <span className={styles.checkMark}>✓</span>
+//                   )}
 //                 </button>
 //               ))}
 //             </div>
 
 //             <div className={styles.controlsRow}>
-//               <button className={styles.backBtn} onClick={goBack}>Назад</button>
-//               <button className={styles.nextBtn} onClick={goNext}>Далее</button>
+//               <button className={styles.backBtn} onClick={goBack}>
+//                 Назад
+//               </button>
+//               <button className={styles.nextBtn} onClick={goNext}>
+//                 Далее
+//               </button>
 //             </div>
 //           </div>
 //         )}
@@ -281,8 +371,11 @@
 //               className={styles.textInput}
 //               placeholder="+7 (___) ___-__-__"
 //               value={phone}
-//               autoComplete='mobile tel'
-//               onChange={(e) => setPhone(e.target.value)}
+//               autoComplete="mobile tel"
+//               onChange={(e) => {
+//                 setPhone(e.target.value);
+//                 if (error) setError("");
+//               }}
 //             />
 
 //             <label className={styles.label}>Комментарий (опционально)</label>
@@ -293,12 +386,47 @@
 //               onChange={(e) => setComment(e.target.value)}
 //             />
 
+//             {/* Чекбокс согласия */}
+//             <PrivacyAgreementCheckbox
+//               id="order-privacy" // уникальный id
+//               checked={isAgreed}
+//               onChange={(checked) => {
+//                 setIsAgreed(checked);
+//                 // Очищаем ошибку при изменении состояния — можно оставить
+//                 if (checked && checkboxError) {
+//                   setCheckboxError("");
+//                 }
+//               }}
+//               error={checkboxError}
+//               animateError={true}
+//               className={styles.privacyCheckbox}
+//             />
+
 //             <div className={styles.controlsRow}>
-//               <button className={styles.backBtn} onClick={goBack}>Назад</button>
-//               <button className={styles.orderBtn} onClick={onSubmit}>Заказать тент</button>
+//               <button className={styles.backBtn} onClick={goBack}>
+//                 Назад
+//               </button>
+//               <button
+//                 className={styles.orderBtn}
+//                 onClick={() => {
+//       if (!isAgreed) {
+//         setCheckboxError("Необходимо согласие на обработку персональных данных");
+//         // при желании: фокус на чекбоксе
+//         const el = document.getElementById("order-privacy");
+//         el?.focus();
+//         return;
+//       }
+//       onSubmit();
+//     }}
+//               >
+//                 Заказать тент
+//               </button>
 //             </div>
 
-//             <p className={styles.micro}>Откроется Telegram — вы сможете проверить сообщение и отправить его в наш официальный чат.</p>
+//             <p className={styles.micro}>
+//               Откроется Telegram — вы сможете проверить сообщение и отправить
+//               его в наш официальный чат.
+//             </p>
 //           </div>
 //         )}
 //       </div>
@@ -310,11 +438,78 @@
 
 // export default Order;
 
+
+// Order.tsx
+// Order.tsx
 import React, { useEffect } from "react";
 import styles from "./order.module.css";
-import Auto from "./icon/auto.png";
-import Cart from "./icon/cart.png";
+import Auto from "./assets/icon/auto.webp";
+import Cart from "./assets/icon/cart.webp";
 import PrivacyAgreementCheckbox from "../PrivacyAgreementCheckbox/PrivacyAgreementCheckbox";
+
+/* =========== ИМПОРТЫ (пути/имена файлов должны точно совпадать с моделями) =========== */
+/* Авто (первые 10 моделей; "Другой (ввести вручную)" — без файла) */
+import Img_Tent_na_Gazel_3_17m from "./assets/cars/Тент на Газель 3,17м.webp";
+import Img_Tent_na_Gazel_4_25m from "./assets/cars/Тент на Газель 4,25м.webp";
+import Img_Tent_na_Gazel_NEXT_3_17m from "./assets/cars/Тент на Газель NEXT 3,17м.webp";
+import Img_Tent_na_Gazel_NEXT_4_25m from "./assets/cars/Тент на Газель NEXT 4.25м.webp";
+import Img_Tent_na_Gazel_Fermer_2_42m from "./assets/cars/Тент на Газель Фермер 2,42м.webp";
+import Img_Tent_na_Gazel_Fermer_3_17m from "./assets/cars/Тент на Газель Фермер 3,17м.webp";
+import Img_Tent_na_Sobol_2_17m from "./assets/cars/Тент на Соболь 2,17м.webp";
+import Img_Tent_na_Sobol_2_42m from "./assets/cars/Тент на Соболь 2,42м.webp";
+import Img_Tent_na_UAZ_33036 from "./assets/cars/Тент на УАЗ 33036.webp";
+import Img_Tent_na_UAZ_Fermer from "./assets/cars/Тент на УАЗ Фермер.webp";
+
+/* Прицепы (все, кроме "Другой (ввести вручную)") */
+import Img_Tent_na_pritsep_AvtoS from "./assets/trailers/Тент на прицеп AvtoS.webp";
+import Img_Tent_na_pritsep_BelAZ from "./assets/trailers/Тент на прицеп БелАЗ.webp";
+import Img_Tent_na_pritsep_GRANIT from "./assets/trailers/Тент на прицеп ГРАНИТ.webp";
+import Img_Tent_na_pritsep_IZLP_KAMA from "./assets/trailers/Тент на прицеп ИЗЛП-КАМА.webp";
+import Img_Tent_na_pritsep_KMZ from "./assets/trailers/Тент на прицеп КМЗ.webp";
+import Img_Tent_na_pritsep_Kremen from "./assets/trailers/Тент на прицеп Кремень.webp";
+import Img_Tent_na_pritsep_Krepish from "./assets/trailers/Тент на прицеп Крепыш.webp";
+import Img_Tent_na_pritsep_LAV from "./assets/trailers/Тент на прицеп ЛАВ.webp";
+import Img_Tent_na_pritsep_LAKER from "./assets/trailers/Тент на прицеп ЛАКЕР.webp";
+import Img_Tent_na_pritsep_MAZ from "./assets/trailers/Тент на прицеп МАЗ.webp";
+import Img_Tent_na_pritsep_MZSA from "./assets/trailers/Тент на прицеп МЗСА.webp";
+import Img_Tent_na_pritsep_MMZ from "./assets/trailers/Тент на прицеп ММЗ.webp";
+import Img_Tent_na_pritsep_SAZ from "./assets/trailers/Тент на прицеп САЗ.webp";
+import Img_Tent_na_pritsep_TITAN from "./assets/trailers/Тент на прицеп ТИТАН.webp";
+import Img_Tent_na_pritsep_Trailer from "./assets/trailers/Тент на прицеп Трейлер.webp";
+
+/* =========== МАПА: точное соответствие строки модели → импортированная картинка =========== */
+const MODEL_IMAGES: Record<string, string | undefined> = {
+  /* авто */
+  "Тент на Газель 3,17м": Img_Tent_na_Gazel_3_17m,
+  "Тент на Газель 4,25м": Img_Tent_na_Gazel_4_25m,
+  "Тент на Газель NEXT 3,17м": Img_Tent_na_Gazel_NEXT_3_17m,
+  "Тент на Газель NEXT 4.25м": Img_Tent_na_Gazel_NEXT_4_25m,
+  "Тент на Газель Фермер 2,42м": Img_Tent_na_Gazel_Fermer_2_42m,
+  "Тент на Газель Фермер 3,17м": Img_Tent_na_Gazel_Fermer_3_17m,
+  "Тент на Соболь 2,17м": Img_Tent_na_Sobol_2_17m,
+  "Тент на Соболь 2,42м": Img_Tent_na_Sobol_2_42m,
+  "Тент на УАЗ 33036": Img_Tent_na_UAZ_33036,
+  "Тент на УАЗ Фермер": Img_Tent_na_UAZ_Fermer,
+
+  /* прицепы */
+  "Тент на прицеп AvtoS": Img_Tent_na_pritsep_AvtoS,
+  "Тент на прицеп БелАЗ": Img_Tent_na_pritsep_BelAZ,
+  "Тент на прицеп ГРАНИТ": Img_Tent_na_pritsep_GRANIT,
+  "Тент на прицеп ИЗЛП-КАМА": Img_Tent_na_pritsep_IZLP_KAMA,
+  "Тент на прицеп КМЗ": Img_Tent_na_pritsep_KMZ,
+  "Тент на прицеп Кремень": Img_Tent_na_pritsep_Kremen,
+  "Тент на прицеп Крепыш": Img_Tent_na_pritsep_Krepish,
+  "Тент на прицеп ЛАВ": Img_Tent_na_pritsep_LAV,
+  "Тент на прицеп ЛАКЕР": Img_Tent_na_pritsep_LAKER,
+  "Тент на прицеп МАЗ": Img_Tent_na_pritsep_MAZ,
+  "Тент на прицеп МЗСА": Img_Tent_na_pritsep_MZSA,
+  "Тент на прицеп ММЗ": Img_Tent_na_pritsep_MMZ,
+  "Тент на прицеп САЗ": Img_Tent_na_pritsep_SAZ,
+  "Тент на прицеп ТИТАН": Img_Tent_na_pritsep_TITAN,
+  "Тент на прицеп Трейлер": Img_Tent_na_pritsep_Trailer,
+};
+
+/* ========================= Остальной компонент (логика ваша, лишь добавлена подстановка картинок) ========================= */
 
 type VehicleType = "auto" | "trailer";
 
@@ -324,17 +519,34 @@ interface OrderProps {
 
 const MODELS: Record<VehicleType, string[]> = {
   auto: [
-    "Газель 4.25",
-    "Газель Бизнес 4.25",
-    "Соболь 2.17",
-    "УАЗ 39094",
+    "Тент на Газель 3,17м",
+    "Тент на Газель 4,25м",
+    "Тент на Газель NEXT 3,17м",
+    "Тент на Газель NEXT 4.25м",
+    "Тент на Газель Фермер 2,42м",
+    "Тент на Газель Фермер 3,17м",
+    "Тент на Соболь 2,17м",
+    "Тент на Соболь 2,42м",
+    "Тент на УАЗ 33036",
+    "Тент на УАЗ Фермер",
     "Другой (ввести вручную)",
   ],
   trailer: [
-    "Трейлер 82942T",
-    "Трейлер Аэро 8294",
-    "Прицеп малый 120x200",
-    "Прицеп средний 170x270",
+    "Тент на прицеп AvtoS",
+    "Тент на прицеп БелАЗ",
+    "Тент на прицеп ГРАНИТ",
+    "Тент на прицеп ИЗЛП-КАМА",
+    "Тент на прицеп КМЗ",
+    "Тент на прицеп Кремень",
+    "Тент на прицеп Крепыш",
+    "Тент на прицеп ЛАВ",
+    "Тент на прицеп ЛАКЕР",
+    "Тент на прицеп МАЗ",
+    "Тент на прицеп МЗСА",
+    "Тент на прицеп ММЗ",
+    "Тент на прицеп САЗ",
+    "Тент на прицеп ТИТАН",
+    "Тент на прицеп Трейлер",
     "Другой (ввести вручную)",
   ],
 };
@@ -357,7 +569,6 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
   const [phone, setPhone] = React.useState<string>("");
   const [comment, setComment] = React.useState<string>("");
   const [error, setError] = React.useState<string>("");
-  // Новое состояние для чекбокса
   const [isAgreed, setIsAgreed] = React.useState<boolean>(false);
   const [checkboxError, setCheckboxError] = React.useState<string>("");
 
@@ -418,31 +629,21 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
   };
 
   const onSubmit = () => {
-    // Сбрасываем все ошибки
     const newErrors: string[] = [];
     let newCheckboxError = "";
 
-    // Проверяем телефон
     if (!validatePhone(phone)) {
       newErrors.push("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
     }
 
-    // Проверяем чекбокс
     if (!isAgreed) {
       newCheckboxError = "Необходимо согласие на обработку персональных данных";
     }
 
-    // Устанавливаем ошибки
     setError(newErrors.length > 0 ? newErrors.join(", ") : "");
     setCheckboxError(newCheckboxError);
 
-    // Если есть хотя бы одна ошибка - не отправляем
     if (newErrors.length > 0 || newCheckboxError) {
-      return;
-    }
-
-    if (!validatePhone(phone)) {
-      setError("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
       return;
     }
 
@@ -471,7 +672,6 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
       window.location.href = url;
     }
 
-    // закрываем модалку (если нужно)
     onClose?.();
   };
 
@@ -502,7 +702,6 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
             </p>
           </div>
 
-          {/* close button */}
           <button
             onClick={() => onClose?.()}
             aria-label="Закрыть"
@@ -541,7 +740,7 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                 aria-label="Выбрать авто"
               >
                 <div className={styles.typeIcon}>
-                  <img src={Auto} alt="Auto" width={80} />
+                  <img src={Auto} alt="Auto" width={150} />
                 </div>
                 <div className={styles.typeLabel}>Тент на автомобиль</div>
                 <div className={styles.typeHint}>ГАЗель, Соболь, УАЗ и др.</div>
@@ -556,7 +755,7 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                 aria-label="Выбрать прицеп"
               >
                 <div className={styles.typeIcon}>
-                  <img src={Cart} alt="Auto" width={80} />
+                  <img src={Cart} alt="Auto" width={150} />
                 </div>
                 <div className={styles.typeLabel}>Тент на прицеп</div>
                 <div className={styles.typeHint}>
@@ -576,30 +775,50 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
         {step === 1 && (
           <div className={styles.stepPane}>
             <div className={styles.modelsScroll} role="list">
-              {modelsForType.map((m) => (
-                <label
-                  key={m}
-                  className={`${styles.modelCard} ${
-                    model === m ? styles.selectedModel : ""
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="model"
-                    value={m}
-                    checked={model === m}
-                    onChange={() => {
-                      setModel(m);
-                      if (m !== "Другой (ввести вручную)") setManualModel("");
-                    }}
-                    className={styles.hiddenRadio}
-                  />
-                  <div className={styles.modelTitle}>{m}</div>
-                  <div className={styles.modelMeta}>
-                    Подходит под выбранный тип
-                  </div>
-                </label>
-              ))}
+              {modelsForType.map((m) => {
+                const imageSrc = MODEL_IMAGES[m];
+                const isOther = m === "Другой (ввести вручную)";
+
+                return (
+                  <label
+                    key={m}
+                    className={`${styles.modelCard} ${
+                      model === m ? styles.selectedModel : ""
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="model"
+                      value={m}
+                      checked={model === m}
+                      onChange={() => {
+                        setModel(m);
+                        if (m !== "Другой (ввести вручную)") setManualModel("");
+                      }}
+                      className={styles.hiddenRadio}
+                    />
+
+                    {/* изображение (если существует и это не "Другой") */}
+                    {!isOther && imageSrc ? (
+                      <div className={styles.modelImageWrap}>
+                        <img
+                          src={imageSrc}
+                          alt={m}
+                          loading="lazy"
+                          className={styles.modelImage}
+                        />
+                      </div>
+                    ) : (
+                      <div className={styles.modelImagePlaceholder} />
+                    )}
+
+                    <div className={styles.modelTitle}>{m}</div>
+                    {/* <div className={styles.modelMeta}>
+                      Подходит под выбранный тип
+                    </div> */}
+                  </label>
+                );
+              })}
             </div>
 
             {model === "Другой (ввести вручную)" && (
@@ -681,13 +900,11 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
               onChange={(e) => setComment(e.target.value)}
             />
 
-            {/* Чекбокс согласия */}
             <PrivacyAgreementCheckbox
-              id="order-privacy" // уникальный id
+              id="order-privacy"
               checked={isAgreed}
               onChange={(checked) => {
                 setIsAgreed(checked);
-                // Очищаем ошибку при изменении состояния — можно оставить
                 if (checked && checkboxError) {
                   setCheckboxError("");
                 }
@@ -704,15 +921,16 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
               <button
                 className={styles.orderBtn}
                 onClick={() => {
-      if (!isAgreed) {
-        setCheckboxError("Необходимо согласие на обработку персональных данных");
-        // при желании: фокус на чекбоксе
-        const el = document.getElementById("order-privacy");
-        el?.focus();
-        return;
-      }
-      onSubmit();
-    }}
+                  if (!isAgreed) {
+                    setCheckboxError(
+                      "Необходимо согласие на обработку персональных данных"
+                    );
+                    const el = document.getElementById("order-privacy");
+                    el?.focus();
+                    return;
+                  }
+                  onSubmit();
+                }}
               >
                 Заказать тент
               </button>

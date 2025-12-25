@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Thumbs, FreeMode } from "swiper/modules";
+import { FaPlay, FaPause, FaArrowLeft, FaArrowRight  } from "react-icons/fa";
 import styles from "./Slider.module.css";
 
 // Модальное окно для просмотра изображений
@@ -298,64 +299,20 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
           <button
             className={styles.slider_button_left}
             aria-label="Предыдущий слайд"
-          ></button>
+          ><FaArrowLeft/></button>
           <button
             className={styles.autoplayButton}
             onClick={toggleAutoplay}
             aria-label={isPlaying ? "Пауза" : "Воспроизвести"}
           >
-            {isPlaying ? "⏸" : "▶"}
+            {isPlaying ? <FaPause /> : <FaPlay/>}
           </button>
           <button
             className={styles.slider_button_right}
             aria-label="Следующий слайд"
-          ></button>
+          ><FaArrowRight/></button>
         </div>
       </div>
-
-      {/* Миниатюры для навигации (только не на мобильных) */}
-      {/* {!isMobile && (
-        <div className={styles.thumbsContainer}>
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            spaceBetween={10}
-            slidesPerView={8}
-            freeMode={true}
-            watchSlidesProgress={true}
-            className={styles.thumbsSwiper}
-            breakpoints={{
-              320: {
-                slidesPerView: 4,
-              },
-              480: {
-                slidesPerView: 5,
-              },
-              640: {
-                slidesPerView: 6,
-              },
-              768: {
-                slidesPerView: 7,
-              },
-              1024: {
-                slidesPerView: 8,
-              },
-            }}
-          >
-            {sliderImages.map((image) => (
-              <SwiperSlide
-                key={`thumb-${image.id}`}
-                className={styles.thumbSlide}
-              >
-                <img
-                  src={image.url}
-                  alt={image.alt}
-                  className={styles.thumbImage}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      )} */}
 
       {/* Модальное окно для просмотра изображений (только не на мобильных) */}
       {!isMobile && (

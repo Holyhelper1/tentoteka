@@ -37,21 +37,21 @@ export const Footer = () => {
     },
     { 
       name: 'Avito', 
-      url: 'https://www.avito.ru/user/tentoteka', 
+      url: 'https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b', 
       icon: 'AV',
-      color: '#FF6163'
-    },
+      color: '#ff654f'
+    },    
     { 
-      name: 'OZON', 
-      url: 'https://www.ozon.ru/seller/tentoteka', 
-      icon: 'OZ',
-      color: '#005BFF'
+      name: 'RUTUBE', 
+      url: 'https://rutube.ru/channel/72546798/', 
+      icon: 'RU',
+      color: '#0c0540'
     },
-    { 
-      name: 'WB', 
-      url: 'https://www.wildberries.ru/seller/tentoteka', 
-      icon: 'WB',
-      color: '#A7318E'
+     {
+      name: "Dzen",
+      url: "https://dzen.ru/tentoteka",
+      icon: 'DZ',
+      color: '#202022'
     },
   ];
 
@@ -82,14 +82,14 @@ export const Footer = () => {
                 <span className={styles.logoText}>Тентотека</span>
               </Link>
               <p className={styles.companyDescription}>
-                Производство и продажа качественных тентов для грузовых автомобилей и прицепов.
-                Собственное производство, гарантия 5+ лет, быстрая доставка по всей России.
+                Тенты для тех, кто ценит свои вещи
               </p>
               <div className={styles.socialLinks}>
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}
+                    title={social.name}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.socialLink}
@@ -112,14 +112,14 @@ export const Footer = () => {
                   <a href="tel:+79875400027" className={styles.contactLink}>
                     +7 (987) 540-00-27
                   </a>
-                  <p className={styles.contactSubtitle}>Ежедневно с 9:00 до 20:00</p>
+                  <p className={styles.contactSubtitle}>Пн-Пт: с 9:00 до 18:00</p>
                 </div>
               </li>
               <li className={styles.contactItem}>
                 <HiOutlineMail className={styles.contactIcon} />
                 <div>
-                  <a href="mailto:info@tentoteka.ru" className={styles.contactLink}>
-                    info@tentoteka.ru
+                  <a href="mailto:tentoteka@yandex.ru" className={styles.contactLink}>
+                    tentoteka@yandex.ru
                   </a>
                   <p className={styles.contactSubtitle}>Электронная почта</p>
                 </div>
