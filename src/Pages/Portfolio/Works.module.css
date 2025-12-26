@@ -523,6 +523,11 @@
 [data-theme="dark"] .filterButton:hover {
   background: rgba(var(--primary-color-rgb), 0.15);
 }
+[data-theme="dark"] .filterButton.active {
+  background: rgba(var(--primary-color-rgb), 0.15);
+
+
+}
 
 [data-theme="dark"] .modalFeatures {
   background: rgba(255, 255, 255, 0.05);
