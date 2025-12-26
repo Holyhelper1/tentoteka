@@ -9,6 +9,7 @@ import VideoBlock from "../VideoBlock/VideoBlock";
 import { InfoBlock } from "../InfoBlock/InfoBlock";
 import { GiSewingMachine } from "react-icons/gi";
 import ShippingCar from "./assets/icons/shipping-icon.png";
+import MainVideo from "./assets/video/Main-video.mp4";
 // import { FaShippingFast } from "react-icons/fa";
 export const Main = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -249,7 +250,14 @@ export const Main = () => {
       </div>
 
       <Slider />
-      <VideoBlock />
+      {/* <VideoBlock /> */}
+      <VideoBlock 
+        videoType="local"
+        localSrc={MainVideo}
+        title="Наше производство"
+        description="Посмотрите, как мы создаём качественные тенты для вашего транспорта"
+        loop={true}
+      />
       <InfoBlock />
 
       {/* Плавающая FAB — появляется только после скролла к #works */}

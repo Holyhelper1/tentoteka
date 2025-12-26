@@ -31,8 +31,7 @@ const VideoBlock = ({
   title = 'Наше производство',
   description = 'Посмотрите, как мы создаём качественные тенты для вашего транспорта'
 }: VideoBlockProps) => {
-  // Состояния
-  const [isMuted, setIsMuted] = useState(true);
+   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,10 +42,7 @@ const VideoBlock = ({
   // Рефы
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
-
-  // @ts-ignore
-  const controlsTimeoutRef = useRef<NodeJS.Timeout>();// исправить  тип
+  const controlsTimeoutRef = useRef<number | undefined>(undefined);// исправить  тип
 
   // Генерация URL для Rutube
   const getRutubeUrl = () => {

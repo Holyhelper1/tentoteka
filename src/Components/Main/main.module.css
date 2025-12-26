@@ -32,10 +32,9 @@
   color: var(--text-white);
   text-transform: uppercase;
   font-weight: bold;
-  /* font-size: 24px; */
   font-size: clamp(15px, 1.5vw, 34px);
   background-color: var(--primary-accent);
-  padding: 8px;
+  padding-inline: 8px;
   border-radius: 10px;
 }
 

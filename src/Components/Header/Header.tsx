@@ -12,6 +12,7 @@ import { useTheme } from "../../Hooks/useTheme";
 import Snowfall from "./Snowfall/Snowfall";
 import { isNewYearPeriod } from "../../Utils/isNewYearPeriod";
 import type { IconType } from "react-icons";
+import { PATH_NAMES } from "../../Constants/pathnames";
 
 export interface SocialLink {
   name: string;
@@ -41,11 +42,17 @@ export const Header = () => {
 
   // Данные для соцсетей для удобства управления
   const socialLinks: SocialLink[] = [
-    { name: "VK", url: "https://vk.com/tentoteka", icon: IoLogoVk },
+    {
+      name: "VK",
+      url: "https://vk.com/tentoteka",
+      icon: IoLogoVk,
+      color: "#4C75A3",
+    },
     {
       name: "Telegram",
       url: "https://t.me/tentoteka",
       icon: FaTelegramPlane,
+      color: "#0088CC",
     },
     {
       name: "Avito",
@@ -85,7 +92,7 @@ export const Header = () => {
         {/* Логотип */}
         <div className={styles.logo}>
           <Link
-            to="/"
+            to={PATH_NAMES.HOME}
             onClick={closeMenu}
             className={styles.logo}
             title="На главную"
@@ -113,7 +120,11 @@ export const Header = () => {
           </div>
 
           {/* Ссылка на страницу контактов */}
-          <Link to="/contacts" className={styles.navLink} onClick={closeMenu}>
+          <Link
+            to={PATH_NAMES.CONTACTS}
+            className={styles.navLink}
+            onClick={closeMenu}
+          >
             Контакты
           </Link>
 
@@ -130,15 +141,17 @@ export const Header = () => {
                   rel="noopener noreferrer"
                   className={styles.socialLink}
                   onClick={closeMenu}
+                  style={{ backgroundColor: social.color }}
                 >
                   {isImagePath ? (
                     <img
                       src={social.icon as string}
                       alt={social.name}
+                      title={social.name}
                       className={styles.iconImg}
                     />
                   ) : (
-                    <social.icon size={30}/>
+                    <social.icon size={24} color="#fff"/>
                   )}
                 </a>
               );

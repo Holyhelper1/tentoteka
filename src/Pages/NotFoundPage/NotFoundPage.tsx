@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './NotFoundPage.module.css';
 import { RiHomeLine } from 'react-icons/ri';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
+import { PATH_NAMES } from '../../Constants/pathnames';
 
 const NotFoundPage = () => {
   return (
@@ -54,10 +55,10 @@ const NotFoundPage = () => {
         <div className={styles.helpfulLinks}>
           <p className={styles.helpText}>Возможно, вы искали:</p>
           <div className={styles.links}>
-            <Link to="/catalog" className={styles.helpLink}>Каталог тентов</Link>
-            <Link to="/portfolio" className={styles.helpLink}>Наши работы</Link>
-            <Link to="/contacts" className={styles.helpLink}>Контакты</Link>
-            <Link to="/delivery" className={styles.helpLink}>Доставка и оплата</Link>
+            {/* <Link to="/catalog" className={styles.helpLink}>Каталог тентов</Link> */}
+            <Link to="/portfolio" className={styles.helpLink}>Результаты работ</Link>
+            <Link to={PATH_NAMES.CONTACTS} className={styles.helpLink}>Контакты</Link>
+            {/* <Link to="/delivery" className={styles.helpLink}>Доставка и оплата</Link> */}
           </div>
         </div>
 

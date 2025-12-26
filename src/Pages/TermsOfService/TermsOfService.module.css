@@ -1,12 +1,11 @@
-/* components/PrivacyPolicy/PrivacyPolicy.module.css */
-.policyContainer {
+.termsContainer {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
   min-height: calc(100vh - 80px);
 }
 
-.policyHeader {
+.termsHeader {
   text-align: center;
   margin-bottom: 50px;
   padding-bottom: 25px;
@@ -28,7 +27,7 @@
   line-height: 1.6;
 }
 
-.policyContent {
+.termsContent {
   background: var(--bg-white);
   border-radius: 12px;
   padding: 40px;
@@ -36,20 +35,20 @@
   border: 1px solid var(--border-color);
 }
 
-.policyContent a {
+.termsContent a {
   color: var(--primary-color);
   text-decoration: none;
 }
 
-.policyContent a:hover {
+.termsContent a:hover {
   color: var(--primary-hover);
 }
 
-.policySection {
+.termsSection {
   margin-bottom: 35px;
 }
 
-.policySection h2 {
+.termsSection h2 {
   font-size: 1.4rem;
   color: var(--primary-color);
   margin-bottom: 15px;
@@ -58,19 +57,19 @@
   border-bottom: 2px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
-.policySection p {
+.termsSection p {
   color: var(--text-main);
   line-height: 1.6;
   margin-bottom: 12px;
   text-align: justify;
 }
 
-.policySection ul {
+.termsSection ul {
   margin: 15px 0 15px 20px;
   padding-left: 10px;
 }
 
-.policySection li {
+.termsSection li {
   color: var(--text-main);
   line-height: 1.5;
   margin-bottom: 8px;
@@ -105,24 +104,37 @@
   border-top: 1px dashed var(--border-color);
 }
 
-/* Адаптивность */
+.highlight {
+  color: var(--primary-accent);
+  font-weight: 600;
+}
+
+.importantNote {
+  background-color: rgba(var(--primary-accent-rgb), 0.05);
+  border-left: 4px solid var(--primary-accent);
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+
 @media (max-width: 768px) {
-  .policyContainer {
+  .termsContainer {
     padding: 20px 15px;
   }
-  .policyContent {
+  .termsContent {
     padding: 25px 20px;
   }
-  .policySection h2 {
+  .termsSection h2 {
     font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .policyContent {
+  .termsContent {
     padding: 20px 15px;
   }
-  .policySection h2 {
+  .termsSection h2 {
     font-size: 1.2rem;
   }
   .pageTitle {

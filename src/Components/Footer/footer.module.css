@@ -291,7 +291,7 @@
 /* Нижняя часть футера */
 .footerBottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding-top: 30px;
   flex-wrap: wrap;
