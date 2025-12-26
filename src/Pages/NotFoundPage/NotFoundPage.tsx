@@ -56,7 +56,7 @@ const NotFoundPage = () => {
           <p className={styles.helpText}>Возможно, вы искали:</p>
           <div className={styles.links}>
             {/* <Link to="/catalog" className={styles.helpLink}>Каталог тентов</Link> */}
-            <Link to="/portfolio" className={styles.helpLink}>Результаты работ</Link>
+            <Link to={PATH_NAMES.PORTFOLIO} className={styles.helpLink}>Результаты работ</Link>
             <Link to={PATH_NAMES.CONTACTS} className={styles.helpLink}>Контакты</Link>
             {/* <Link to="/delivery" className={styles.helpLink}>Доставка и оплата</Link> */}
           </div>
