@@ -288,6 +288,23 @@
   z-index: 5;
 }
 
+.videoContainer.landscapeFullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  padding-bottom: 0 !important;
+  z-index: 9999;
+  background: #000;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.videoContainer.landscapeFullscreen .videoElement {
+  object-fit: contain;
+}
+
 
 /* Адаптивность */
 @media (min-width: 2100px) {
@@ -354,6 +371,19 @@
     align-items: flex-start;
     gap: 10px;
     padding: 10px;
+  }
+
+
+  .videoContainer.landscapeFullscreen .controlButton {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 20px !important;
+  }
+  
+  .videoContainer.landscapeFullscreen .muteCornerButton {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 22px !important;
   }
 }
 

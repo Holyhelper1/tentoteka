@@ -1,10 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
-import { FaVolumeMute, FaVolumeUp, FaPlay, FaPause, FaExpand } from 'react-icons/fa';
-import styles from './VideoBlock.module.css';
+import { useState, useRef, useEffect } from "react";
+import {
+  FaVolumeMute,
+  FaVolumeUp,
+  FaPlay,
+  FaPause,
+  FaExpand,
+  FaCompress,
+} from "react-icons/fa";
+import styles from "./VideoBlock.module.css";
 
 interface VideoBlockProps {
   /** Тип видео: 'local' для локального файла, 'rutube' для Rutube */
-  videoType?: 'local' | 'rutube';
+  videoType?: "local" | "rutube";
   /** Путь к локальному видеофайлу (для videoType='local') */
   localSrc?: string;
   /** ID видео на Rutube (для videoType='rutube') */
@@ -22,33 +29,34 @@ interface VideoBlockProps {
 }
 
 const VideoBlock = ({
-  videoType = 'local',
-  localSrc = '/videos/promo-video.mp4',
+  videoType = "local",
+  localSrc = "/videos/promo-video.mp4",
   rutubeId,
   rutubeUrl,
-  poster = '/images/video-poster.jpg',
+  poster = "/images/video-poster.jpg",
   loop = true,
-  title = 'Наше производство',
-  description = 'Посмотрите, как мы создаём качественные тенты для вашего транспорта'
+  title = "Наше производство",
+  description = "Посмотрите, как мы создаём качественные тенты для вашего транспорта",
 }: VideoBlockProps) => {
-   const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showControls, setShowControls] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  
+  const [isCustomFullscreen, setIsCustomFullscreen] = useState(false);
+  // const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
+
   // Рефы
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const controlsTimeoutRef = useRef<number | undefined>(undefined);// исправить  тип
+  const controlsTimeoutRef = useRef<number | undefined>(undefined);
 
   // Генерация URL для Rutube
   const getRutubeUrl = () => {
     if (rutubeUrl) return rutubeUrl;
     if (rutubeId) return `https://rutube.ru/play/embed/${rutubeId}`;
-    return 'https://rutube.ru/play/embed/12345678'; // Заглушка
+    return "https://rutube.ru/play/embed/12345678";
   };
 
   // Переключение звука
@@ -72,14 +80,57 @@ const VideoBlock = ({
     }
   };
 
+  // Вход в ландшафтный полноэкранный режим
+  const enterLandscapeFullscreen = async () => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    try {
+      // Запрос на полноэкранный режим
+      if (!document.fullscreenElement) {
+        await container.requestFullscreen();
+      }
+
+      // Попытка заблокировать ориентацию
+      if (screen.orientation && screen.orientation.lock) {
+        try {
+          await screen.orientation.lock("landscape");
+        } catch (error) {
+          console.warn("Не удалось заблокировать ориентацию:", error);
+        }
+      }
+
+      setIsCustomFullscreen(true);
+    } catch (error) {
+      console.error("Ошибка при входе в полноэкранный режим:", error);
+    }
+  };
+
+  // Выход из ландшафтного полноэкранного режима
+  const exitLandscapeFullscreen = async () => {
+    try {
+      // Разблокировка ориентации
+      if (screen.orientation && screen.orientation.unlock) {
+        screen.orientation.unlock();
+      }
+
+      // Выход из полноэкранного режима
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      }
+
+      setIsCustomFullscreen(false);
+    } catch (error) {
+      console.error("Ошибка при выходе из полноэкранного режима:", error);
+    }
+  };
+
   // Переключение полноэкранного режима
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      containerRef.current?.requestFullscreen();
-      setIsFullscreen(true);
+    if (isCustomFullscreen) {
+      exitLandscapeFullscreen();
     } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
+      enterLandscapeFullscreen();
     }
   };
 
@@ -109,12 +160,12 @@ const VideoBlock = ({
   // Показ/скрытие контролов
   const handleMouseMove = () => {
     setShowControls(true);
-    
+
     if (controlsTimeoutRef.current) {
       clearTimeout(controlsTimeoutRef.current);
     }
-    
-    controlsTimeoutRef.current = setTimeout(() => {
+
+    controlsTimeoutRef.current = window.setTimeout(() => {
       setShowControls(false);
     }, 3000);
   };
@@ -123,7 +174,8 @@ const VideoBlock = ({
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (videoRef.current) {
       const progressBar = e.currentTarget;
-      const clickPosition = e.clientX - progressBar.getBoundingClientRect().left;
+      const clickPosition =
+        e.clientX - progressBar.getBoundingClientRect().left;
       const progressBarWidth = progressBar.clientWidth;
       const percentage = clickPosition / progressBarWidth;
       videoRef.current.currentTime = percentage * duration;
@@ -134,7 +186,7 @@ const VideoBlock = ({
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
   // Эффект для автоскрытия контролов
@@ -150,14 +202,44 @@ const VideoBlock = ({
   // Эффект для обработки полноэкранного режима
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
+      const isCurrentlyFullscreen = !!document.fullscreenElement;
+      // setIsNativeFullscreen(isCurrentlyFullscreen);
+
+      // Если вышли из полноэкранного режима, сбрасываем кастомное состояние
+      if (!isCurrentlyFullscreen) {
+        setIsCustomFullscreen(false);
+
+        // Разблокируем ориентацию при выходе
+        if (screen.orientation && screen.orientation.unlock) {
+          screen.orientation.unlock();
+        }
+      }
     };
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    // Обработка изменения ориентации устройства
+    const handleOrientationChange = () => {
+      // Если вышли из ландшафтного режима, выходим из кастомного полноэкранного режима
+      if (window.orientation !== 90 && window.orientation !== -90) {
+        if (isCustomFullscreen) {
+          exitLandscapeFullscreen();
+        }
+      }
     };
-  }, []);
+
+    window.addEventListener("orientationchange", handleOrientationChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      window.removeEventListener("orientationchange", handleOrientationChange);
+
+      // Очистка таймеров при размонтировании
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [isCustomFullscreen]);
 
   // Эффект для паузы видео при скрытии страницы
   useEffect(() => {
@@ -171,28 +253,35 @@ const VideoBlock = ({
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [isPlaying]);
 
+  // Определяем, показывать ли заголовок и описание
+  const showHeader = !isCustomFullscreen;
+
   return (
     <section className={styles.videoSection}>
-      <div className={styles.sectionHeader}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <p className={styles.sectionDescription}>{description}</p>
-      </div>
+      {showHeader && (
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>{title}</h2>
+          <p className={styles.sectionDescription}>{description}</p>
+        </div>
+      )}
 
-      <div 
+      <div
         ref={containerRef}
-        className={styles.videoContainer}
+        className={`${styles.videoContainer} ${
+          isCustomFullscreen ? styles.landscapeFullscreen : ""
+        }`}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setShowControls(false)}
+        onTouchStart={handleMouseMove}
       >
-        {videoType === 'local' ? (
+        {videoType === "local" ? (
           <>
-            {/* Локальное видео */}
             <video
               ref={videoRef}
               className={styles.videoElement}
@@ -210,7 +299,6 @@ const VideoBlock = ({
               <p>Ваш браузер не поддерживает видео.</p>
             </video>
 
-            {/* Индикатор загрузки */}
             {isLoading && (
               <div className={styles.loadingOverlay}>
                 <div className={styles.loadingSpinner}></div>
@@ -218,16 +306,20 @@ const VideoBlock = ({
               </div>
             )}
 
-            {/* Контролы видео */}
-            <div className={`${styles.videoControls} ${showControls ? styles.controlsVisible : ''}`}>
-              {/* Прогресс-бар */}
-              <div 
+            <div
+              className={`${styles.videoControls} ${
+                showControls ? styles.controlsVisible : ""
+              }`}
+            >
+              <div
                 className={styles.progressBarContainer}
                 onClick={handleProgressClick}
               >
-                <div 
+                <div
                   className={styles.progressBar}
-                  style={{ width: `${(currentTime / duration) * 100}%` }}
+                  style={{
+                    width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`,
+                  }}
                 ></div>
                 <div className={styles.progressTime}>
                   <span>{formatTime(currentTime)}</span>
@@ -235,45 +327,49 @@ const VideoBlock = ({
                 </div>
               </div>
 
-              {/* Основные контролы */}
               <div className={styles.controlsMain}>
                 <div className={styles.controlsLeft}>
-                  <button 
+                  <button
                     className={styles.controlButton}
                     onClick={togglePlay}
                     aria-label={isPlaying ? "Пауза" : "Воспроизвести"}
                   >
                     {isPlaying ? <FaPause /> : <FaPlay />}
                   </button>
-                  
-                  <button 
+
+                  <button
                     className={styles.controlButton}
                     onClick={toggleMute}
                     aria-label={isMuted ? "Включить звук" : "Выключить звук"}
                   >
                     {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
                   </button>
-                  
+
                   <div className={styles.timeDisplay}>
                     {formatTime(currentTime)} / {formatTime(duration)}
                   </div>
                 </div>
-                
+
                 <div className={styles.controlsRight}>
-                  <button 
+                  <button
                     className={styles.controlButton}
                     onClick={toggleFullscreen}
-                    aria-label={isFullscreen ? "Выйти из полноэкранного режима" : "Полноэкранный режим"}
+                    aria-label={
+                      isCustomFullscreen
+                        ? "Выйти из полноэкранного режима"
+                        : "На весь экран"
+                    }
                   >
-                    <FaExpand />
+                    {isCustomFullscreen ? <FaCompress /> : <FaExpand />}
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Иконка звука в углу (для быстрого доступа) */}
-            <button 
-              className={`${styles.muteCornerButton} ${!isMuted ? styles.unmuted : ''}`}
+            <button
+              className={`${styles.muteCornerButton} ${
+                !isMuted ? styles.unmuted : ""
+              }`}
               onClick={toggleMute}
               aria-label={isMuted ? "Включить звук" : "Выключить звук"}
             >
@@ -281,24 +377,24 @@ const VideoBlock = ({
             </button>
           </>
         ) : (
-          /* Rutube iframe */
           <div className={styles.rutubeContainer}>
             <iframe
               className={styles.rutubeIframe}
-              src={`${getRutubeUrl()}?autoplay=1&mute=1&loop=${loop ? '1' : '0'}`}
+              src={`${getRutubeUrl()}?autoplay=1&mute=1&loop=${
+                loop ? "1" : "0"
+              }`}
               title="Промо-видео Тентотека"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-            
-            {/* Информация о Rutube */}
+
             <div className={styles.rutubeInfo}>
               <p className={styles.rutubeText}>
                 Видео воспроизводится через <strong>Rutube</strong>
               </p>
-              <a 
-                href={getRutubeUrl().replace('/embed/', '/video/')}
+              <a
+                href={getRutubeUrl().replace("/embed/", "/video/")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.rutubeLink}
@@ -308,32 +404,8 @@ const VideoBlock = ({
             </div>
           </div>
         )}
-
-        {/* Затемнение по краям для фокуса */}
         <div className={styles.videoVignette}></div>
       </div>
-
-      {/* Дополнительная информация */}
-      {/* <div className={styles.videoInfo}>
-        <div className={styles.infoGrid}>
-          <div className={styles.infoItem}>
-            <h3 className={styles.infoTitle}>Собственное производство</h3>
-            <p className={styles.infoText}>Все тенты изготавливаем на собственном оборудовании</p>
-          </div>
-          <div className={styles.infoItem}>
-            <h3 className={styles.infoTitle}>Команда профессионалов</h3>
-            <p className={styles.infoText}>Опытные мастера с многолетним стажем работы</p>
-          </div>
-          <div className={styles.infoItem}>
-            <h3 className={styles.infoTitle}>Контроль качества</h3>
-            <p className={styles.infoText}>Каждый тент проходит тщательную проверку</p>
-          </div>
-          <div className={styles.infoItem}>
-            <h3 className={styles.infoTitle}>Современные материалы</h3>
-            <p className={styles.infoText}>Используем только качественные и долговечные материалы</p>
-          </div>
-        </div>
-      </div> */}
     </section>
   );
 };

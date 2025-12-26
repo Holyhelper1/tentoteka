@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./main.module.css";
-// import MainCar from "./assets/main_car.png";
 import MainCar from "./assets/main_banner.png";
 import Circle from "./assets/circle-orange.png";
 import Slider from "../Slider/Slider";
@@ -10,22 +9,17 @@ import { InfoBlock } from "../InfoBlock/InfoBlock";
 import { GiSewingMachine } from "react-icons/gi";
 import ShippingCar from "./assets/icons/shipping-icon.png";
 import MainVideo from "./assets/video/Main-video.mp4";
-// import { FaShippingFast } from "react-icons/fa";
 export const Main = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   // modal state
   const [orderOpen, setOrderOpen] = useState(false);
-
-  // отдельные рефы: banner button и floating FAB
   const bannerBtnRef = useRef<HTMLButtonElement | null>(null);
   const fabRef = useRef<HTMLButtonElement | null>(null);
 
-  // показывать FAB только после секции "Наши работы"
   const [showFab, setShowFab] = useState(false);
 
-  // ----- attention animation for banner button (one-time subtle) -----
   useEffect(() => {
     const node = bannerBtnRef.current;
     if (!node) return;
@@ -41,16 +35,14 @@ export const Main = () => {
       );
     };
 
-    // запускаем чуть позже, чтобы пользователь успел увидеть баннер
     const t = window.setTimeout(runOnce, 900);
 
     return () => {
       window.clearTimeout(t);
       if (removeTimeout) window.clearTimeout(removeTimeout);
     };
-  }, []); // монтирование
+  }, []);
 
-  // ----- attention animation for FAB (only when visible) -----
   useEffect(() => {
     const node = fabRef.current;
     if (!node) return;
@@ -124,7 +116,6 @@ export const Main = () => {
     return `translate(${moveX}px, ${moveY}px)`;
   };
 
-  // show FAB when #works intersects viewport
   useEffect(() => {
     let ticking = false;
     let lastY = window.scrollY || 0;
@@ -142,22 +133,18 @@ export const Main = () => {
 
         const target = getTarget();
         if (!target) {
-          // если секция ещё не на странице — скрываем кнопку
           setShowFab(false);
           ticking = false;
           return;
         }
 
         const rect = target.getBoundingClientRect();
-        // триггер — когда верх секции приблизился в пределах 80% высоты вьюпорта
         const TRIGGER_RATIO = 0.8;
         const trigger = rect.top <= window.innerHeight * TRIGGER_RATIO;
 
-        // Показываем ТОЛЬКО при прокрутке вниз и когда триггер достигнут
         if (trigger && isScrollingDown) {
           setShowFab(true);
         } else {
-          // скрываем, если условие не выполнено (например, поднялись вверх выше секции)
           setShowFab(false);
         }
 
@@ -165,11 +152,9 @@ export const Main = () => {
       });
     };
 
-    // Вешаем слушатели
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 
-    // вызовем один раз при монтировании (на случай, если пользователь уже внизу)
     onScroll();
 
     return () => {
@@ -250,7 +235,6 @@ export const Main = () => {
       </div>
 
       <Slider />
-      {/* <VideoBlock /> */}
       <VideoBlock 
         videoType="local"
         localSrc={MainVideo}
@@ -259,8 +243,6 @@ export const Main = () => {
         loop={true}
       />
       <InfoBlock />
-
-      {/* Плавающая FAB — появляется только после скролла к #works */}
       <button
         ref={fabRef}
         className={`${styles.fabOrder} ${
