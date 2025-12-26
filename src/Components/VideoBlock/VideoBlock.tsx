@@ -81,49 +81,88 @@ const VideoBlock = ({
   };
 
   // Вход в ландшафтный полноэкранный режим
-  const enterLandscapeFullscreen = async () => {
-    const container = containerRef.current;
-    if (!container) return;
+const enterLandscapeFullscreen = async () => {
+  const container = containerRef.current;
+  const video = videoRef.current;
+  if (!container) return;
 
-    try {
-      // Запрос на полноэкранный режим
-      if (!document.fullscreenElement) {
-        await container.requestFullscreen();
-      }
-
-      // Попытка заблокировать ориентацию
-      if (screen.orientation && screen.orientation.lock) {
-        try {
-          await screen.orientation.lock("landscape");
-        } catch (error) {
-          console.warn("Не удалось заблокировать ориентацию:", error);
-        }
-      }
-
-      setIsCustomFullscreen(true);
-    } catch (error) {
-      console.error("Ошибка при входе в полноэкранный режим:", error);
+  try {
+    // 1) Стандартный fullscreen на контейнере
+    if (container.requestFullscreen) {
+      await container.requestFullscreen();
+    } 
+    // 2) Попробуем fullscreen на самом <video> (иногда более надёжно)
+    else if (video && (video as any).requestFullscreen) {
+      await (video as any).requestFullscreen();
     }
-  };
+    // 3) iOS Safari: нативный полноэкранный режим у тега video
+    else if (video && (video as any).webkitEnterFullscreen) {
+      try {
+        (video as any).webkitEnterFullscreen();
+      } catch (err) {
+        console.warn("webkitEnterFullscreen failed:", err);
+      }
+    }
+    // Если ни одно API не поддерживается — используем "псевдо"-fullscreen через CSS класс
+    else {
+      console.warn("Fullscreen API not supported — falling back to CSS fullscreen");
+    }
+
+    // Попытка заблокировать ориентацию (в TS приводим к any)
+    const orientation = (screen as any).orientation;
+    if (orientation && typeof orientation.lock === "function") {
+      try {
+        await orientation.lock("landscape");
+      } catch (error) {
+        console.warn("Не удалось заблокировать ориентацию:", error);
+      }
+    }
+
+    // В любом случае — включаем локальное состояние, чтобы применился .landscapeFullscreen
+    setIsCustomFullscreen(true);
+  } catch (error) {
+    console.error("Ошибка при входе в полноэкранный режим:", error);
+    // fallback
+    setIsCustomFullscreen(true);
+  }
+};
+
 
   // Выход из ландшафтного полноэкранного режима
-  const exitLandscapeFullscreen = async () => {
-    try {
-      // Разблокировка ориентации
-      if (screen.orientation && screen.orientation.unlock) {
-        screen.orientation.unlock();
-      }
+const exitLandscapeFullscreen = async () => {
+  const video = videoRef.current;
 
-      // Выход из полноэкранного режима
-      if (document.fullscreenElement) {
-        await document.exitFullscreen();
+  try {
+    // Разблокировка ориентации (приводим к any)
+    const orientation = (screen as any).orientation;
+    if (orientation && typeof orientation.unlock === "function") {
+      try {
+        orientation.unlock();
+      } catch (err) {
+        console.warn("Не удалось разблокировать ориентацию:", err);
       }
-
-      setIsCustomFullscreen(false);
-    } catch (error) {
-      console.error("Ошибка при выходе из полноэкранного режима:", error);
     }
-  };
+
+    // Если есть нативный fullscreen — выходим
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else if (video && (video as any).webkitExitFullscreen) {
+      try {
+        (video as any).webkitExitFullscreen();
+      } catch (err) {
+        // на iOS может не быть webkitExitFullscreen, но видео всё равно выйдет
+        console.warn("webkitExitFullscreen failed:", err);
+      }
+    }
+
+    // Отключаем наш CSS-псевдо fullscreen
+    setIsCustomFullscreen(false);
+  } catch (error) {
+    console.error("Ошибка при выходе из полноэкранного режима:", error);
+    setIsCustomFullscreen(false);
+  }
+};
+
 
   // Переключение полноэкранного режима
   const toggleFullscreen = () => {
@@ -201,45 +240,55 @@ const VideoBlock = ({
 
   // Эффект для обработки полноэкранного режима
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      const isCurrentlyFullscreen = !!document.fullscreenElement;
-      // setIsNativeFullscreen(isCurrentlyFullscreen);
-
-      // Если вышли из полноэкранного режима, сбрасываем кастомное состояние
-      if (!isCurrentlyFullscreen) {
-        setIsCustomFullscreen(false);
-
-        // Разблокируем ориентацию при выходе
-        if (screen.orientation && screen.orientation.unlock) {
-          screen.orientation.unlock();
+  const handleFullscreenChange = () => {
+    const isCurrentlyFullscreen = !!document.fullscreenElement;
+    if (!isCurrentlyFullscreen) {
+      setIsCustomFullscreen(false);
+      const orientation = (screen as any).orientation;
+      if (orientation && typeof orientation.unlock === "function") {
+        try {
+          orientation.unlock();
+        } catch (err) {
+          console.warn("Не удалось разблокировать ориентацию:", err);
         }
       }
-    };
+    } else {
+      setIsCustomFullscreen(true);
+    }
+  };
 
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
+  document.addEventListener("fullscreenchange", handleFullscreenChange);
 
-    // Обработка изменения ориентации устройства
-    const handleOrientationChange = () => {
-      // Если вышли из ландшафтного режима, выходим из кастомного полноэкранного режима
-      if (window.orientation !== 90 && window.orientation !== -90) {
-        if (isCustomFullscreen) {
-          exitLandscapeFullscreen();
-        }
+  // iOS Safari - события нативного fullscreen у video
+  const video = videoRef.current;
+  const onWebkitBegin = () => setIsCustomFullscreen(true);
+  const onWebkitEnd = () => setIsCustomFullscreen(false);
+
+  if (video && (video as any).webkitEnterFullscreen) {
+    video.addEventListener("webkitbeginfullscreen", onWebkitBegin);
+    video.addEventListener("webkitendfullscreen", onWebkitEnd);
+  }
+
+  // Обработка изменения ориентации устройства
+  const handleOrientationChange = () => {
+    if ((window as any).orientation !== 90 && (window as any).orientation !== -90) {
+      if (isCustomFullscreen) {
+        exitLandscapeFullscreen();
       }
-    };
+    }
+  };
+  window.addEventListener("orientationchange", handleOrientationChange);
 
-    window.addEventListener("orientationchange", handleOrientationChange);
+  return () => {
+    document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    window.removeEventListener("orientationchange", handleOrientationChange);
+    if (video && (video as any).webkitEnterFullscreen) {
+      video.removeEventListener("webkitbeginfullscreen", onWebkitBegin);
+      video.removeEventListener("webkitendfullscreen", onWebkitEnd);
+    }
+  };
+}, [isCustomFullscreen]);
 
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      window.removeEventListener("orientationchange", handleOrientationChange);
-
-      // Очистка таймеров при размонтировании
-      if (controlsTimeoutRef.current) {
-        clearTimeout(controlsTimeoutRef.current);
-      }
-    };
-  }, [isCustomFullscreen]);
 
   // Эффект для паузы видео при скрытии страницы
   useEffect(() => {

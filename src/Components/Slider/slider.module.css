@@ -165,6 +165,9 @@
 }
 
 .slider_button_left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: clamp(45px, 5vw, 65px);
   height: clamp(45px, 5vw, 65px);
@@ -213,6 +216,9 @@
 }
 
 .slider_button_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: clamp(45px, 5vw, 65px);
   height: clamp(45px, 5vw, 65px);
@@ -345,10 +351,10 @@
   backdrop-filter: blur(5px);
 }
 
-.ReactModal__Content{
+.ReactModal__Content {
   width: 100% !important;
 }
-.ReactModal__Content--after-open{
+.ReactModal__Content--after-open {
   width: 100% !important;
   max-height: 95vh !important;
 }
