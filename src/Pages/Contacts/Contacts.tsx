@@ -18,7 +18,7 @@ const Contacts = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    email: "",
+    // email: "",
     message: "",
   });
 
@@ -68,9 +68,9 @@ const Contacts = () => {
   };
 
   // Валидация email
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  // const validateEmail = (email: string) => {
+  //   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  // };
 
   // Обработка отправки формы
   const handleSubmit = async (e: React.FormEvent) => {
@@ -80,21 +80,21 @@ const Contacts = () => {
     let newCheckboxError = "";
 
     // Валидация полей
-    if (!formData.name.trim()) {
-      newFormErrors.push("Пожалуйста, введите ваше имя");
-    }
+    // if (!formData.name.trim()) {
+    //   newFormErrors.push("Пожалуйста, введите ваше имя");
+    // }
 
     if (!formData.phone.trim() || !validatePhone(formData.phone)) {
       newFormErrors.push("Пожалуйста, введите корректный номер телефона");
     }
 
-    if (!formData.email.trim() || !validateEmail(formData.email)) {
-      newFormErrors.push("Пожалуйста, введите корректный email адрес");
-    }
+    // if (!formData.email.trim() || !validateEmail(formData.email)) {
+    //   newFormErrors.push("Пожалуйста, введите корректный email адрес");
+    // }
 
-    if (!formData.message.trim()) {
-      newFormErrors.push("Пожалуйста, напишите ваш вопрос");
-    }
+    // if (!formData.message.trim()) {
+    //   newFormErrors.push("Пожалуйста, напишите ваш вопрос");
+    // }
 
     // Проверяем чекбокс
     if (!isAgreed) {
@@ -116,7 +116,7 @@ const Contacts = () => {
       // Формируем сообщение для отправки
       const message = `Новый вопрос с сайта ТЕНТОТЕКА:\n\nИмя: ${
         formData.name
-      }\nТелефон: ${formData.phone}\nEmail: ${formData.email}\nСообщение: ${
+      }\nТелефон: ${formData.phone}\nСообщение: ${
         formData.message
       }\n\nДата отправки: ${new Date().toLocaleString()}`;
 
@@ -135,7 +135,7 @@ const Contacts = () => {
       setFormData({
         name: "",
         phone: "",
-        email: "",
+        // email: "",
         message: "",
       });
       setIsAgreed(false);
@@ -323,7 +323,7 @@ const Contacts = () => {
             >
               <div className={styles.formGroup}>
                 <label htmlFor="name" className={styles.formLabel}>
-                  Ваше имя *
+                  Ваше имя
                 </label>
                 <input
                   type="text"
@@ -350,25 +350,9 @@ const Contacts = () => {
                   required
                 />
               </div>
-
-              {/* <div className={styles.formGroup}>
-                <label htmlFor="email" className={styles.formLabel}>
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className={styles.formInput}
-                  placeholder="example@mail.ru"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div> */}
-
               <div className={styles.formGroup}>
                 <label htmlFor="message" className={styles.formLabel}>
-                  Сообщение *
+                  Сообщение 
                 </label>
                 <textarea
                   id="message"
