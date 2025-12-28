@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import {Header} from './Components/Header/Header'
 import { routes, type RouteConfig } from './Routes/routes'
 import { Footer } from './Components/Footer/Footer'
+import { CookieConsent } from './Components/CookieConsent/CookieConsent'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
 
     </main>
     <Footer/>
+    <CookieConsent/>
     </div>
   )
 }

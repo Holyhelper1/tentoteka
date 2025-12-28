@@ -171,6 +171,10 @@ export const Main = () => {
       <div className={styles.main_container} ref={containerRef}>
         <div className={styles.main_text_container}>
           <h1 className={styles.main_title}>Тентотека</h1>
+          
+          {/* семантический блок для роботов */}
+          <h2 className="visually-hidden">Ключевые услуги: тенты на Газель, тенты на прицеп, чехлы, ремонт тентов</h2>
+
           <h2 className={styles.main_subtitle}>Качество в каждом шве</h2>
 
           <p className={styles.main_utp_text}>

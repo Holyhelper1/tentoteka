@@ -120,7 +120,11 @@ export const Footer = () => {
               <li className={styles.contactItem}>
                 <FiPhone className={styles.contactIcon} />
                 <div>
-                  <a href="tel:+79875400027" className={styles.contactLink}>
+                  <a
+                    href="tel:+79875400027"
+                    itemProp="telephone"
+                    className={styles.contactLink}
+                  >
                     +7 (987) 540-00-27
                   </a>
                   <p className={styles.contactSubtitle}>
@@ -144,6 +148,7 @@ export const Footer = () => {
                 <RiMapPinLine className={styles.contactIcon} />
                 <div>
                   <a
+                    itemProp="address"
                     href="https://yandex.ru/maps/?text=Нижний Новгород, ул. Памирская, 11В"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -199,10 +204,18 @@ export const Footer = () => {
             © {currentYear} ТЕНТОТЕКА. Все права защищены.
           </div>
           <div className={styles.legalLinks}>
-            <Link to={PATH_NAMES.PRIVACY_POLICY} className={styles.legalLink} target="_blank">
+            <Link
+              to={PATH_NAMES.PRIVACY_POLICY}
+              className={styles.legalLink}
+              target="_blank"
+            >
               Политика конфиденциальности
             </Link>
-            <Link to={PATH_NAMES.TERMS_OF_SERVICE} className={styles.legalLink} target="_blank">
+            <Link
+              to={PATH_NAMES.TERMS_OF_SERVICE}
+              className={styles.legalLink}
+              target="_blank"
+            >
               Пользовательское соглашение
             </Link>
             {/* <Link to="/sitemap" className={styles.legalLink}>
