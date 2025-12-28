@@ -1,7 +1,6 @@
 {
   "name": "Тентотека",
   "short_name": "Тентотека",
-  "start_url": "/tentoteka/",
   "display": "standalone",
   "background_color": "#2b5797",
   "theme_color": "#1a73e8",
