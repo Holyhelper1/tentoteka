@@ -12,8 +12,6 @@ import MainVideo from "./assets/video/Main-video.mp4";
 export const Main = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // modal state
   const [orderOpen, setOrderOpen] = useState(false);
   const bannerBtnRef = useRef<HTMLButtonElement | null>(null);
   const fabRef = useRef<HTMLButtonElement | null>(null);
@@ -75,7 +73,6 @@ export const Main = () => {
     };
   }, [showFab]);
 
-  // ----- parallax mouse -----
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -171,9 +168,12 @@ export const Main = () => {
       <div className={styles.main_container} ref={containerRef}>
         <div className={styles.main_text_container}>
           <h1 className={styles.main_title}>Тентотека</h1>
-          
+
           {/* семантический блок для роботов */}
-          <h2 className="visually-hidden">Ключевые услуги: тенты на Газель, тенты на прицеп, чехлы, ремонт тентов</h2>
+          <h2 className="visually-hidden">
+            Ключевые услуги: тенты на ГАЗель на УАЗ, тенты на прицеп, тенты под
+            модель прицепов и грузовых автомобилей
+          </h2>
 
           <h2 className={styles.main_subtitle}>Качество в каждом шве</h2>
 
@@ -233,13 +233,13 @@ export const Main = () => {
 
         <img
           src={MainCar}
-          alt="Газель и прицеп"
+          alt="ГАЗель и прицеп"
           className={styles.main_car_img}
         />
       </div>
 
       <Slider />
-      <VideoBlock 
+      <VideoBlock
         videoType="local"
         localSrc={MainVideo}
         title="Наше производство"

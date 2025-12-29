@@ -1,74 +1,3 @@
-/* components/PrivacyAgreementCheckbox/PrivacyAgreementCheckbox.module.css */
-/* .checkboxContainer {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin: 20px 0;
-  padding: 15px;
-  background: rgba(var(--primary-color-rgb), 0.03);
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.checkboxInput {
-  width: 20px;
-  height: 20px;
-  margin-top: 3px;
-  cursor: pointer;
-  accent-color: var(--primary-accent);
-}
-
-.checkboxLabel {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.5;
-  cursor: pointer;
-  flex: 1;
-}
-
-.checkboxLabel a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-  margin: 0 4px;
-}
-
-.checkboxLabel a:hover {
-  color: var(--primary-accent);
-  text-decoration: underline;
-} */
-
-/* Стиль для неактивной кнопки */
-/* .orderBtn:disabled {
-  background: var(--text-muted);
-  cursor: not-allowed;
-  opacity: 0.6;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-.orderBtn:disabled:hover {
-  background: var(--text-muted);
-  transform: none !important;
-  box-shadow: none !important;
-} */
-
-/* Адаптивность для чекбокса */
-/* @media (max-width: 480px) {
-  .checkboxContainer {
-    padding: 12px;
-    gap: 10px;
-  }
-  
-  .checkboxLabel {
-    font-size: 13px;
-  }
-} */
-
-
-
-/* components/PrivacyAgreementCheckbox/PrivacyAgreementCheckbox.module.css */
 .checkboxContainer {
   display: flex;
   flex-direction: column;
@@ -143,7 +72,6 @@
   text-decoration: underline;
 }
 
-/* Стили для сообщения об ошибке */
 .checkboxError {
   display: flex;
   align-items: center;
@@ -180,13 +108,21 @@
 }
 
 @keyframes errorShake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-3px);
   }
-  20%, 40%, 60%, 80% {
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(3px);
   }
 }
@@ -234,20 +170,20 @@
     padding: 12px;
     gap: 6px;
   }
-  
+
   .checkboxContent {
     gap: 10px;
   }
-  
+
   .checkboxLabel {
     font-size: 13px;
   }
-  
+
   .checkboxError {
     font-size: 12px;
     padding: 8px 12px;
   }
-  
+
   .errorIcon {
     font-size: 14px;
   }
@@ -257,38 +193,22 @@
   .checkboxContainer {
     padding: 10px;
   }
-  
+
   .checkboxLabel {
     font-size: 12px;
     line-height: 1.4;
   }
-  
+
   .checkboxError {
     font-size: 11px;
     padding: 6px 10px;
   }
-  
+
   .checkboxInput {
     width: 18px;
     height: 18px;
   }
 }
-
-
-/* .orderBtn:disabled {
-  background: var(--text-muted);
-  cursor: not-allowed;
-  opacity: 0.6;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-.orderBtn:disabled:hover {
-  background: var(--text-muted);
-  transform: none !important;
-  box-shadow: none !important;
-} */
-
 
 .checkboxLabel:has(+ .checkboxError) {
   font-weight: 500;

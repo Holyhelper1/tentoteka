@@ -45,9 +45,7 @@ const VideoBlock = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isCustomFullscreen, setIsCustomFullscreen] = useState(false);
-  // const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
 
-  // Рефы
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<number | undefined>(undefined);

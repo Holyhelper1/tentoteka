@@ -1,12 +1,5 @@
 import React from "react";
 import styles from "./InfoBlock.module.css";
-// import {
-//   FaTools,
-//   FaUserTie,
-//   FaClipboardCheck,
-//   FaCube
-// } from 'react-icons/fa';
-
 import { useIntersectionObserver } from "../../Hooks/useIntersectionObserver";
 import Gazel from "./icons/gazel.webp";
 import Pricep from "./icons/pricep.webp";

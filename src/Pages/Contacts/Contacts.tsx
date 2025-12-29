@@ -5,7 +5,7 @@ import {
   FaPhone,
   FaEnvelope,
   FaClock,
-  FaWhatsapp,
+  // FaWhatsapp,
   FaTelegram,
   FaVk,
 } from "react-icons/fa";
@@ -37,7 +37,7 @@ const Contacts = () => {
       weekend: "Сб-Вс: Выходной",
     },
     social: {
-      whatsapp: "https://wa.me/79875400027",
+      // whatsapp: "https://wa.me/79875400027",
       telegram: "https://t.me/tentoteka",
       vk: "https://vk.com/tentoteka",
     },
@@ -269,18 +269,10 @@ const Contacts = () => {
 
             {/* Социальные сети */}
             <div className={styles.socialSection}>
-              <h3 className={styles.socialTitle}>Свяжитесь с нами в мессенджерах</h3>
+              <h3 className={styles.socialTitle}>
+                Свяжитесь с нами в мессенджерах
+              </h3>
               <div className={styles.socialLinks}>
-                <a
-                  href={contactInfo.social.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                  aria-label="WhatsApp"
-                >
-                  <FaWhatsapp />
-                  <span>WhatsApp</span>
-                </a>
                 <a
                   href={contactInfo.social.telegram}
                   target="_blank"
@@ -352,7 +344,7 @@ const Contacts = () => {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="message" className={styles.formLabel}>
-                  Сообщение 
+                  Сообщение
                 </label>
                 <textarea
                   id="message"
@@ -398,8 +390,8 @@ const Contacts = () => {
         </div>
       </div>
 
-      {/* Дополнительная информация */}
-      <div className={styles.additionalInfo}>
+      {/* Дополнительная информация, требуется согласовать и доработать */}
+      {/* <div className={styles.additionalInfo}>
         <div className={styles.infoCard}>
           <h3 className={styles.infoCardTitle}>Доставка</h3>
           <p className={styles.infoCardText}>
@@ -417,11 +409,11 @@ const Contacts = () => {
         <div className={styles.infoCard}>
           <h3 className={styles.infoCardTitle}>Оплата</h3>
           <p className={styles.infoCardText}>
-            Принимаем наличные, безналичный расчет и СПБ платежи. Работаем
-            с физлицами, и с юрлицами по договору
+            Принимаем наличные, безналичный расчет и СПБ платежи. Работаем с
+            физлицами, и с юрлицами по договору
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

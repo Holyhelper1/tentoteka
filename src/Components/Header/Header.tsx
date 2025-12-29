@@ -17,7 +17,6 @@ import { PATH_NAMES } from "../../Constants/pathnames";
 export interface SocialLink {
   name: string;
   url: string;
-  // Icon может быть либо компонентом из react-icons, либо строкой (путь к картинке)
   icon: IconType | string;
   color?: string;
 }
@@ -119,7 +118,7 @@ export const Header = () => {
             </a>
           </div>
 
-          {/* Ссылка на страницу контактов */}
+          {/* Ссылка на страницу контактов, позде раскомментируем */}
           <Link
             to={PATH_NAMES.CONTACTS}
             className={styles.navLink}

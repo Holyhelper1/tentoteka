@@ -361,19 +361,19 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                       </div>
                     ) : (
                       <>
-                      <div className={styles.modelImageWrap}>
-                        <img
-                          src={imageSrc}
-                          alt={m}
-                          className={styles.modelImage}
-                        />
-                      </div>
-                      {/* <div className={styles.modelImagePlaceholder} /> */}
-                      
+                        <div className={styles.modelImageWrap}>
+                          <img
+                            src={imageSrc}
+                            alt={m}
+                            className={styles.modelImage}
+                          />
+                        </div>
+                        {/* Если убрать картинку вопроса, то раскомментировать строку ниже */}
+                        {/* <div className={styles.modelImagePlaceholder} /> */}
                       </>
                     )}
 
-                    <div className={styles.modelTitle}>{m}</div>                
+                    <div className={styles.modelTitle}>{m}</div>
                   </label>
                 );
               })}

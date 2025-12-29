@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { IoLogoVk } from "react-icons/io";
 import { FaTelegramPlane } from "react-icons/fa";
-// import { FaWhatsapp } from "react-icons/fa";
 import { RiMapPinLine } from "react-icons/ri";
 import { FiPhone } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
@@ -32,12 +31,6 @@ export const Footer = () => {
       icon: FaTelegramPlane,
       color: "#0088CC",
     },
-    // {
-    //   name: "WhatsApp",
-    //   url: "https://wa.me/79875400027",
-    //   icon: FaWhatsapp,
-    //   color: "#25D366",
-    // },
     {
       name: "Avito",
       url: "https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b",
@@ -186,15 +179,6 @@ export const Footer = () => {
             <button className={styles.orderButton} onClick={openOrder}>
               Заказать тент
             </button>
-            {/* <div className={styles.paymentMethods}>
-              <span className={styles.paymentTitle}>Способы оплаты:</span>
-              <div className={styles.paymentIcons}>
-                <span className={styles.paymentIcon}>💳</span>
-                <span className={styles.paymentIcon}>🏦</span>
-                <span className={styles.paymentIcon}>🤝</span>
-                <span className={styles.paymentIcon}>📱</span>
-              </div>
-            </div> */}
           </div>
         </div>
 
@@ -218,21 +202,18 @@ export const Footer = () => {
             >
               Пользовательское соглашение
             </Link>
-            {/* <Link to="/sitemap" className={styles.legalLink}>
-              Карта сайта
-            </Link> */}
           </div>
-          {/* <div className={styles.developer}>
-            Разработка сайта:
-            <a
-              href="https://kwork.ru/user/alexander_web_react"
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className={styles.developer}>
+            Некоторые утверждения на сайте носят юмористический характер и не
+            являются публичной офертой или гарантией.{" "}
+            <Link
+              to={PATH_NAMES.TERMS_OF_SERVICE}
               className={styles.developerLink}
             >
-              Alexander WebStudio
-            </a>
-          </div> */}
+              Подробнее
+            </Link>
+            .
+          </div>
         </div>
       </div>
       {orderOpen && (
