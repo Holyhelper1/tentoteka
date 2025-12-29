@@ -174,7 +174,7 @@ const Works: React.FC = () => {
       <div className={styles.filtersSection}>
         <div className={styles.filtersHeader}>
           <FaFilter className={styles.filterIcon} />
-          <h2 className={styles.sectionTitle}>Фильтр работ</h2>
+          <h2 className={styles.sectionTitle}>Фильтр</h2>
         </div>
         
         <div className={styles.filterButtons}>

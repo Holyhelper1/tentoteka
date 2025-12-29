@@ -180,20 +180,6 @@
   transition: all 0.2s ease;
 }
 
-/* .slider_button_left:before {
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 42px;
-  height: 42px;
-  background: url("./assets/icons/arrow-left.svg") no-repeat center;
-  filter: brightness(0) saturate(100%) invert(35%) sepia(87%) saturate(4591%)
-    hue-rotate(10deg) brightness(101%) contrast(105%);
-  transition: filter 0.3s ease;
-} */
-
 [data-theme="dark"] .slider_button_left:before {
   filter: brightness(0) saturate(100%) invert(63%) sepia(36%) saturate(1543%)
     hue-rotate(196deg) brightness(95%) contrast(94%);
@@ -230,20 +216,6 @@
   color: var(--primary-color);
   transition: all 0.2s ease;
 }
-
-/* .slider_button_right:before {
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 42px;
-  height: 42px;
-  background: url("./assets/icons/arrow-right.svg") no-repeat center;
-  filter: brightness(0) saturate(100%) invert(35%) sepia(87%) saturate(4591%)
-    hue-rotate(10deg) brightness(101%) contrast(105%);
-  transition: filter 0.3s ease;
-} */
 
 [data-theme="dark"] .slider_button_right:before {
   filter: brightness(0) saturate(100%) invert(63%) sepia(36%) saturate(1543%)
@@ -452,6 +424,245 @@
 .modalNext {
   right: 20px;
 }
+
+/* Лоадер */
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 40px 20px;
+  background: var(--bg-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(var(--primary-color-rgb), 0.1);
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.loaderContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--primary-color) 0%, 
+    var(--primary-accent) 50%, 
+    var(--primary-color) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
+}
+
+.spinnerRing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: spinnerAnimation 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border: 3px solid transparent;
+  border-top-color: var(--primary-color);
+}
+
+.spinnerRing:nth-child(1) {
+  animation-delay: -0.45s;
+  border-top-color: rgba(var(--primary-color-rgb), 0.8);
+}
+
+.spinnerRing:nth-child(2) {
+  animation-delay: -0.3s;
+  border-top-color: rgba(var(--primary-accent-rgb), 0.8);
+}
+
+.spinnerRing:nth-child(3) {
+  animation-delay: -0.15s;
+  border-top-color: rgba(var(--primary-color-rgb), 0.6);
+}
+
+.spinnerRing:nth-child(4) {
+  animation-delay: 0s;
+  border-top-color: rgba(var(--primary-accent-rgb), 0.6);
+}
+
+@keyframes spinnerAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loaderText {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 20px;
+  text-align: center;
+  animation: pulse 2s infinite;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.loaderProgress {
+  width: 200px;
+  height: 6px;
+  background-color: var(--bg-light);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loaderProgressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, 
+    var(--primary-color), 
+    var(--primary-accent));
+  border-radius: 3px;
+  animation: progressAnimation 2s ease-in-out infinite;
+}
+
+@keyframes progressAnimation {
+  0% {
+    left: -60%;
+    width: 60%;
+  }
+  50% {
+    left: 40%;
+    width: 20%;
+  }
+  100% {
+    left: 100%;
+    width: 60%;
+  }
+}
+
+/* Состояния ошибки и пустого списка */
+.errorContainer,
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 40px 20px;
+  text-align: center;
+  background: var(--bg-white);
+  border-radius: 12px;
+  border: 2px dashed rgba(var(--primary-color-rgb), 0.2);
+  margin: 20px 0;
+}
+
+.errorContainer {
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+.errorContainer::before,
+.emptyContainer::before {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.errorContainer::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc3545'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E");
+}
+
+.emptyContainer::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23002e74'%3E%3Cpath d='M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z'/%3E%3C/svg%3E");
+}
+
+/* Адаптивность лоадера */
+@media (max-width: 768px) {
+  .loaderContainer {
+    min-height: 300px;
+    padding: 30px 15px;
+  }
+  
+  .spinner {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .loaderText {
+    font-size: 1rem;
+  }
+  
+  .loaderProgress {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loaderContainer {
+    min-height: 250px;
+    padding: 20px 10px;
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .loaderText {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .loaderProgress {
+    width: 160px;
+  }
+}
+
+/* Темная тема для лоадера */
+[data-theme="dark"] .loaderContainer {
+  background: var(--bg-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .loaderProgress {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .errorContainer,
+[data-theme="dark"] .emptyContainer {
+  background: var(--bg-light);
+  border-color: rgba(var(--primary-color-rgb), 0.3);
+}
+
+[data-theme="dark"] .emptyContainer::before {
+  filter: invert(1) brightness(2);
+}
+
+
 
 /* Адаптивность */
 @media (max-width: 1024px) {

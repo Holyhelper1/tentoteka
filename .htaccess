@@ -1,10 +1,10 @@
-# включаем мод_rewrite
-RewriteEngine On
+; # включаем мод_rewrite
+; RewriteEngine On
 
-# если запрос не к tentoteka.ru — редиректим на tentoteka.ru
-RewriteCond %{HTTP_HOST} !^tentoteka\.ru$ [NC]
-RewriteRule ^(.*)$ https://tentoteka.ru/$1 [L,R=301]
+; # если запрос не к tentoteka.ru — редиректим на tentoteka.ru
+; RewriteCond %{HTTP_HOST} !^tentoteka\.ru$ [NC]
+; RewriteRule ^(.*)$ https://tentoteka.ru/$1 [L,R=301]
 
-# принудительный https (если не настроено отдельно)
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+; # принудительный https (если не настроено отдельно)
+; RewriteCond %{HTTPS} off
+; RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]

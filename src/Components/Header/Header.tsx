@@ -127,6 +127,13 @@ export const Header = () => {
           >
             Контакты
           </Link>
+          {/* <Link
+            to={PATH_NAMES.PORTFOLIO}
+            className={styles.navLink}
+            onClick={closeMenu}
+          >
+            Результаты работ
+          </Link> */}
 
           {/* Соцсети в навигации */}
           <div className={styles.socialLinks}>
@@ -151,7 +158,7 @@ export const Header = () => {
                       className={styles.iconImg}
                     />
                   ) : (
-                    <social.icon size={24} color="#fff"/>
+                    <social.icon size={24} color="#fff" />
                   )}
                 </a>
               );

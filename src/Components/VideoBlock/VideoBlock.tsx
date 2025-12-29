@@ -19,7 +19,7 @@ interface VideoBlockProps {
   /** URL для Rutube (альтернатива rutubeId) */
   rutubeUrl?: string;
   /** Постер/заглушка видео */
-  poster?: string;
+  // poster?: string;
   /** Автоповтор видео */
   loop?: boolean;
   /** Заголовок блока */
@@ -33,7 +33,7 @@ const VideoBlock = ({
   localSrc = "/videos/promo-video.mp4",
   rutubeId,
   rutubeUrl,
-  poster = "/images/video-poster.jpg",
+  // poster = "/images/video-poster.jpg",
   loop = true,
   title = "Наше производство",
   description = "Посмотрите, как мы создаём качественные тенты для вашего транспорта",
@@ -337,7 +337,7 @@ const exitLandscapeFullscreen = async () => {
               autoPlay
               muted={isMuted}
               loop={loop}
-              poster={poster}
+              // poster={poster}
               onLoadedData={handleLoadedData}
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleEnded}

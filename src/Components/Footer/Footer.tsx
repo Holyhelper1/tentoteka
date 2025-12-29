@@ -60,7 +60,7 @@ export const Footer = () => {
   const quickLinks = [
     { name: "Главная", path: PATH_NAMES.HOME },
     // { name: "Каталог тентов", path: "/catalog" },
-    { name: "Результаты работ", path: PATH_NAMES.PORTFOLIO },
+    // { name: "Результаты работ", path: PATH_NAMES.PORTFOLIO },
     { name: "Контакты", path: PATH_NAMES.CONTACTS },
   ];
 
