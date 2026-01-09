@@ -40,7 +40,8 @@ type WPPost = {
   _embedded?: WPEmbedded;
 };
 
-const WP_BASE = 'https://cg468456-wordpress-23m26.tw1.ru/wp-json';
+// const WP_BASE = 'https://ce468225-wordpress-lw69k.tw1.ru/wp-json';
+const WP_BASE = 'https://tentoteka.ru/wp-json';
 
 function extractImageFromPost(post: WPPost): WPImage | null {
   const acf = post.acf || {};

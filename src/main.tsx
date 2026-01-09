@@ -10,7 +10,8 @@ import { ScrollToTop } from './Utils/ScrolltoTop.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="/tentoteka">
+    {/* <BrowserRouter basename="/tentoteka"> */}
+    <BrowserRouter >
     {/* <HashRouter> */}
 
     <ScrollToTop />
