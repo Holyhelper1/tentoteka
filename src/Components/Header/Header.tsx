@@ -27,9 +27,6 @@ export const Header = () => {
 
   const showHolidayDecor = isNewYearPeriod();
   const showSnowFall = showSnow();
-
-
-  console.log('showSnowFall', showSnowFall);
   
   const headerClasses = `${styles.header} ${
     showHolidayDecor ? styles.headerHoliday : ""
