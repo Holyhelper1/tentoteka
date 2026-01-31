@@ -10,7 +10,7 @@ import Rutube from "../../assets/icons/rutube.webp";
 import Dzen from "../../assets/icons/Dzen.webp";
 import { useTheme } from "../../Hooks/useTheme";
 import Snowfall from "./Snowfall/Snowfall";
-import { isNewYearPeriod } from "../../Utils/isNewYearPeriod";
+import { isNewYearPeriod, showSnow } from "../../Utils/isNewYearPeriod";
 import type { IconType } from "react-icons";
 import { PATH_NAMES } from "../../Constants/pathnames";
 
@@ -26,7 +26,11 @@ export const Header = () => {
   const { toggleTheme, isDark } = useTheme();
 
   const showHolidayDecor = isNewYearPeriod();
+  const showSnowFall = showSnow();
 
+
+  console.log('showSnowFall', showSnowFall);
+  
   const headerClasses = `${styles.header} ${
     showHolidayDecor ? styles.headerHoliday : ""
   }`;
@@ -84,7 +88,7 @@ export const Header = () => {
           pointerEvents: "none",
         }}
       >
-        <Snowfall />
+        {showSnowFall ? <Snowfall /> : <></>}
       </div>
 
       <div className={styles.container}>
