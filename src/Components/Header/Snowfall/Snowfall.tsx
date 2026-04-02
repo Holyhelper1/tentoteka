@@ -46,17 +46,14 @@ const Snowfall: React.FC = () => {
         ctx.moveTo(p.x, p.y);
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
 
-        // Обновляем координаты
         p.y += p.speed;
         p.x += p.wind;
 
-        // Если снежинка ушла за нижний край
         if (p.y > canvas.height) {
           p.y = -5;
           p.x = Math.random() * canvas.width;
         }
 
-        // Если снежинка ушла за боковые края
         if (p.x > canvas.width) p.x = 0;
         if (p.x < 0) p.x = canvas.width;
       });
@@ -90,3 +87,4 @@ const Snowfall: React.FC = () => {
 };
 
 export default Snowfall;
+

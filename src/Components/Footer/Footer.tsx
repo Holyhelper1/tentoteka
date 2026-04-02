@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IoLogoVk } from "react-icons/io";
-import { FaTelegramPlane } from "react-icons/fa";
+// import { FaTelegramPlane } from "react-icons/fa";
 // import { FaWhatsapp } from "react-icons/fa";
 import { RiMapPinLine } from "react-icons/ri";
 import { FiPhone } from "react-icons/fi";
@@ -9,6 +9,7 @@ import Logo from "../../assets/Logo/Logo.png";
 import Avito from "../../assets/icons/avito.webp";
 import Rutube from "../../assets/icons/rutube.webp";
 import Dzen from "../../assets/icons/Dzen.webp";
+import MAX from "../../assets/icons/MAX.svg";
 import styles from "./Footer.module.css";
 import Order from "../Order/Order";
 import { useState } from "react";
@@ -27,11 +28,17 @@ export const Footer = () => {
       color: "#4C75A3",
     },
     {
-      name: "Telegram",
-      url: "https://t.me/tentoteka",
-      icon: FaTelegramPlane,
+      name: "MAX",
+      url: "https://vk.com/away.php?to=https%3A%2F%2Fmax.ru%2Fu%2Ff9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0&utf=1",
+      icon: MAX,
       color: "#0088CC",
     },
+    // {
+    //   name: "Telegram",
+    //   url: "https://t.me/tentoteka",
+    //   icon: FaTelegramPlane,
+    //   color: "#0088CC",
+    // },
     // {
     //   name: "WhatsApp",
     //   url: "https://wa.me/79875400027",

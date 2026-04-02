@@ -5,10 +5,11 @@ import {
   FaPhone,
   FaEnvelope,
   FaClock,
-  FaWhatsapp,
-  FaTelegram,
+  // FaWhatsapp,
+  // FaTelegram,
   FaVk,
 } from "react-icons/fa";
+import MAX from "../../assets/icons/Max_llight.svg";
 import PrivacyAgreementCheckbox from "../../Components/PrivacyAgreementCheckbox/PrivacyAgreementCheckbox";
 
 const Contacts = () => {
@@ -37,15 +38,16 @@ const Contacts = () => {
       weekend: "Сб-Вс: Выходной",
     },
     social: {
-      whatsapp: "https://wa.me/79875400027",
-      telegram: "https://t.me/tentoteka",
+      // whatsapp: "https://wa.me/79875400027",
+      // telegram: "https://t.me/tentoteka",
+      max: "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0",
       vk: "https://vk.com/tentoteka",
     },
   };
 
   // Обработчики изменения полей формы
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -63,7 +65,7 @@ const Contacts = () => {
   const validatePhone = (phone: string) => {
     // const digits = phone.replace(/\D/g, "");
     return /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/.test(
-      phone
+      phone,
     );
   };
 
@@ -122,7 +124,7 @@ const Contacts = () => {
 
       // Отправка в Telegram (аналогично форме заказа)
       const telegramUrl = `https://t.me/tentoteka_zakaz?text=${encodeURIComponent(
-        message
+        message,
       )}`;
 
       // Открываем Telegram в новой вкладке
@@ -142,12 +144,12 @@ const Contacts = () => {
 
       // Можно показать сообщение об успехе
       alert(
-        "Сообщение отправлено! Оно откроется в Telegram. Пожалуйста, отправьте его для завершения."
+        "Сообщение отправлено! Оно откроется в Telegram. Пожалуйста, отправьте его для завершения.",
       );
     } catch (error) {
       console.error("Ошибка отправки формы:", error);
       setFormError(
-        "Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону."
+        "Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.",
       );
     } finally {
       setIsSubmitting(false);
@@ -269,27 +271,23 @@ const Contacts = () => {
 
             {/* Социальные сети */}
             <div className={styles.socialSection}>
-              <h3 className={styles.socialTitle}>Свяжитесь с нами в мессенджерах</h3>
+              <h3 className={styles.socialTitle}>
+                Свяжитесь с нами в мессенджерах
+              </h3>
               <div className={styles.socialLinks}>
                 <a
-                  href={contactInfo.social.whatsapp}
+                  href={contactInfo.social.max}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialLink}
-                  aria-label="WhatsApp"
+                  aria-label="MAX"
                 >
-                  <FaWhatsapp />
-                  <span>WhatsApp</span>
-                </a>
-                <a
-                  href={contactInfo.social.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                  aria-label="Telegram"
-                >
-                  <FaTelegram />
-                  <span>Telegram</span>
+                  <img
+                    src={MAX}
+                    alt="MAX"
+                    width={"20.8px"}
+                  />
+                  <span>MAX</span>
                 </a>
                 <a
                   href={contactInfo.social.vk}
@@ -352,7 +350,7 @@ const Contacts = () => {
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="message" className={styles.formLabel}>
-                  Сообщение 
+                  Сообщение
                 </label>
                 <textarea
                   id="message"
@@ -417,8 +415,8 @@ const Contacts = () => {
         <div className={styles.infoCard}>
           <h3 className={styles.infoCardTitle}>Оплата</h3>
           <p className={styles.infoCardText}>
-            Принимаем наличные, безналичный расчет и СПБ платежи. Работаем
-            с физлицами, и с юрлицами по договору
+            Принимаем наличные, безналичный расчет и СПБ платежи. Работаем с
+            физлицами, и с юрлицами по договору
           </p>
         </div>
       </div>
