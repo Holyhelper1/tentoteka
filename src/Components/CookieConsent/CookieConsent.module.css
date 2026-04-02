@@ -167,7 +167,7 @@
   }
 }
 
-/* Для темной темы - небольшие корректировки */
+/* Для темной темы */
 [data-theme="dark"] .cookieBanner {
   background-color: var(--bg-light);
   color: var(--text-main);

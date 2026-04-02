@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { IoLogoVk } from "react-icons/io";
-import { FaTelegramPlane } from "react-icons/fa";
+// import { FaTelegramPlane } from "react-icons/fa";
+import MAX from "../../assets/icons/MAX.svg";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Logo from "../../assets/Logo/Logo.png";
 import Avito from "../../assets/icons/avito.webp";
@@ -10,14 +11,13 @@ import Rutube from "../../assets/icons/rutube.webp";
 import Dzen from "../../assets/icons/Dzen.webp";
 import { useTheme } from "../../Hooks/useTheme";
 import Snowfall from "./Snowfall/Snowfall";
-import { isNewYearPeriod } from "../../Utils/isNewYearPeriod";
+import { isNewYearPeriod, showSnow } from "../../Utils/isNewYearPeriod";
 import type { IconType } from "react-icons";
 import { PATH_NAMES } from "../../Constants/pathnames";
 
 export interface SocialLink {
   name: string;
   url: string;
-  // Icon может быть либо компонентом из react-icons, либо строкой (путь к картинке)
   icon: IconType | string;
   color?: string;
 }
@@ -27,7 +27,8 @@ export const Header = () => {
   const { toggleTheme, isDark } = useTheme();
 
   const showHolidayDecor = isNewYearPeriod();
-
+  const showSnowFall = showSnow();
+  
   const headerClasses = `${styles.header} ${
     showHolidayDecor ? styles.headerHoliday : ""
   }`;
@@ -48,12 +49,18 @@ export const Header = () => {
       icon: IoLogoVk,
       color: "#4C75A3",
     },
-    {
-      name: "Telegram",
-      url: "https://t.me/tentoteka",
-      icon: FaTelegramPlane,
+     {
+      name: "MAX",
+      url: "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0",
+      icon: MAX,
       color: "#0088CC",
     },
+    // {
+    //   name: "Telegram",
+    //   url: "https://t.me/tentoteka",
+    //   icon: FaTelegramPlane,
+    //   color: "#0088CC",
+    // },
     {
       name: "Avito",
       url: "https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b",
@@ -85,7 +92,7 @@ export const Header = () => {
           pointerEvents: "none",
         }}
       >
-        <Snowfall />
+        {showSnowFall ? <Snowfall /> : <></>}
       </div>
 
       <div className={styles.container}>
@@ -118,8 +125,6 @@ export const Header = () => {
               г. Нижний Новгород, ул. Памирская, 11В
             </a>
           </div>
-
-          {/* Ссылка на страницу контактов */}
           <Link
             to={PATH_NAMES.CONTACTS}
             className={styles.navLink}
@@ -127,6 +132,13 @@ export const Header = () => {
           >
             Контакты
           </Link>
+          {/* <Link
+            to={PATH_NAMES.PORTFOLIO}
+            className={styles.navLink}
+            onClick={closeMenu}
+          >
+            Результаты работ
+          </Link> */}
 
           {/* Соцсети в навигации */}
           <div className={styles.socialLinks}>
@@ -151,7 +163,7 @@ export const Header = () => {
                       className={styles.iconImg}
                     />
                   ) : (
-                    <social.icon size={24} color="#fff"/>
+                    <social.icon size={24} color="#fff" />
                   )}
                 </a>
               );

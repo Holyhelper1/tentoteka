@@ -6,7 +6,6 @@
 
 main {
   padding-top: 70px;
-  /* padding-inline: 40px; */
   min-height: calc(100vh - 70px);
   background-color: var(--bg-white);
   flex: 1;
@@ -16,7 +15,6 @@ main {
 @media (max-width: 768px) {
   main {
       padding-top: 60px;
-      /* padding-inline: 20px; */
       
   }
 }

@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { IoLogoVk } from "react-icons/io";
-import { FaTelegramPlane } from "react-icons/fa";
-// import { FaWhatsapp } from "react-icons/fa";
+// import { FaTelegramPlane } from "react-icons/fa";
+import MAX from "../../assets/icons/MAX.svg";
 import { RiMapPinLine } from "react-icons/ri";
 import { FiPhone } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import Logo from "../../assets/Logo/Logo.png";
+
 import Avito from "../../assets/icons/avito.webp";
 import Rutube from "../../assets/icons/rutube.webp";
 import Dzen from "../../assets/icons/Dzen.webp";
@@ -27,16 +28,16 @@ export const Footer = () => {
       color: "#4C75A3",
     },
     {
-      name: "Telegram",
-      url: "https://t.me/tentoteka",
-      icon: FaTelegramPlane,
+      name: "MAX",
+      url: "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0",
+      icon: MAX,
       color: "#0088CC",
     },
     // {
-    //   name: "WhatsApp",
-    //   url: "https://wa.me/79875400027",
-    //   icon: FaWhatsapp,
-    //   color: "#25D366",
+    //   name: "Telegram",
+    //   url: "https://t.me/tentoteka",
+    //   icon: FaTelegramPlane,
+    //   color: "#0088CC",
     // },
     {
       name: "Avito",
@@ -60,7 +61,7 @@ export const Footer = () => {
   const quickLinks = [
     { name: "Главная", path: PATH_NAMES.HOME },
     // { name: "Каталог тентов", path: "/catalog" },
-    { name: "Результаты работ", path: PATH_NAMES.PORTFOLIO },
+    // { name: "Результаты работ", path: PATH_NAMES.PORTFOLIO },
     { name: "Контакты", path: PATH_NAMES.CONTACTS },
   ];
 
@@ -184,17 +185,8 @@ export const Footer = () => {
               свяжется с вами в течение 5 минут.
             </p>
             <button className={styles.orderButton} onClick={openOrder}>
-              Заказать тент
+              Оформить заказ
             </button>
-            {/* <div className={styles.paymentMethods}>
-              <span className={styles.paymentTitle}>Способы оплаты:</span>
-              <div className={styles.paymentIcons}>
-                <span className={styles.paymentIcon}>💳</span>
-                <span className={styles.paymentIcon}>🏦</span>
-                <span className={styles.paymentIcon}>🤝</span>
-                <span className={styles.paymentIcon}>📱</span>
-              </div>
-            </div> */}
           </div>
         </div>
 
@@ -218,21 +210,18 @@ export const Footer = () => {
             >
               Пользовательское соглашение
             </Link>
-            {/* <Link to="/sitemap" className={styles.legalLink}>
-              Карта сайта
-            </Link> */}
           </div>
-          {/* <div className={styles.developer}>
-            Разработка сайта:
-            <a
-              href="https://kwork.ru/user/alexander_web_react"
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className={styles.developer}>
+            Некоторые утверждения на сайте носят юмористический характер и не
+            являются публичной офертой или гарантией.{" "}
+            <Link
+              to={PATH_NAMES.TERMS_OF_SERVICE}
               className={styles.developerLink}
             >
-              Alexander WebStudio
-            </a>
-          </div> */}
+              Подробнее
+            </Link>
+            .
+          </div>
         </div>
       </div>
       {orderOpen && (

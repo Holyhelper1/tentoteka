@@ -164,7 +164,6 @@
   justify-content: center;
   width: 35px;
   height: 35px;
-  /* background-color: var(--bg-light); */
   border-radius: 10px;
   text-decoration: none;
   color: var(--text-main);
@@ -174,11 +173,6 @@
   object-fit: cover;
 }
 
-/* .socialLink svg {
-  width: 30px;
-  height: 30px;
-  transition: fill 0.3s ease;
-} */
 
 .socialLink img {
   width: 35px;
@@ -200,7 +194,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-/* Контейнер для кнопок управления */
 .headerControls {
   display: flex;
   align-items: center;
@@ -244,22 +237,12 @@
   transform: scale(0.95);
 }
 
-/* .mobileThemeToggle {
-  display: none;
-  width: 100%;
-  border-radius: 8px;
-  margin-top: 20px;
-  padding: 12px;
-  background-color: var(--bg-light);
-} */
-
 .themeText {
   margin-left: 10px;
   font-weight: 500;
   font-size: 16px;
 }
 
-/* Бургер меню */
 .burger {
   display: none;
   flex-direction: column;

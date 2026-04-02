@@ -7,10 +7,8 @@ export const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Проверяем, дал ли пользователь уже согласие
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
-      // Показываем баннер с небольшой задержкой
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     }

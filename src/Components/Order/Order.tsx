@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./order.module.css";
 import Auto from "./assets/icon/auto.webp";
 import Cart from "./assets/icon/cart.webp";
@@ -111,7 +111,9 @@ const COLORS: { name: string; css: string }[] = [
   { name: "Чёрный", css: "#1b1b1b" },
 ];
 
-const TELEGRAM_USERNAME = "tentoteka_zakaz";
+// const TELEGRAM_USERNAME = "tentoteka_zakaz";
+const MAX_CHAT_URL =
+  "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0";
 
 const Order: React.FC<OrderProps> = ({ onClose }) => {
   const [step, setStep] = React.useState<number>(0);
@@ -125,15 +127,32 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
   const [isAgreed, setIsAgreed] = React.useState<boolean>(false);
   const [checkboxError, setCheckboxError] = React.useState<string>("");
 
+  const [showMaxModal, setShowMaxModal] = React.useState(false);
+  const [copiedText, setCopiedText] = React.useState("");
+  const autoOpenTimerRef = useRef<number | null>(null);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose?.();
-      }
+      if (e.key === "Escape") onClose?.();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  useEffect(() => {
+    return () => {
+      if (autoOpenTimerRef.current) {
+        window.clearTimeout(autoOpenTimerRef.current);
+      }
+    };
+  }, []);
+
+  const openMaxChat = () => {
+    const newWindow = window.open(MAX_CHAT_URL, "_blank");
+    if (!newWindow) {
+      window.location.href = MAX_CHAT_URL;
+    }
+  };
 
   const modelsForType = type ? MODELS[type] : [];
 
@@ -181,51 +200,53 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
     return /^\+7\d{10}$/.test(normalized);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const newErrors: string[] = [];
     let newCheckboxError = "";
 
     if (!validatePhone(phone)) {
-      newErrors.push("Введите корректный телефон в формате +7 (XXX) XXX XX XX");
+      newErrors.push("Введите корректный телефон");
     }
 
     if (!isAgreed) {
-      newCheckboxError = "Необходимо согласие на обработку персональных данных";
+      newCheckboxError = "Необходимо согласие";
     }
 
-    setError(newErrors.length > 0 ? newErrors.join(", ") : "");
+    setError(newErrors.join(", "));
     setCheckboxError(newCheckboxError);
 
-    if (newErrors.length > 0 || newCheckboxError) {
-      return;
-    }
+    if (newErrors.length || newCheckboxError) return;
 
     const chosenModel =
       model === "Другой (ввести вручную)"
         ? manualModel || "Указан вручную"
         : model;
-    const normalizedPhone = normalizePhone(phone);
 
     const message = [
       "Заказ с сайта — ТЕНТОТЕКА",
       `Тип: ${type === "auto" ? "Авто" : "Прицеп"}`,
       `Модель: ${chosenModel}`,
       `Цвет: ${color}`,
-      `Телефон: ${normalizedPhone}`,
+      `Телефон: ${normalizePhone(phone)}`,
       comment ? `Комментарий: ${comment}` : "Комментарий: -",
-      "Согласие на обработку персональных данных: Да",
     ].join("\n");
 
-    const url = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(
-      message
-    )}`;
+    try {
+      await navigator.clipboard.writeText(message);
+    } catch {}
 
-    const newWindow = window.open(url, "_blank");
-    if (!newWindow) {
-      window.location.href = url;
+    setCopiedText(message);
+    setShowMaxModal(true);
+
+    if (autoOpenTimerRef.current) {
+      clearTimeout(autoOpenTimerRef.current);
     }
 
-    onClose?.();
+    autoOpenTimerRef.current = window.setTimeout(() => {
+      openMaxChat();
+      setShowMaxModal(false);
+      onClose?.();
+    }, 4000);
   };
 
   const onSelectType = (t: VehicleType) => {
@@ -361,19 +382,19 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                       </div>
                     ) : (
                       <>
-                      <div className={styles.modelImageWrap}>
-                        <img
-                          src={imageSrc}
-                          alt={m}
-                          className={styles.modelImage}
-                        />
-                      </div>
-                      {/* <div className={styles.modelImagePlaceholder} /> */}
-                      
+                        <div className={styles.modelImageWrap}>
+                          <img
+                            src={imageSrc}
+                            alt={m}
+                            className={styles.modelImage}
+                          />
+                        </div>
+                        {/* Если убрать картинку вопроса, то раскомментировать строку ниже */}
+                        {/* <div className={styles.modelImagePlaceholder} /> */}
                       </>
                     )}
 
-                    <div className={styles.modelTitle}>{m}</div>                
+                    <div className={styles.modelTitle}>{m}</div>
                   </label>
                 );
               })}
@@ -481,7 +502,7 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                 onClick={() => {
                   if (!isAgreed) {
                     setCheckboxError(
-                      "Необходимо согласие на обработку персональных данных"
+                      "Необходимо согласие на обработку персональных данных",
                     );
                     const el = document.getElementById("order-privacy");
                     el?.focus();
@@ -490,13 +511,49 @@ const Order: React.FC<OrderProps> = ({ onClose }) => {
                   onSubmit();
                 }}
               >
-                Заказать тент
+                Оформить заказ
               </button>
+              {/* 🆕 МОДАЛКА */}
+              {showMaxModal && (
+                <div className={styles.modalOverlay}>
+                  <div className={styles.modalCard}>
+                    <div className={styles.modalTitle}>
+                      Текст заказа скопирован
+                    </div>
+
+                    <div className={styles.modalText}>
+                      Через 3 секунды откроется MAX. Вставьте сообщение в чат.
+                    </div>
+
+                    <textarea
+                      className={styles.modalPreview}
+                      readOnly
+                      value={copiedText}
+                    />
+
+                    <div className={styles.modalActions}>
+                      <button
+                        className={styles.orderBtn}
+                        onClick={() => {
+                          if (autoOpenTimerRef.current) {
+                            clearTimeout(autoOpenTimerRef.current);
+                          }
+                          openMaxChat();
+                          setShowMaxModal(false);
+                          onClose?.();
+                        }}
+                      >
+                        Перейти в MAX
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <p className={styles.micro}>
-              Откроется Telegram — вы сможете проверить сообщение и отправить
-              его в наш официальный чат.
+              Откроется MAX — вы сможете проверить сообщение и отправить его в
+              наш официальный чат.
             </p>
           </div>
         )}
