@@ -53,6 +53,88 @@
   animation: errorFadeIn 0.3s ease-out;
 }
 
+
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 25, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+  padding: 18px;
+  color: var(--text-main);
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.modalText {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.modalPreview {
+  width: 100%;
+  min-height: 140px;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-light);
+  color: var(--text-main);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  outline: none;
+  margin-bottom: 14px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+[data-theme="dark"] .modalCard {
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+}
+
+
+.orderBtn {
+  background: var(--primary-accent);
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.orderBtn:hover {
+  background: var(--primary-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb), 0.3);
+}
 @media (min-width: 1024px) {
   .contactsContent {
     grid-template-columns: 1fr 1fr;

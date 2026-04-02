@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./contacts.module.css";
 import {
   FaMapMarkerAlt,
@@ -6,13 +6,22 @@ import {
   FaEnvelope,
   FaClock,
   // FaWhatsapp,
-  FaTelegram,
+  // FaTelegram,
   FaVk,
 } from "react-icons/fa";
+import MAX from "../../assets/icons/Max_light.svg";
 import PrivacyAgreementCheckbox from "../../Components/PrivacyAgreementCheckbox/PrivacyAgreementCheckbox";
+
+const MAX_CHAT_URL =
+  "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0";
 
 const Contacts = () => {
   const yandexMapsAppUrl = `https://yandex.ru/maps/-/CLDJROM9`;
+
+  const autoOpenTimerRef = useRef<number | null>(null);
+
+  const [showMaxModal, setShowMaxModal] = useState(false);
+  const [copiedText, setCopiedText] = useState("");
 
   // Состояния для формы
   const [formData, setFormData] = useState({
@@ -38,14 +47,30 @@ const Contacts = () => {
     },
     social: {
       // whatsapp: "https://wa.me/79875400027",
-      telegram: "https://t.me/tentoteka",
+      // telegram: "https://t.me/tentoteka",
+      max: MAX_CHAT_URL,
       vk: "https://vk.com/tentoteka",
     },
   };
 
+  useEffect(() => {
+    return () => {
+      if (autoOpenTimerRef.current) {
+        window.clearTimeout(autoOpenTimerRef.current);
+      }
+    };
+  }, []);
+
+  const openMaxChat = () => {
+    const newWindow = window.open(MAX_CHAT_URL, "_blank");
+    if (!newWindow) {
+      window.location.href = MAX_CHAT_URL;
+    }
+  };
+
   // Обработчики изменения полей формы
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -53,7 +78,6 @@ const Contacts = () => {
       [id]: value,
     }));
 
-    // Очищаем ошибки при изменении поля
     if (formError) {
       setFormError("");
     }
@@ -61,51 +85,29 @@ const Contacts = () => {
 
   // Валидация телефона
   const validatePhone = (phone: string) => {
-    // const digits = phone.replace(/\D/g, "");
     return /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/.test(
-      phone
+      phone,
     );
   };
 
-  // Валидация email
-  // const validateEmail = (email: string) => {
-  //   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  // };
-
   // Обработка отправки формы
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // <- обязательно
+    e.preventDefault();
 
     const newFormErrors: string[] = [];
     let newCheckboxError = "";
-
-    // Валидация полей
-    // if (!formData.name.trim()) {
-    //   newFormErrors.push("Пожалуйста, введите ваше имя");
-    // }
 
     if (!formData.phone.trim() || !validatePhone(formData.phone)) {
       newFormErrors.push("Пожалуйста, введите корректный номер телефона");
     }
 
-    // if (!formData.email.trim() || !validateEmail(formData.email)) {
-    //   newFormErrors.push("Пожалуйста, введите корректный email адрес");
-    // }
-
-    // if (!formData.message.trim()) {
-    //   newFormErrors.push("Пожалуйста, напишите ваш вопрос");
-    // }
-
-    // Проверяем чекбокс
     if (!isAgreed) {
       newCheckboxError = "Необходимо согласие на обработку персональных данных";
     }
 
-    // Устанавливаем ошибки
     setFormError(newFormErrors.length > 0 ? newFormErrors.join(", ") : "");
     setCheckboxError(newCheckboxError);
 
-    // Если есть ошибки - не отправляем
     if (newFormErrors.length > 0 || newCheckboxError) {
       return;
     }
@@ -113,41 +115,40 @@ const Contacts = () => {
     setIsSubmitting(true);
 
     try {
-      // Формируем сообщение для отправки
-      const message = `Новый вопрос с сайта ТЕНТОТЕКА:\n\nИмя: ${
-        formData.name
-      }\nТелефон: ${formData.phone}\nСообщение: ${
-        formData.message
-      }\n\nДата отправки: ${new Date().toLocaleString()}`;
+      const message = `Новый вопрос с сайта — ТЕНТОТЕКА
 
-      // Отправка в Telegram (аналогично форме заказа)
-      const telegramUrl = `https://t.me/tentoteka_zakaz?text=${encodeURIComponent(
-        message
-      )}`;
+      Имя: ${formData.name || "-"}
+      Телефон: ${formData.phone}
+      Сообщение: ${formData.message || "-"}
 
-      // Открываем Telegram в новой вкладке
-      const newWindow = window.open(telegramUrl, "_blank");
-      if (!newWindow) {
-        window.location.href = telegramUrl;
+      Дата: ${new Date().toLocaleString()}`;
+
+      try {
+        await navigator.clipboard.writeText(message);
+      } catch {}
+
+      setCopiedText(message);
+      setShowMaxModal(true);
+
+      if (autoOpenTimerRef.current) {
+        clearTimeout(autoOpenTimerRef.current);
       }
 
-      // Очищаем форму после успешной отправки
+      autoOpenTimerRef.current = window.setTimeout(() => {
+        openMaxChat();
+        setShowMaxModal(false);
+      }, 4000);
+
       setFormData({
         name: "",
         phone: "",
-        // email: "",
         message: "",
       });
       setIsAgreed(false);
-
-      // Можно показать сообщение об успехе
-      alert(
-        "Сообщение отправлено! Оно откроется в Telegram. Пожалуйста, отправьте его для завершения."
-      );
     } catch (error) {
       console.error("Ошибка отправки формы:", error);
       setFormError(
-        "Произошла ошибка при отправке. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону."
+        "Произошла ошибка при отправке. Попробуйте позже или свяжитесь по телефону.",
       );
     } finally {
       setIsSubmitting(false);
@@ -274,14 +275,14 @@ const Contacts = () => {
               </h3>
               <div className={styles.socialLinks}>
                 <a
-                  href={contactInfo.social.telegram}
+                  href={contactInfo.social.max}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialLink}
-                  aria-label="Telegram"
+                  aria-label="MAX"
                 >
-                  <FaTelegram />
-                  <span>Telegram</span>
+                  <img src={MAX} alt="MAX" width={"20.8px"} />
+                  <span>MAX</span>
                 </a>
                 <a
                   href={contactInfo.social.vk}
@@ -385,6 +386,33 @@ const Contacts = () => {
               >
                 {isSubmitting ? "Отправка..." : "Отправить сообщение"}
               </button>
+              {/* МОДАЛКА */}
+              {showMaxModal && (
+                <div className={styles.modalOverlay}>
+                  <div className={styles.modalCard}>
+                    <div className={styles.modalTitle}>Текст скопирован</div>
+
+                    <textarea
+                      readOnly
+                      value={copiedText}
+                      className={styles.modalPreview}
+                    />
+
+                    <button
+                      className={styles.orderBtn}
+                      onClick={() => {
+                        if (autoOpenTimerRef.current) {
+                          clearTimeout(autoOpenTimerRef.current);
+                        }
+                        openMaxChat();
+                        setShowMaxModal(false);
+                      }}
+                    >
+                      Перейти в MAX
+                    </button>
+                  </div>
+                </div>
+              )}
             </form>
           </div>
         </div>

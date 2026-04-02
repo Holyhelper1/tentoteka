@@ -29,7 +29,7 @@ export const Main = () => {
       node.classList.add(styles.attention);
       removeTimeout = window.setTimeout(
         () => node.classList.remove(styles.attention),
-        ANIM_DURATION
+        ANIM_DURATION,
       );
     };
 
@@ -198,7 +198,7 @@ export const Main = () => {
             onClick={openOrder}
             aria-label="Заказать (баннер)"
           >
-            Заказать тент
+            Оформить заказ
           </button>
         </div>
 
@@ -257,7 +257,7 @@ export const Main = () => {
         aria-hidden={!showFab}
         style={{ pointerEvents: showFab ? "auto" : "none" }}
       >
-        Заказать тент
+        Оформить заказ
       </button>
 
       {/* Модалка */}

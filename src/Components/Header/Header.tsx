@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { IoLogoVk } from "react-icons/io";
-import { FaTelegramPlane } from "react-icons/fa";
+// import { FaTelegramPlane } from "react-icons/fa";
+import MAX from "../../assets/icons/MAX.svg";
 import { FiSun, FiMoon } from "react-icons/fi";
 import Logo from "../../assets/Logo/Logo.png";
 import Avito from "../../assets/icons/avito.webp";
@@ -48,12 +49,18 @@ export const Header = () => {
       icon: IoLogoVk,
       color: "#4C75A3",
     },
-    {
-      name: "Telegram",
-      url: "https://t.me/tentoteka",
-      icon: FaTelegramPlane,
+     {
+      name: "MAX",
+      url: "https://max.ru/u/f9LHodD0cOKQcOiETej2BNa4tH6J56bZI5bsKObjg8Nv1yLXys7OxYSXCK0",
+      icon: MAX,
       color: "#0088CC",
     },
+    // {
+    //   name: "Telegram",
+    //   url: "https://t.me/tentoteka",
+    //   icon: FaTelegramPlane,
+    //   color: "#0088CC",
+    // },
     {
       name: "Avito",
       url: "https://www.avito.ru/brands/526cd80c661d26132a8d5f257291451d/all/zapchasti_i_aksessuary?src=search_seller_info&iid=7661516354&sellerId=b35e07f781315cdc253610c2d7920f3b",
@@ -118,8 +125,6 @@ export const Header = () => {
               г. Нижний Новгород, ул. Памирская, 11В
             </a>
           </div>
-
-          {/* Ссылка на страницу контактов, позде раскомментируем */}
           <Link
             to={PATH_NAMES.CONTACTS}
             className={styles.navLink}
